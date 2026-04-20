@@ -497,6 +497,69 @@
             margin: var(--space-2) 0;
         }
 
+        .section-label {
+            display: block;
+            font-family: var(--font-heading);
+            font-size: 0.8125rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.08em;
+            color: var(--slate-300);
+            margin-bottom: var(--space-3);
+        }
+        .team-mode-toggle {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: var(--space-3);
+            margin-bottom: var(--space-5);
+        }
+        @media (max-width: 560px) {
+            .team-mode-toggle { grid-template-columns: 1fr; }
+        }
+        .team-mode-toggle input[type="radio"] {
+            position: absolute;
+            opacity: 0;
+            pointer-events: none;
+        }
+        .team-mode-option {
+            display: flex;
+            flex-direction: column;
+            gap: var(--space-1);
+            padding: var(--space-4);
+            border-radius: 12px;
+            border: 1.5px solid rgba(148, 163, 184, 0.2);
+            background: rgba(30, 41, 59, 0.3);
+            cursor: pointer;
+            transition: border-color 0.2s ease, background 0.2s ease, box-shadow 0.2s ease;
+        }
+        .team-mode-option:hover {
+            border-color: rgba(148, 163, 184, 0.35);
+            background: rgba(30, 41, 59, 0.5);
+        }
+        .team-mode-toggle input:checked + .team-mode-option {
+            border-color: var(--cyan-400);
+            background: rgba(34, 211, 238, 0.08);
+            box-shadow: 0 0 0 3px rgba(34, 211, 238, 0.15);
+        }
+        .team-mode-toggle input:focus-visible + .team-mode-option {
+            outline: 2px solid var(--cyan-400);
+            outline-offset: 2px;
+        }
+        .team-mode-icon {
+            font-size: 20px;
+        }
+        .team-mode-title {
+            font-weight: 700;
+            color: var(--slate-100);
+            font-size: 0.95rem;
+        }
+        .team-mode-desc {
+            color: var(--slate-400);
+            font-size: 0.8rem;
+            line-height: 1.5;
+        }
+        .team-pane[hidden] { display: none !important; }
+
         /* ── CONSENT BLOCK ── */
         .consent-block {
             background: rgba(30, 41, 59, 0.4);
@@ -943,21 +1006,54 @@
 
             <div class="field-divider"></div>
 
-            <div class="field-grid cols-2">
-                <div class="field" data-field="teamName">
-                    <label for="teamName">Název týmu</label>
-                    <input type="text" class="input" placeholder="např. CyberNinjas 42" id="teamName">
-                    <span class="field-hint">Volitelné</span>
+            <div>
+                <span class="section-label">Tým <span class="required">*</span></span>
+                <div class="team-mode-toggle" role="radiogroup" aria-label="Režim týmu">
+                    <input type="radio" name="teamMode" id="modeCreate" value="create" checked>
+                    <label for="modeCreate" class="team-mode-option">
+                        <span class="team-mode-icon">🆕</span>
+                        <span class="team-mode-title">Zakládám nový tým</span>
+                        <span class="team-mode-desc">Jsi team leader — ostatní ti mohou posílat žádosti o připojení.</span>
+                    </label>
+
+                    <input type="radio" name="teamMode" id="modeJoin" value="join">
+                    <label for="modeJoin" class="team-mode-option">
+                        <span class="team-mode-icon">🤝</span>
+                        <span class="team-mode-title">Připojuji se k existujícímu</span>
+                        <span class="team-mode-desc">Vedoucí týmu potvrdí nebo odmítne tvou žádost.</span>
+                    </label>
                 </div>
-                <div class="field" data-field="teamSize">
-                    <label for="teamSize">Počet členů v týmu <span class="required">*</span></label>
-                    <select class="input" id="teamSize">
-                        <option value="" disabled selected>Vyber počet…</option>
-                        <option value="1">1 (sólo)</option>
-                        <option value="2">2 členové</option>
-                        <option value="3">3 členové (max)</option>
-                    </select>
-                    <span class="field-error" data-error-for="teamSize">Vyber prosím počet členů v týmu.</span>
+
+                <div class="team-pane" id="teamCreatePane">
+                    <div class="field-grid cols-2">
+                        <div class="field" data-field="teamName">
+                            <label for="teamName">Název týmu <span class="required">*</span></label>
+                            <input type="text" class="input" placeholder="např. CyberNinjas 42" id="teamName" maxlength="50">
+                            <span class="field-hint">Musí být unikátní. Ostatní ho uvidí v nabídce.</span>
+                            <span class="field-error" data-error-for="teamName">Zadej název týmu.</span>
+                        </div>
+                        <div class="field" data-field="teamSize">
+                            <label for="teamSize">Počet členů <span class="required">*</span></label>
+                            <select class="input" id="teamSize">
+                                <option value="" disabled selected>Vyber počet…</option>
+                                <option value="1">1 (sólo)</option>
+                                <option value="2">2 členové</option>
+                                <option value="3">3 členové (max)</option>
+                            </select>
+                            <span class="field-error" data-error-for="teamSize">Vyber počet členů.</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="team-pane" id="teamJoinPane" hidden>
+                    <div class="field" data-field="teamJoin">
+                        <label for="teamJoin">Vyber tým <span class="required">*</span></label>
+                        <select class="input" id="teamJoin">
+                            <option value="" disabled selected>Načítám týmy…</option>
+                        </select>
+                        <span class="field-hint">Zobrazují se jen týmy s volným místem. Vedoucí týmu potvrdí připojení.</span>
+                        <span class="field-error" data-error-for="teamJoin">Vyber tým.</span>
+                    </div>
                 </div>
             </div>
 
@@ -1040,9 +1136,6 @@
 </div>
 
 <script>
-    // ========================================================================
-    // CONFIG — Apps Script webhook URL placeholder (replace after deploy)
-    // ========================================================================
     const APPS_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbw0I14fgua_wpOQbsnE8Su-QK2Oh3U1gRh-fAqp41oA7sCMjDsYW17XK5YCLQmbZA-kYQ/exec';
 
     const EMAIL_RE = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
@@ -1058,28 +1151,76 @@
             if (span) span.textContent = message;
         }
     }
-
     function clearError(fieldName) {
         const field = document.querySelector('[data-field="' + fieldName + '"]');
         if (field) field.classList.remove('has-error');
     }
-
     function clearAllErrors() {
         document.querySelectorAll('.field.has-error').forEach(function(f){ f.classList.remove('has-error'); });
         document.getElementById('consentBlock').classList.remove('has-error');
         hideGlobalError();
     }
-
     function showGlobalError(msg) {
         const el = document.getElementById('globalError');
         el.textContent = msg;
         el.hidden = false;
     }
-
     function hideGlobalError() {
         const el = document.getElementById('globalError');
         el.textContent = '';
         el.hidden = true;
+    }
+
+    function getTeamMode() {
+        const checked = document.querySelector('input[name="teamMode"]:checked');
+        return checked ? checked.value : 'create';
+    }
+    function switchTeamMode(mode) {
+        document.getElementById('teamCreatePane').hidden = (mode !== 'create');
+        document.getElementById('teamJoinPane').hidden   = (mode !== 'join');
+        clearError('teamName');
+        clearError('teamSize');
+        clearError('teamJoin');
+    }
+
+    async function loadJoinableTeams() {
+        const sel = document.getElementById('teamJoin');
+        try {
+            const res = await fetch(APPS_SCRIPT_URL + '?action=teams', { method: 'GET', redirect: 'follow' });
+            const json = await res.json();
+            sel.innerHTML = '';
+            if (!json.ok || !json.teams || json.teams.length === 0) {
+                const opt = document.createElement('option');
+                opt.value = '';
+                opt.disabled = true;
+                opt.selected = true;
+                opt.textContent = 'Zatím tu žádný tým není — založ první!';
+                sel.appendChild(opt);
+                return;
+            }
+            const placeholder = document.createElement('option');
+            placeholder.value = '';
+            placeholder.disabled = true;
+            placeholder.selected = true;
+            placeholder.textContent = 'Vyber tým…';
+            sel.appendChild(placeholder);
+            json.teams.forEach(function(t) {
+                const opt = document.createElement('option');
+                opt.value = t.id;
+                const slots = t.slotsLeft === 1 ? '1 volné místo' : t.slotsLeft + ' volná místa';
+                opt.textContent = t.name + ' — vedoucí ' + t.leaderFirstName + ' (' + slots + ')';
+                sel.appendChild(opt);
+            });
+        } catch (err) {
+            sel.innerHTML = '';
+            const opt = document.createElement('option');
+            opt.value = '';
+            opt.disabled = true;
+            opt.selected = true;
+            opt.textContent = 'Nepodařilo se načíst týmy — zkus obnovit stránku';
+            sel.appendChild(opt);
+            console.error('Teams load failed:', err);
+        }
     }
 
     function validateAll() {
@@ -1093,8 +1234,8 @@
         const birthYear = document.getElementById('birthYear').value.trim();
         const github    = document.getElementById('github').value.trim();
         const role      = document.getElementById('role').value;
-        const teamSize  = document.getElementById('teamSize').value;
         const consent1  = document.getElementById('consent1').checked;
+        const mode      = getTeamMode();
 
         if (!firstName) { setError('firstName', 'Vyplň prosím jméno.'); ok = false; }
         if (!lastName)  { setError('lastName',  'Vyplň prosím příjmení.'); ok = false; }
@@ -1104,39 +1245,42 @@
         } else if (!EMAIL_RE.test(email)) {
             setError('email', 'Zadej platnou e-mailovou adresu.'); ok = false;
         }
-
         if (phone && !PHONE_RE.test(phone)) {
             setError('phone', 'Telefon vypadá divně — zkontroluj ho.'); ok = false;
         }
-
         if (birthYear) {
             const y = Number(birthYear);
             if (!Number.isInteger(y) || y < 1940 || y > 2010) {
                 setError('birthYear', 'Zadej rok mezi 1940 a 2010.'); ok = false;
             }
         }
-
         if (github && !URL_RE.test(github)) {
             setError('github', 'Zadej platnou URL (např. github.com/username).'); ok = false;
         }
+        if (!role) { setError('role', 'Vyber prosím svou aktuální roli.'); ok = false; }
 
-        if (!role)     { setError('role',     'Vyber prosím svou aktuální roli.'); ok = false; }
-        if (!teamSize) { setError('teamSize', 'Vyber prosím počet členů v týmu.'); ok = false; }
+        if (mode === 'create') {
+            const teamName = document.getElementById('teamName').value.trim();
+            const teamSize = document.getElementById('teamSize').value;
+            if (!teamName) { setError('teamName', 'Zadej název týmu.'); ok = false; }
+            if (!teamSize) { setError('teamSize', 'Vyber počet členů.'); ok = false; }
+        } else {
+            const teamJoin = document.getElementById('teamJoin').value;
+            if (!teamJoin) { setError('teamJoin', 'Vyber tým.'); ok = false; }
+        }
 
         if (!consent1) {
             document.getElementById('consentBlock').classList.add('has-error');
             ok = false;
         }
-
         if (!ok) {
             const firstErr = document.querySelector('.field.has-error, .consent-block.has-error');
             if (firstErr) firstErr.scrollIntoView({ behavior: 'smooth', block: 'center' });
         }
-
         return ok;
     }
 
-    ['firstName','lastName','email','phone','birthYear','github','role','teamSize'].forEach(function(name) {
+    ['firstName','lastName','email','phone','birthYear','github','role','teamName','teamSize','teamJoin'].forEach(function(name) {
         const el = document.getElementById(name);
         if (!el) return;
         const ev = (el.tagName === 'SELECT') ? 'change' : 'input';
@@ -1146,17 +1290,19 @@
     document.getElementById('consent1').addEventListener('change', function() {
         document.getElementById('consentBlock').classList.remove('has-error');
     });
+    document.querySelectorAll('input[name="teamMode"]').forEach(function(r) {
+        r.addEventListener('change', function() { switchTeamMode(r.value); });
+    });
 
     async function submitForm() {
-        // Honeypot — boti ho vyplní, lidé ne. Tiše předstíráme úspěch.
         if (document.getElementById('website').value) {
-            window.location.href = 'success.html';
+            window.location.href = 'success.html?mode=created';
             return;
         }
-
         if (!validateAll()) return;
 
-        const data = {
+        const mode = getTeamMode();
+        const base = {
             firstName: document.getElementById('firstName').value.trim(),
             lastName:  document.getElementById('lastName').value.trim(),
             email:     document.getElementById('email').value.trim(),
@@ -1165,11 +1311,20 @@
             github:    document.getElementById('github').value.trim(),
             role:      document.getElementById('role').value,
             company:   document.getElementById('company').value.trim(),
-            teamName:  document.getElementById('teamName').value.trim(),
-            teamSize:  document.getElementById('teamSize').value,
             consentGdpr:       document.getElementById('consent1').checked,
             consentNewsletter: document.getElementById('consent2').checked
         };
+        let payload;
+        if (mode === 'create') {
+            payload = Object.assign({ type: 'create_team' }, base, {
+                teamName: document.getElementById('teamName').value.trim(),
+                teamSize: document.getElementById('teamSize').value
+            });
+        } else {
+            payload = Object.assign({ type: 'join_team' }, base, {
+                teamId: document.getElementById('teamJoin').value
+            });
+        }
 
         const btn = document.getElementById('submitBtn');
         const originalText = btn.innerHTML;
@@ -1182,10 +1337,10 @@
                 method: 'POST',
                 mode: 'no-cors',
                 headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify(data)
+                body: JSON.stringify(payload)
             });
-            // no-cors → nevidíme response. Předpokládáme úspěch.
-            window.location.href = 'success.html';
+            const redirectMode = (mode === 'create') ? 'created' : 'pending';
+            window.location.href = 'success.html?mode=' + redirectMode;
         } catch (err) {
             btn.disabled = false;
             btn.innerHTML = originalText;
@@ -1194,6 +1349,8 @@
     }
 
     document.getElementById('submitBtn').addEventListener('click', submitForm);
+
+    loadJoinableTeams();
 </script>
 
 </body>

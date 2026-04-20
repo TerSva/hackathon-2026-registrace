@@ -332,9 +332,9 @@
     </div>
 
     <!-- Text -->
-    <h1 class="headline">Registrace<br>proběhla!</h1>
-    <p class="subline">Hodně štěstí na hackathonu.</p>
-    <p class="desc">
+    <h1 class="headline" id="headline">Registrace<br>proběhla!</h1>
+    <p class="subline" id="subline">Hodně štěstí na hackathonu.</p>
+    <p class="desc" id="desc">
         Těšíme se na tebe. Potvrzovací e-mail s detaily dorazí do několika minut.
         Připrav se na 48 hodin kódování, tvorby a skvělých lidí.
     </p>
@@ -366,6 +366,15 @@
 </footer>
 
 <script>
+    const params = new URLSearchParams(window.location.search);
+    const mode = params.get('mode');
+    if (mode === 'pending') {
+        document.getElementById('headline').innerHTML = 'Čekáme na<br>vedoucího týmu';
+        document.getElementById('subline').textContent = 'Tvá žádost o připojení byla odeslána.';
+        document.getElementById('desc').textContent =
+            'Vedoucí týmu právě dostal e-mail s tvou žádostí. Jakmile ji potvrdí, dostaneš e-mail s registračním kódem. Obvykle do 24 hodin.';
+    }
+
     const colors = [
         'rgba(34,211,238,VAL)',
         'rgba(59,130,246,VAL)',

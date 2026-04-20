@@ -1,0 +1,537 @@
+<!DOCTYPE html>
+<html lang="cs">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Potvrzení týmu — AI & Programming Hackathon 2026</title>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700;800;900&family=Open+Sans:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --cyan-300: #67e8f9;
+            --cyan-400: #22d3ee;
+            --cyan-500: #06b6d4;
+            --blue-400: #60a5fa;
+            --blue-500: #3b82f6;
+            --purple-300: #d8b4fe;
+            --purple-400: #c084fc;
+            --purple-500: #a855f7;
+            --magenta-300: #f0abfc;
+            --magenta-400: #e879f9;
+            --magenta-500: #d946ef;
+            --slate-100: #f1f5f9;
+            --slate-200: #e2e8f0;
+            --slate-300: #cbd5e1;
+            --slate-400: #94a3b8;
+            --slate-500: #64748b;
+            --slate-600: #475569;
+            --slate-700: #334155;
+            --slate-800: #1e293b;
+            --slate-900: #0f172a;
+
+            --gradient-brand: linear-gradient(135deg, #22d3ee 0%, #3b82f6 30%, #a855f7 70%, #d946ef 100%);
+            --gradient-brand-90: linear-gradient(90deg, #22d3ee 0%, #3b82f6 33%, #a855f7 66%, #d946ef 100%);
+            --gradient-warn: linear-gradient(135deg, #64748b 0%, #475569 50%, #334155 100%);
+            --font-heading: 'Montserrat', sans-serif;
+            --font-body: 'Open Sans', sans-serif;
+            --font-mono: 'JetBrains Mono', monospace;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        html { height: 100%; }
+
+        body {
+            font-family: var(--font-body);
+            background: var(--slate-900);
+            color: var(--slate-100);
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+            position: relative;
+        }
+
+        .bg-glow {
+            position: fixed;
+            inset: 0;
+            pointer-events: none;
+            z-index: 0;
+            background:
+                radial-gradient(ellipse 80% 50% at 20% 40%, rgba(34, 211, 238, 0.08) 0%, transparent 50%),
+                radial-gradient(ellipse 60% 40% at 80% 20%, rgba(168, 85, 247, 0.07) 0%, transparent 50%),
+                radial-gradient(ellipse 50% 30% at 50% 80%, rgba(217, 70, 239, 0.06) 0%, transparent 50%);
+        }
+
+        .content {
+            position: relative;
+            z-index: 10;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+            padding: 40px 24px;
+            max-width: 640px;
+            width: 100%;
+        }
+
+        /* Icon ring */
+        .icon-wrap {
+            position: relative;
+            margin-bottom: 40px;
+        }
+
+        .icon-ring {
+            width: 100px;
+            height: 100px;
+            border-radius: 50%;
+            border: 2px solid transparent;
+            background: linear-gradient(var(--slate-900), var(--slate-900)) padding-box,
+                        var(--gradient-brand) border-box;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            animation: ringPop 0.6s cubic-bezier(0.34, 1.56, 0.64, 1) both;
+        }
+
+        .icon-ring.neutral {
+            background: linear-gradient(var(--slate-900), var(--slate-900)) padding-box,
+                        var(--gradient-warn) border-box;
+        }
+
+        @keyframes ringPop {
+            from { transform: scale(0); opacity: 0; }
+            to   { transform: scale(1); opacity: 1; }
+        }
+
+        .icon-ring::before {
+            content: '';
+            position: absolute;
+            inset: -12px;
+            border-radius: 50%;
+            background: rgba(34, 211, 238, 0.06);
+            animation: pulseRing 2.5s ease-in-out infinite 0.6s;
+        }
+
+        .icon-ring::after {
+            content: '';
+            position: absolute;
+            inset: -24px;
+            border-radius: 50%;
+            background: rgba(168, 85, 247, 0.04);
+            animation: pulseRing 2.5s ease-in-out infinite 1s;
+        }
+
+        .icon-ring.neutral::before,
+        .icon-ring.neutral::after {
+            display: none;
+        }
+
+        @keyframes pulseRing {
+            0%, 100% { transform: scale(1); opacity: 0.8; }
+            50%       { transform: scale(1.08); opacity: 0; }
+        }
+
+        .icon-svg {
+            width: 48px;
+            height: 48px;
+            animation: fadeIn 0.3s ease 0.5s both;
+        }
+
+        .icon-path {
+            stroke-width: 3;
+            fill: none;
+            stroke-linecap: round;
+            stroke-linejoin: round;
+            stroke-dasharray: 80;
+            stroke-dashoffset: 80;
+            animation: drawStroke 0.6s cubic-bezier(0.4, 0, 0.2, 1) 0.6s forwards;
+        }
+
+        @keyframes drawStroke {
+            to { stroke-dashoffset: 0; }
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to   { opacity: 1; }
+        }
+
+        /* Loader (spinner) */
+        .loader {
+            width: 56px;
+            height: 56px;
+            border: 3px solid rgba(148, 163, 184, 0.2);
+            border-top-color: var(--cyan-400);
+            border-radius: 50%;
+            animation: spin 0.8s linear infinite;
+        }
+
+        @keyframes spin {
+            to { transform: rotate(360deg); }
+        }
+
+        /* Text */
+        .headline {
+            font-family: var(--font-heading);
+            font-size: clamp(2.25rem, 5.5vw, 3.25rem);
+            font-weight: 900;
+            letter-spacing: -0.03em;
+            line-height: 1.08;
+            background: var(--gradient-brand);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 20px;
+            animation: slideUp 0.6s ease 0.3s both;
+        }
+
+        .headline.neutral {
+            background: var(--gradient-warn);
+            -webkit-background-clip: text;
+            background-clip: text;
+        }
+
+        .subline {
+            font-family: var(--font-heading);
+            font-size: clamp(1rem, 2vw, 1.125rem);
+            font-weight: 600;
+            color: var(--slate-300);
+            margin-bottom: 12px;
+            animation: slideUp 0.6s ease 0.45s both;
+        }
+
+        .desc {
+            font-size: 0.9375rem;
+            color: var(--slate-400);
+            line-height: 1.7;
+            max-width: 440px;
+            margin-bottom: 32px;
+            animation: slideUp 0.6s ease 0.55s both;
+        }
+
+        @keyframes slideUp {
+            from { opacity: 0; transform: translateY(20px); }
+            to   { opacity: 1; transform: translateY(0); }
+        }
+
+        /* Code chip */
+        .code-block {
+            display: inline-flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 8px;
+            padding: 16px 28px;
+            background: rgba(34, 211, 238, 0.08);
+            border: 1px solid rgba(34, 211, 238, 0.25);
+            border-radius: 14px;
+            margin-bottom: 32px;
+            animation: slideUp 0.6s ease 0.65s both;
+        }
+
+        .code-label {
+            font-family: var(--font-mono);
+            font-size: 0.6875rem;
+            text-transform: uppercase;
+            letter-spacing: 0.18em;
+            color: var(--cyan-300);
+            font-weight: 600;
+        }
+
+        .code-value {
+            font-family: var(--font-mono);
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--slate-100);
+            letter-spacing: 0.04em;
+        }
+
+        .divider {
+            width: 200px;
+            height: 1px;
+            background: var(--gradient-brand-90);
+            margin: 0 auto 32px;
+            opacity: 0.4;
+            animation: fadeIn 0.6s ease 0.75s both;
+        }
+
+        /* CTA */
+        .cta-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            padding: 14px 32px;
+            background: var(--gradient-brand);
+            border-radius: 12px;
+            font-family: var(--font-heading);
+            font-size: 0.9375rem;
+            font-weight: 700;
+            color: white;
+            text-decoration: none;
+            box-shadow: 0 4px 20px rgba(34, 211, 238, 0.25);
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
+            animation: slideUp 0.6s ease 0.8s both;
+        }
+
+        .cta-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 30px rgba(34, 211, 238, 0.35), 0 0 60px rgba(168, 85, 247, 0.2);
+        }
+
+        .cta-btn.ghost {
+            background: rgba(30, 41, 59, 0.6);
+            border: 1px solid rgba(148, 163, 184, 0.2);
+            color: var(--slate-200);
+            box-shadow: none;
+        }
+
+        .cta-btn.ghost:hover {
+            background: rgba(30, 41, 59, 0.9);
+            box-shadow: 0 4px 20px rgba(148, 163, 184, 0.1);
+        }
+
+        .page-foot {
+            position: fixed;
+            bottom: 24px;
+            left: 0; right: 0;
+            text-align: center;
+            font-family: var(--font-mono);
+            font-size: 0.75rem;
+            color: var(--slate-600);
+            z-index: 10;
+        }
+
+        .hidden { display: none !important; }
+    </style>
+</head>
+<body>
+
+<div class="bg-glow"></div>
+
+<div class="content">
+
+    <!-- Loading state -->
+    <div id="loadingState">
+        <div class="icon-wrap">
+            <div class="loader"></div>
+        </div>
+        <p class="subline">Zpracovávám žádost…</p>
+        <p class="desc">Chvilku strpení, mluvíme s Google Sheets.</p>
+    </div>
+
+    <!-- Success: confirmed -->
+    <div id="confirmedState" class="hidden">
+        <div class="icon-wrap">
+            <div class="icon-ring">
+                <svg class="icon-svg" viewBox="0 0 48 48">
+                    <defs>
+                        <linearGradient id="okGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+                            <stop offset="0%"   stop-color="#22d3ee"/>
+                            <stop offset="50%"  stop-color="#a855f7"/>
+                            <stop offset="100%" stop-color="#d946ef"/>
+                        </linearGradient>
+                    </defs>
+                    <polyline class="icon-path" points="10,24 20,34 38,14" stroke="url(#okGrad)"/>
+                </svg>
+            </div>
+        </div>
+
+        <h1 class="headline" id="confirmedHeadline">Tým je<br>kompletní!</h1>
+        <p class="subline" id="confirmedSubline">Právě jsi potvrdil/a nového člena.</p>
+        <p class="desc" id="confirmedDesc">
+            Poslali jsme mu/jí potvrzovací e-mail s registračním kódem týmu.
+            Uvidíte se na hackathonu!
+        </p>
+
+        <div class="code-block" id="confirmedCodeBlock">
+            <span class="code-label">Kód vašeho týmu</span>
+            <span class="code-value" id="confirmedCode">HACK-XXXXX</span>
+        </div>
+
+        <div class="divider"></div>
+
+        <a href="https://ucebnice.praut.cz/" class="cta-btn" target="_blank" rel="noopener">
+            Otevřít učebnici
+            <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="16" height="16">
+                <path d="M4 8h8M8 4l4 4-4 4"/>
+            </svg>
+        </a>
+    </div>
+
+    <!-- Rejected -->
+    <div id="rejectedState" class="hidden">
+        <div class="icon-wrap">
+            <div class="icon-ring neutral">
+                <svg class="icon-svg" viewBox="0 0 48 48">
+                    <defs>
+                        <linearGradient id="rejectGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+                            <stop offset="0%"  stop-color="#64748b"/>
+                            <stop offset="100%" stop-color="#475569"/>
+                        </linearGradient>
+                    </defs>
+                    <line class="icon-path" x1="14" y1="14" x2="34" y2="34" stroke="url(#rejectGrad)"/>
+                    <line class="icon-path" x1="34" y1="14" x2="14" y2="34" stroke="url(#rejectGrad)" style="animation-delay: 0.8s;"/>
+                </svg>
+            </div>
+        </div>
+
+        <h1 class="headline neutral">Žádost<br>odmítnuta</h1>
+        <p class="subline" id="rejectedSubline">Člen byl informován e-mailem.</p>
+        <p class="desc">
+            Poslali jsme mu/jí zprávu, že se do tvého týmu zatím nedostal/a.
+            Může si založit vlastní tým nebo se přidat k jinému.
+        </p>
+
+        <a href="https://tersva.github.io/hackathon-2026-registrace/" class="cta-btn ghost">
+            Zpět na registraci
+        </a>
+    </div>
+
+    <!-- Already resolved -->
+    <div id="alreadyState" class="hidden">
+        <div class="icon-wrap">
+            <div class="icon-ring neutral">
+                <svg class="icon-svg" viewBox="0 0 48 48">
+                    <defs>
+                        <linearGradient id="infoGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+                            <stop offset="0%"  stop-color="#64748b"/>
+                            <stop offset="100%" stop-color="#334155"/>
+                        </linearGradient>
+                    </defs>
+                    <circle class="icon-path" cx="24" cy="16" r="2" stroke="url(#infoGrad)" fill="url(#infoGrad)"/>
+                    <line class="icon-path" x1="24" y1="22" x2="24" y2="36" stroke="url(#infoGrad)"/>
+                </svg>
+            </div>
+        </div>
+
+        <h1 class="headline neutral" id="alreadyHeadline">Už vyřešeno</h1>
+        <p class="subline" id="alreadySubline">Tato žádost byla už zpracována dříve.</p>
+        <p class="desc" id="alreadyDesc">
+            Buď jsi klikl/a dvakrát, nebo odkaz už použil někdo jiný z vašeho týmu.
+        </p>
+
+        <a href="https://tersva.github.io/hackathon-2026-registrace/" class="cta-btn ghost">
+            Zpět na registraci
+        </a>
+    </div>
+
+    <!-- Error / invalid -->
+    <div id="errorState" class="hidden">
+        <div class="icon-wrap">
+            <div class="icon-ring neutral">
+                <svg class="icon-svg" viewBox="0 0 48 48">
+                    <defs>
+                        <linearGradient id="errGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+                            <stop offset="0%"  stop-color="#d946ef"/>
+                            <stop offset="100%" stop-color="#a855f7"/>
+                        </linearGradient>
+                    </defs>
+                    <line class="icon-path" x1="24" y1="10" x2="24" y2="28" stroke="url(#errGrad)"/>
+                    <circle class="icon-path" cx="24" cy="36" r="1.5" stroke="url(#errGrad)" fill="url(#errGrad)" style="animation-delay: 0.8s;"/>
+                </svg>
+            </div>
+        </div>
+
+        <h1 class="headline neutral">Neplatný<br>odkaz</h1>
+        <p class="subline" id="errorSubline">Něco s tím odkazem nesedí.</p>
+        <p class="desc" id="errorDesc">
+            Může být už expirovaný, nebo v něm chybí token. Pokud problém přetrvá, napiš na
+            <a href="mailto:svanda@praut.cz" style="color: var(--cyan-400); text-decoration: none;">svanda@praut.cz</a>.
+        </p>
+
+        <a href="https://tersva.github.io/hackathon-2026-registrace/" class="cta-btn ghost">
+            Zpět na registraci
+        </a>
+    </div>
+
+</div>
+
+<div class="page-foot">AI &amp; Programming Hackathon 2026 · 19.&ndash;21.&nbsp;6.&nbsp;2026</div>
+
+<script>
+    const APPS_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbw0I14fgua_wpOQbsnE8Su-QK2Oh3U1gRh-fAqp41oA7sCMjDsYW17XK5YCLQmbZA-kYQ/exec';
+
+    function showState(id) {
+        ['loadingState', 'confirmedState', 'rejectedState', 'alreadyState', 'errorState'].forEach(function(s) {
+            document.getElementById(s).classList.add('hidden');
+        });
+        document.getElementById(id).classList.remove('hidden');
+    }
+
+    function escapeHtml(str) {
+        if (str == null) return '';
+        return String(str)
+            .replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;')
+            .replace(/"/g, '&quot;').replace(/'/g, '&#39;');
+    }
+
+    async function run() {
+        const params = new URLSearchParams(window.location.search);
+        const token  = params.get('token');
+        const action = params.get('action');
+
+        if (!token || (action !== 'confirm' && action !== 'reject')) {
+            document.getElementById('errorSubline').textContent = 'Chybí token nebo akce v URL.';
+            showState('errorState');
+            return;
+        }
+
+        try {
+            const url = APPS_SCRIPT_URL + '?action=' + encodeURIComponent(action) + '&token=' + encodeURIComponent(token);
+            const res = await fetch(url, { method: 'GET', redirect: 'follow' });
+            const data = await res.json();
+
+            if (!data.ok) {
+                document.getElementById('errorSubline').textContent = data.message || 'Odkaz není platný.';
+                showState('errorState');
+                return;
+            }
+
+            if (data.status === 'confirmed') {
+                const firstName = escapeHtml(data.memberFirstName || '');
+                const teamName  = escapeHtml(data.teamName || 'tvého týmu');
+                document.getElementById('confirmedHeadline').innerHTML = 'Vítej<br>v týmu!';
+                document.getElementById('confirmedSubline').textContent = firstName + ' je teď součástí týmu ' + teamName + '.';
+                document.getElementById('confirmedDesc').textContent = 'Poslali jsme ' + firstName + ' potvrzovací e-mail s registračním kódem týmu. Uvidíme se na hackathonu!';
+                document.getElementById('confirmedCode').textContent = data.code || 'HACK-XXXXX';
+                showState('confirmedState');
+                return;
+            }
+
+            if (data.status === 'rejected') {
+                const firstName = escapeHtml(data.memberFirstName || 'Člen');
+                document.getElementById('rejectedSubline').textContent = firstName + ' byl/a informován/a e-mailem.';
+                showState('rejectedState');
+                return;
+            }
+
+            if (data.status === 'already') {
+                const wasConfirmed = data.previous === 'confirmed';
+                const firstName = escapeHtml(data.memberFirstName || 'Člen');
+                const teamName  = escapeHtml(data.teamName || 'tvého týmu');
+                document.getElementById('alreadySubline').textContent = wasConfirmed
+                    ? firstName + ' je už v týmu ' + teamName + '.'
+                    : firstName + ' byl/a už dříve odmítnut/a.';
+                document.getElementById('alreadyDesc').textContent = wasConfirmed
+                    ? 'Tohle tlačítko už někdo kliknul. Žádná další akce není potřeba.'
+                    : 'Tohle tlačítko už někdo kliknul. Žádná další akce není potřeba.';
+                showState('alreadyState');
+                return;
+            }
+
+            document.getElementById('errorSubline').textContent = data.message || 'Neočekávaná odpověď ze serveru.';
+            showState('errorState');
+
+        } catch (err) {
+            console.error(err);
+            document.getElementById('errorSubline').textContent = 'Nepodařilo se spojit se serverem.';
+            document.getElementById('errorDesc').textContent = 'Zkus to znovu za chvíli, nebo napiš na svanda@praut.cz.';
+            showState('errorState');
+        }
+    }
+
+    run();
+</script>
+
+</body>
+</html>
