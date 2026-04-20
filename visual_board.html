@@ -1,0 +1,1350 @@
+<!DOCTYPE html>
+<html lang="cs">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI Učebnice — Visual Board</title>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700;800;900&family=Open+Sans:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        /* ═══════════════════════════════════════════════════════════════
+           AI UČEBNICE DESIGN SYSTEM v1.0
+           Education-focused | Gamification | AI-powered
+        ═══════════════════════════════════════════════════════════════ */
+
+        :root {
+            /* ────────────────────────────────────────────────────────────
+               BRAND GRADIENT COLORS
+               Cyan → Blue → Purple → Magenta
+            ──────────────────────────────────────────────────────────── */
+            
+            /* Cyan - Start */
+            --cyan-50: #ecfeff;
+            --cyan-100: #cffafe;
+            --cyan-200: #a5f3fc;
+            --cyan-300: #67e8f9;
+            --cyan-400: #22d3ee;
+            --cyan-500: #06b6d4;
+            --cyan-600: #0891b2;
+            --cyan-700: #0e7490;
+            --cyan-800: #155e75;
+            --cyan-900: #164e63;
+            
+            /* Blue - Core */
+            --blue-50: #eff6ff;
+            --blue-100: #dbeafe;
+            --blue-200: #bfdbfe;
+            --blue-300: #93c5fd;
+            --blue-400: #60a5fa;
+            --blue-500: #3b82f6;
+            --blue-600: #2563eb;
+            --blue-700: #1d4ed8;
+            --blue-800: #1e40af;
+            --blue-900: #1e3a8a;
+            
+            /* Purple - Transition */
+            --purple-50: #faf5ff;
+            --purple-100: #f3e8ff;
+            --purple-200: #e9d5ff;
+            --purple-300: #d8b4fe;
+            --purple-400: #c084fc;
+            --purple-500: #a855f7;
+            --purple-600: #9333ea;
+            --purple-700: #7e22ce;
+            --purple-800: #6b21a8;
+            --purple-900: #581c87;
+            
+            /* Magenta - End */
+            --magenta-50: #fdf4ff;
+            --magenta-100: #fae8ff;
+            --magenta-200: #f5d0fe;
+            --magenta-300: #f0abfc;
+            --magenta-400: #e879f9;
+            --magenta-500: #d946ef;
+            --magenta-600: #c026d3;
+            --magenta-700: #a21caf;
+            --magenta-800: #86198f;
+            --magenta-900: #701a75;
+            
+            /* ────────────────────────────────────────────────────────────
+               NEUTRAL COLORS - Slate
+            ──────────────────────────────────────────────────────────── */
+            --slate-50: #f8fafc;
+            --slate-100: #f1f5f9;
+            --slate-200: #e2e8f0;
+            --slate-300: #cbd5e1;
+            --slate-400: #94a3b8;
+            --slate-500: #64748b;
+            --slate-600: #475569;
+            --slate-700: #334155;
+            --slate-800: #1e293b;
+            --slate-900: #0f172a;
+
+            /* ────────────────────────────────────────────────────────────
+               SEMANTIC COLORS
+            ──────────────────────────────────────────────────────────── */
+            --success: #10b981;
+            --success-light: #d1fae5;
+            --warning: #f59e0b;
+            --warning-light: #fef3c7;
+            --error: #ef4444;
+            --error-light: #fee2e2;
+            --info: #3b82f6;
+            --info-light: #dbeafe;
+            
+            /* ────────────────────────────────────────────────────────────
+               GRADIENTS
+            ──────────────────────────────────────────────────────────── */
+            --gradient-brand: linear-gradient(135deg, #22d3ee 0%, #3b82f6 30%, #a855f7 70%, #d946ef 100%);
+            --gradient-brand-90: linear-gradient(90deg, #22d3ee 0%, #3b82f6 33%, #a855f7 66%, #d946ef 100%);
+            --gradient-brand-180: linear-gradient(180deg, #22d3ee 0%, #3b82f6 33%, #a855f7 66%, #d946ef 100%);
+            --gradient-hero: linear-gradient(135deg, rgba(34, 211, 238, 0.1) 0%, rgba(217, 70, 239, 0.1) 100%);
+            --gradient-card: linear-gradient(145deg, rgba(30, 41, 59, 0.6) 0%, rgba(15, 23, 42, 0.8) 100%);
+            --gradient-xp: linear-gradient(90deg, #10b981 0%, #22d3ee 50%, #a855f7 100%);
+            
+            /* ────────────────────────────────────────────────────────────
+               SHADOWS & EFFECTS
+            ──────────────────────────────────────────────────────────── */
+            --shadow-sm: 0 1px 2px 0 rgb(0 0 0 / 0.05);
+            --shadow-md: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
+            --shadow-lg: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
+            --shadow-xl: 0 20px 25px -5px rgb(0 0 0 / 0.1), 0 8px 10px -6px rgb(0 0 0 / 0.1);
+            --shadow-glow: 0 0 20px rgba(59, 130, 246, 0.3);
+            --shadow-glow-brand: 0 0 30px rgba(34, 211, 238, 0.2), 0 0 60px rgba(168, 85, 247, 0.15), 0 0 90px rgba(217, 70, 239, 0.1);
+
+            /* ────────────────────────────────────────────────────────────
+               TYPOGRAPHY
+            ──────────────────────────────────────────────────────────── */
+            --font-heading: 'Montserrat', -apple-system, BlinkMacSystemFont, sans-serif;
+            --font-body: 'Open Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+            --font-mono: 'JetBrains Mono', 'Fira Code', monospace;
+            
+            /* ────────────────────────────────────────────────────────────
+               SPACING SCALE (4px base)
+            ──────────────────────────────────────────────────────────── */
+            --space-1: 4px;
+            --space-2: 8px;
+            --space-3: 12px;
+            --space-4: 16px;
+            --space-5: 20px;
+            --space-6: 24px;
+            --space-8: 32px;
+            --space-10: 40px;
+            --space-12: 48px;
+            --space-16: 64px;
+            --space-20: 80px;
+
+            /* ────────────────────────────────────────────────────────────
+               BORDER RADIUS
+            ──────────────────────────────────────────────────────────── */
+            --radius-sm: 6px;
+            --radius-md: 8px;
+            --radius-lg: 12px;
+            --radius-xl: 16px;
+            --radius-2xl: 24px;
+            --radius-full: 9999px;
+        }
+
+        /* ═══════════════════════════════════════════════════════════════
+           BASE STYLES
+        ═══════════════════════════════════════════════════════════════ */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: var(--font-body);
+            background: var(--slate-900);
+            color: var(--slate-100);
+            line-height: 1.6;
+            font-size: 16px;
+        }
+
+        body::before {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: 
+                radial-gradient(ellipse 80% 50% at 20% 40%, rgba(34, 211, 238, 0.08) 0%, transparent 50%),
+                radial-gradient(ellipse 60% 40% at 80% 20%, rgba(168, 85, 247, 0.06) 0%, transparent 50%),
+                radial-gradient(ellipse 50% 30% at 50% 80%, rgba(217, 70, 239, 0.05) 0%, transparent 50%);
+            pointer-events: none;
+            z-index: 0;
+        }
+
+        /* ═══════════════════════════════════════════════════════════════
+           LAYOUT
+        ═══════════════════════════════════════════════════════════════ */
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 var(--space-6);
+            position: relative;
+            z-index: 1;
+        }
+
+        section {
+            padding: var(--space-20) 0;
+            border-bottom: 1px solid rgba(148, 163, 184, 0.1);
+        }
+
+        section:last-child {
+            border-bottom: none;
+        }
+
+        /* ═══════════════════════════════════════════════════════════════
+           TYPOGRAPHY STYLES
+        ═══════════════════════════════════════════════════════════════ */
+        h1, h2, h3, h4, h5, h6 {
+            font-family: var(--font-heading);
+            font-weight: 700;
+            letter-spacing: -0.02em;
+            line-height: 1.2;
+        }
+
+        .section-label {
+            font-family: var(--font-mono);
+            font-size: 0.75rem;
+            text-transform: uppercase;
+            letter-spacing: 0.3em;
+            background: var(--gradient-brand);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: var(--space-4);
+            display: block;
+            font-weight: 600;
+        }
+
+        .section-title {
+            font-size: clamp(2rem, 4vw, 2.5rem);
+            font-weight: 800;
+            background: linear-gradient(135deg, #fff 0%, var(--slate-300) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: var(--space-6);
+        }
+
+        .section-desc {
+            font-size: 1.125rem;
+            color: var(--slate-400);
+            max-width: 600px;
+            margin-bottom: var(--space-10);
+        }
+
+        /* ═══════════════════════════════════════════════════════════════
+           COVER / HERO
+        ═══════════════════════════════════════════════════════════════ */
+        .cover {
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            padding: var(--space-10);
+            position: relative;
+        }
+
+        .cover::after {
+            content: '';
+            position: absolute;
+            bottom: var(--space-10);
+            left: 50%;
+            transform: translateX(-50%);
+            width: 1px;
+            height: 60px;
+            background: var(--gradient-brand-180);
+            animation: pulse 2s ease-in-out infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% { opacity: 0.3; }
+            50% { opacity: 1; }
+        }
+
+        .logo-hero {
+            width: 200px;
+            height: 200px;
+            margin-bottom: var(--space-8);
+            filter: drop-shadow(0 0 40px rgba(34, 211, 238, 0.4));
+            animation: float 6s ease-in-out infinite;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-10px); }
+        }
+
+        .cover .subtitle {
+            font-size: 1.25rem;
+            color: var(--slate-400);
+            margin-top: var(--space-4);
+            margin-bottom: var(--space-2);
+        }
+
+        .cover .version {
+            font-family: var(--font-mono);
+            font-size: 0.875rem;
+            color: var(--slate-500);
+        }
+
+        /* ═══════════════════════════════════════════════════════════════
+           LOGO SYSTEM
+        ═══════════════════════════════════════════════════════════════ */
+        .logo-display {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: var(--space-6);
+            margin-top: var(--space-10);
+        }
+
+        .logo-card {
+            padding: var(--space-12);
+            border-radius: var(--radius-2xl);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            min-height: 300px;
+        }
+
+        .logo-card.dark {
+            background: var(--slate-900);
+            border: 1px solid rgba(148, 163, 184, 0.1);
+        }
+
+        .logo-card.light {
+            background: var(--slate-100);
+        }
+
+        .logo-card img {
+            width: 160px;
+            height: 160px;
+            object-fit: contain;
+        }
+
+        .logo-card .label {
+            position: absolute;
+            bottom: var(--space-4);
+            font-family: var(--font-mono);
+            font-size: 0.7rem;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            opacity: 0.6;
+        }
+
+        .logo-card.light .label {
+            color: var(--slate-700);
+        }
+
+        .logo-variations {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+            gap: var(--space-4);
+            margin-top: var(--space-8);
+        }
+
+        .logo-variation {
+            background: rgba(30, 41, 59, 0.4);
+            border: 1px solid rgba(148, 163, 184, 0.1);
+            border-radius: var(--radius-xl);
+            padding: var(--space-6);
+            text-align: center;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            min-height: 140px;
+        }
+
+        .logo-variation img {
+            width: 80px;
+            height: 80px;
+            object-fit: contain;
+            margin-bottom: var(--space-3);
+        }
+
+        .logo-variation .name {
+            font-family: var(--font-mono);
+            font-size: 0.75rem;
+            color: var(--slate-400);
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+        }
+
+        /* ═══════════════════════════════════════════════════════════════
+           COLOR PALETTE
+        ═══════════════════════════════════════════════════════════════ */
+        .color-palette {
+            margin-top: var(--space-10);
+        }
+
+        .color-group {
+            margin-bottom: var(--space-10);
+        }
+
+        .color-group-title {
+            font-family: var(--font-heading);
+            font-size: 1.125rem;
+            font-weight: 700;
+            color: white;
+            margin-bottom: var(--space-2);
+        }
+
+        .color-group-desc {
+            font-size: 0.875rem;
+            color: var(--slate-400);
+            margin-bottom: var(--space-4);
+        }
+
+        .color-swatches {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(100px, 1fr));
+            gap: var(--space-3);
+        }
+
+        .color-swatch {
+            aspect-ratio: 1;
+            border-radius: var(--radius-lg);
+            position: relative;
+            overflow: hidden;
+            transition: transform 0.2s ease;
+        }
+
+        .color-swatch:hover {
+            transform: scale(1.05);
+        }
+
+        .color-swatch .info {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            padding: var(--space-2);
+            background: rgba(0,0,0,0.7);
+            backdrop-filter: blur(4px);
+        }
+
+        .color-swatch .shade {
+            font-family: var(--font-mono);
+            font-size: 0.65rem;
+            color: white;
+            font-weight: 600;
+        }
+
+        .color-swatch .hex {
+            font-family: var(--font-mono);
+            font-size: 0.6rem;
+            color: rgba(255,255,255,0.7);
+        }
+
+        .gradient-swatches {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: var(--space-4);
+            margin-top: var(--space-6);
+        }
+
+        .gradient-swatch {
+            height: 120px;
+            border-radius: var(--radius-xl);
+            padding: var(--space-4);
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-end;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .gradient-swatch::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: inherit;
+            filter: brightness(1.1);
+        }
+
+        .gradient-swatch .name {
+            font-family: var(--font-heading);
+            font-weight: 700;
+            color: white;
+            margin-bottom: var(--space-1);
+            position: relative;
+            z-index: 1;
+            text-shadow: 0 2px 4px rgba(0,0,0,0.3);
+        }
+
+        .gradient-swatch .value {
+            font-family: var(--font-mono);
+            font-size: 0.7rem;
+            color: rgba(255,255,255,0.9);
+            position: relative;
+            z-index: 1;
+            text-shadow: 0 1px 2px rgba(0,0,0,0.3);
+        }
+
+        /* ═══════════════════════════════════════════════════════════════
+           TYPOGRAPHY SHOWCASE
+        ═══════════════════════════════════════════════════════════════ */
+        .type-specimen {
+            margin-top: var(--space-10);
+        }
+
+        .type-family {
+            background: rgba(30, 41, 59, 0.4);
+            border: 1px solid rgba(148, 163, 184, 0.1);
+            border-radius: var(--radius-2xl);
+            padding: var(--space-8);
+            margin-bottom: var(--space-6);
+        }
+
+        .type-family-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: baseline;
+            margin-bottom: var(--space-6);
+            padding-bottom: var(--space-4);
+            border-bottom: 1px solid rgba(148, 163, 184, 0.1);
+        }
+
+        .type-family-name {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: white;
+        }
+
+        .type-family-meta {
+            font-family: var(--font-mono);
+            font-size: 0.75rem;
+            color: var(--slate-400);
+        }
+
+        .type-sample {
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: white;
+            margin-bottom: var(--space-4);
+            line-height: 1.3;
+        }
+
+        .type-alphabet {
+            font-size: 1rem;
+            color: var(--slate-300);
+            letter-spacing: 0.05em;
+            margin-bottom: var(--space-3);
+        }
+
+        .type-weights {
+            display: flex;
+            flex-wrap: wrap;
+            gap: var(--space-3);
+        }
+
+        .type-weight {
+            padding: var(--space-2) var(--space-4);
+            background: rgba(148, 163, 184, 0.1);
+            border-radius: var(--radius-md);
+            font-size: 0.875rem;
+            color: var(--slate-200);
+        }
+
+        .type-scale {
+            margin-top: var(--space-8);
+        }
+
+        .type-scale-item {
+            display: flex;
+            align-items: baseline;
+            gap: var(--space-6);
+            padding: var(--space-4) 0;
+            border-bottom: 1px solid rgba(148, 163, 184, 0.08);
+        }
+
+        .type-scale-label {
+            flex-shrink: 0;
+            width: 140px;
+            font-family: var(--font-mono);
+            font-size: 0.75rem;
+            color: var(--slate-400);
+        }
+
+        .type-scale-sample {
+            color: white;
+        }
+
+        /* ═══════════════════════════════════════════════════════════════
+           UI COMPONENTS
+        ═══════════════════════════════════════════════════════════════ */
+        .components-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: var(--space-6);
+            margin-top: var(--space-10);
+        }
+
+        .component-card {
+            background: rgba(30, 41, 59, 0.4);
+            border: 1px solid rgba(148, 163, 184, 0.1);
+            border-radius: var(--radius-2xl);
+            padding: var(--space-6);
+        }
+
+        .component-title {
+            font-family: var(--font-mono);
+            font-size: 0.75rem;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            color: var(--slate-400);
+            margin-bottom: var(--space-4);
+        }
+
+        .component-demo {
+            display: flex;
+            flex-wrap: wrap;
+            gap: var(--space-3);
+            align-items: center;
+        }
+
+        /* Buttons */
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: var(--space-2);
+            padding: var(--space-3) var(--space-6);
+            border-radius: var(--radius-lg);
+            font-family: var(--font-heading);
+            font-size: 0.9375rem;
+            font-weight: 600;
+            text-decoration: none;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            border: none;
+        }
+
+        .btn-primary {
+            background: var(--gradient-brand);
+            color: white;
+            box-shadow: 0 4px 15px rgba(34, 211, 238, 0.3);
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: var(--shadow-glow-brand);
+        }
+
+        .btn-secondary {
+            background: rgba(148, 163, 184, 0.1);
+            color: var(--slate-200);
+            border: 1px solid rgba(148, 163, 184, 0.2);
+        }
+
+        .btn-secondary:hover {
+            background: rgba(148, 163, 184, 0.2);
+            color: white;
+        }
+
+        .btn-outline {
+            background: transparent;
+            color: var(--cyan-400);
+            border: 2px solid var(--cyan-600);
+        }
+
+        .btn-outline:hover {
+            border-color: var(--cyan-400);
+            background: rgba(34, 211, 238, 0.1);
+        }
+
+        /* Input Fields */
+        .input {
+            width: 100%;
+            padding: var(--space-3) var(--space-4);
+            background: rgba(15, 23, 42, 0.6);
+            border: 1px solid rgba(148, 163, 184, 0.2);
+            border-radius: var(--radius-lg);
+            font-family: var(--font-body);
+            font-size: 0.9375rem;
+            color: white;
+            transition: all 0.2s ease;
+        }
+
+        .input:focus {
+            outline: none;
+            border-color: var(--cyan-400);
+            box-shadow: 0 0 0 3px rgba(34, 211, 238, 0.2);
+        }
+
+        /* Badges */
+        .badge {
+            display: inline-flex;
+            align-items: center;
+            gap: var(--space-1);
+            padding: var(--space-1) var(--space-3);
+            border-radius: var(--radius-full);
+            font-size: 0.75rem;
+            font-weight: 600;
+            font-family: var(--font-heading);
+        }
+
+        .badge-cyan { background: rgba(34, 211, 238, 0.2); color: var(--cyan-300); }
+        .badge-blue { background: rgba(59, 130, 246, 0.2); color: var(--blue-300); }
+        .badge-purple { background: rgba(168, 85, 247, 0.2); color: var(--purple-300); }
+        .badge-magenta { background: rgba(217, 70, 239, 0.2); color: var(--magenta-300); }
+        .badge-success { background: rgba(16, 185, 129, 0.2); color: #34d399; }
+        .badge-warning { background: rgba(245, 158, 11, 0.2); color: #fbbf24; }
+
+        /* Cards */
+        .card {
+            background: var(--gradient-card);
+            backdrop-filter: blur(20px);
+            border: 1px solid rgba(148, 163, 184, 0.1);
+            border-radius: var(--radius-2xl);
+            padding: var(--space-6);
+            transition: all 0.3s ease;
+        }
+
+        .card:hover {
+            transform: translateY(-4px);
+            border-color: rgba(34, 211, 238, 0.3);
+            box-shadow: var(--shadow-glow);
+        }
+
+        /* Progress Bar */
+        .progress {
+            width: 100%;
+            height: 12px;
+            background: rgba(148, 163, 184, 0.1);
+            border-radius: var(--radius-full);
+            overflow: hidden;
+            position: relative;
+        }
+
+        .progress-bar {
+            height: 100%;
+            background: var(--gradient-xp);
+            border-radius: var(--radius-full);
+            transition: width 0.3s ease;
+            box-shadow: 0 0 10px rgba(34, 211, 238, 0.5);
+        }
+
+        /* XP Badge */
+        .xp-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: var(--space-2);
+            padding: var(--space-2) var(--space-4);
+            background: var(--gradient-brand);
+            border-radius: var(--radius-full);
+            font-family: var(--font-heading);
+            font-weight: 700;
+            font-size: 0.875rem;
+            color: white;
+            box-shadow: 0 4px 12px rgba(34, 211, 238, 0.4);
+        }
+
+        .xp-badge .icon {
+            font-size: 1.125rem;
+        }
+
+        /* Achievement Badge */
+        .achievement {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: var(--space-2);
+            padding: var(--space-4);
+            background: rgba(30, 41, 59, 0.6);
+            border: 2px solid transparent;
+            border-radius: var(--radius-xl);
+            transition: all 0.3s ease;
+        }
+
+        .achievement:hover {
+            border-color: var(--cyan-500);
+            transform: scale(1.05);
+        }
+
+        .achievement .icon {
+            font-size: 2rem;
+        }
+
+        .achievement .name {
+            font-family: var(--font-heading);
+            font-size: 0.75rem;
+            font-weight: 600;
+            color: var(--slate-300);
+            text-align: center;
+        }
+
+        /* ═══════════════════════════════════════════════════════════════
+           GAMIFICATION ELEMENTS
+        ═══════════════════════════════════════════════════════════════ */
+        .gamification-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: var(--space-6);
+            margin-top: var(--space-10);
+        }
+
+        /* ═══════════════════════════════════════════════════════════════
+           SPACING & LAYOUT
+        ═══════════════════════════════════════════════════════════════ */
+        .spacing-demo {
+            display: flex;
+            flex-wrap: wrap;
+            gap: var(--space-6);
+            margin-top: var(--space-8);
+        }
+
+        .spacing-item {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: var(--space-2);
+        }
+
+        .spacing-box {
+            background: var(--gradient-brand);
+            border-radius: var(--radius-sm);
+        }
+
+        .spacing-label {
+            font-family: var(--font-mono);
+            font-size: 0.75rem;
+            color: var(--slate-400);
+        }
+
+        .spacing-value {
+            font-family: var(--font-mono);
+            font-size: 0.75rem;
+            color: var(--slate-200);
+            font-weight: 600;
+        }
+
+        /* ═══════════════════════════════════════════════════════════════
+           DO'S AND DON'TS
+        ═══════════════════════════════════════════════════════════════ */
+        .dos-donts {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: var(--space-6);
+            margin-top: var(--space-8);
+        }
+
+        .do-item, .dont-item {
+            padding: var(--space-5);
+            border-radius: var(--radius-xl);
+            border: 2px solid;
+        }
+
+        .do-item {
+            background: rgba(16, 185, 129, 0.1);
+            border-color: var(--success);
+        }
+
+        .dont-item {
+            background: rgba(239, 68, 68, 0.1);
+            border-color: var(--error);
+        }
+
+        .do-item .label, .dont-item .label {
+            font-family: var(--font-mono);
+            font-size: 0.75rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            margin-bottom: var(--space-3);
+        }
+
+        .do-item .label { color: #34d399; }
+        .dont-item .label { color: var(--error); }
+
+        .do-item p, .dont-item p {
+            font-size: 0.9375rem;
+            color: var(--slate-200);
+            line-height: 1.6;
+        }
+
+        /* ═══════════════════════════════════════════════════════════════
+           FOOTER
+        ═══════════════════════════════════════════════════════════════ */
+        .footer {
+            text-align: center;
+            padding: var(--space-16) 0;
+            color: var(--slate-500);
+        }
+
+        .footer p {
+            font-size: 0.875rem;
+        }
+
+        /* ═══════════════════════════════════════════════════════════════
+           UTILITIES
+        ═══════════════════════════════════════════════════════════════ */
+        .mt-4 { margin-top: var(--space-4); }
+        .mt-8 { margin-top: var(--space-8); }
+        .mt-12 { margin-top: var(--space-12); }
+        .mb-4 { margin-bottom: var(--space-4); }
+        .flex { display: flex; }
+        .gap-4 { gap: var(--space-4); }
+    </style>
+</head>
+<body>
+    <!-- COVER -->
+    <section class="cover" id="cover">
+        <span class="section-label">Design System</span>
+        <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 512 512'%3E%3Cdefs%3E%3ClinearGradient id='grad' x1='0%25' y1='0%25' x2='100%25' y2='100%25'%3E%3Cstop offset='0%25' style='stop-color:%2322d3ee;stop-opacity:1' /%3E%3Cstop offset='33%25' style='stop-color:%233b82f6;stop-opacity:1' /%3E%3Cstop offset='66%25' style='stop-color:%23a855f7;stop-opacity:1' /%3E%3Cstop offset='100%25' style='stop-color:%23d946ef;stop-opacity:1' /%3E%3C/linearGradient%3E%3C/defs%3E%3Cpath fill='url(%23grad)' d='M256 32c-20 0-38 8-52 20l-40 36c-28 25-44 60-44 98v80c0 38 16 73 44 98l40 36c14 12 32 20 52 20s38-8 52-20l40-36c28-25 44-60 44-98v-80c0-38-16-73-44-98l-40-36c-14-12-32-20-52-20zm0 48c8 0 16 3 22 8l40 36c14 13 22 30 22 50v80c0 20-8 37-22 50l-40 36c-6 5-14 8-22 8s-16-3-22-8l-40-36c-14-13-22-30-22-50v-80c0-20 8-37 22-50l40-36c6-5 14-8 22-8z'/%3E%3Cpath fill='url(%23grad)' d='M180 240c0-8 4-16 10-22l48-40c12-10 30-10 42 0l48 40c6 6 10 14 10 22s-4 16-10 22l-48 40c-12 10-30 10-42 0l-48-40c-6-6-10-14-10-22z'/%3E%3Ccircle fill='url(%23grad)' cx='256' cy='120' r='16'/%3E%3Ccircle fill='url(%23grad)' cx='320' cy='160' r='12'/%3E%3Ccircle fill='url(%23grad)' cx='192' cy='160' r='12'/%3E%3C/svg%3E" alt="AI Učebnice Logo" class="logo-hero">
+        <h1 class="section-title" style="font-size: 3rem; margin-bottom: var(--space-4);">AI Učebnice</h1>
+        <p class="subtitle">Visual Board & Design System</p>
+        <p class="version">Version 1.0 — Prosinec 2024</p>
+    </section>
+
+    <!-- LOGO -->
+    <section id="logo">
+        <div class="container">
+            <span class="section-label">01 — Logo</span>
+            <h2 class="section-title">Značka AI Učebnice</h2>
+            <p class="section-desc">Logo kombinuje otevřenou knihu se spirálou reprezentující AI. Gradient cyan → blue → purple → magenta symbolizuje cestu vzdělávání a technologický pokrok.</p>
+
+            <div class="logo-display">
+                <div class="logo-card dark">
+                    <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 512 512'%3E%3Cdefs%3E%3ClinearGradient id='g1' x1='0%25' y1='0%25' x2='100%25' y2='100%25'%3E%3Cstop offset='0%25' style='stop-color:%2322d3ee'/%3E%3Cstop offset='33%25' style='stop-color:%233b82f6'/%3E%3Cstop offset='66%25' style='stop-color:%23a855f7'/%3E%3Cstop offset='100%25' style='stop-color:%23d946ef'/%3E%3C/linearGradient%3E%3C/defs%3E%3Cpath fill='url(%23g1)' d='M256 32c-28 0-54 11-74 30l-50 45c-40 36-63 86-63 140v60c0 54 23 104 63 140l50 45c20 19 46 30 74 30s54-11 74-30l50-45c40-36 63-86 63-140v-60c0-54-23-104-63-140l-50-45c-20-19-46-30-74-30zm0 60c12 0 24 5 33 13l50 45c18 16 29 38 29 62v60c0 24-11 46-29 62l-50 45c-9 8-21 13-33 13s-24-5-33-13l-50-45c-18-16-29-38-29-62v-60c0-24 11-46 29-62l50-45c9-8 21-13 33-13z'/%3E%3Cpath fill='url(%23g1)' d='M160 200l35-35 35 35 36-36 35 35v150l-70 60-71-60z'/%3E%3C/svg%3E" alt="Varianta 1">
+                    <span class="label">Varianta 1 — tmavé pozadí</span>
+                </div>
+                <div class="logo-card light">
+                    <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 512 512'%3E%3Cdefs%3E%3ClinearGradient id='g2' x1='0%25' y1='0%25' x2='100%25' y2='100%25'%3E%3Cstop offset='0%25' style='stop-color:%2322d3ee'/%3E%3Cstop offset='33%25' style='stop-color:%233b82f6'/%3E%3Cstop offset='66%25' style='stop-color:%23a855f7'/%3E%3Cstop offset='100%25' style='stop-color:%23d946ef'/%3E%3C/linearGradient%3E%3C/defs%3E%3Cpath fill='url(%23g2)' d='M256 32c-28 0-54 11-74 30l-50 45c-40 36-63 86-63 140v60c0 54 23 104 63 140l50 45c20 19 46 30 74 30s54-11 74-30l50-45c40-36 63-86 63-140v-60c0-54-23-104-63-140l-50-45c-20-19-46-30-74-30zm0 60c12 0 24 5 33 13l50 45c18 16 29 38 29 62v60c0 24-11 46-29 62l-50 45c-9 8-21 13-33 13s-24-5-33-13l-50-45c-18-16-29-38-29-62v-60c0-24 11-46 29-62l50-45c9-8 21-13 33-13z'/%3E%3Cpath fill='url(%23g2)' d='M160 200l35-35 35 35 36-36 35 35v150l-70 60-71-60z'/%3E%3C/svg%3E" alt="Varianta 1">
+                    <span class="label">Varianta 1 — světlé pozadí</span>
+                </div>
+            </div>
+
+            <h3 class="mt-12" style="color: white; margin-bottom: var(--space-6); font-family: var(--font-heading);">Velikostní varianty</h3>
+            <div class="logo-variations">
+                <div class="logo-variation">
+                    <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 512 512'%3E%3Cdefs%3E%3ClinearGradient id='g3' x1='0%25' y1='0%25' x2='100%25' y2='100%25'%3E%3Cstop offset='0%25' style='stop-color:%2322d3ee'/%3E%3Cstop offset='100%25' style='stop-color:%23d946ef'/%3E%3C/linearGradient%3E%3C/defs%3E%3Cpath fill='url(%23g3)' d='M256 64c-28 0-54 11-74 30l-50 45c-40 36-63 86-63 140v60c0 54 23 104 63 140l50 45c20 19 46 30 74 30s54-11 74-30l50-45c40-36 63-86 63-140v-60c0-54-23-104-63-140l-50-45c-20-19-46-30-74-30z'/%3E%3C/svg%3E" alt="Icon">
+                    <span class="name">Icon 32px</span>
+                </div>
+                <div class="logo-variation">
+                    <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 512 512'%3E%3Cdefs%3E%3ClinearGradient id='g4' x1='0%25' y1='0%25' x2='100%25' y2='100%25'%3E%3Cstop offset='0%25' style='stop-color:%2322d3ee'/%3E%3Cstop offset='100%25' style='stop-color:%23d946ef'/%3E%3C/linearGradient%3E%3C/defs%3E%3Cpath fill='url(%23g4)' d='M256 64c-28 0-54 11-74 30l-50 45c-40 36-63 86-63 140v60c0 54 23 104 63 140l50 45c20 19 46 30 74 30s54-11 74-30l50-45c40-36 63-86 63-140v-60c0-54-23-104-63-140l-50-45c-20-19-46-30-74-30z'/%3E%3C/svg%3E" alt="Small">
+                    <span class="name">Small 64px</span>
+                </div>
+                <div class="logo-variation">
+                    <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 512 512'%3E%3Cdefs%3E%3ClinearGradient id='g5' x1='0%25' y1='0%25' x2='100%25' y2='100%25'%3E%3Cstop offset='0%25' style='stop-color:%2322d3ee'/%3E%3Cstop offset='100%25' style='stop-color:%23d946ef'/%3E%3C/linearGradient%3E%3C/defs%3E%3Cpath fill='url(%23g5)' d='M256 64c-28 0-54 11-74 30l-50 45c-40 36-63 86-63 140v60c0 54 23 104 63 140l50 45c20 19 46 30 74 30s54-11 74-30l50-45c40-36 63-86 63-140v-60c0-54-23-104-63-140l-50-45c-20-19-46-30-74-30z'/%3E%3C/svg%3E" alt="Medium">
+                    <span class="name">Medium 128px</span>
+                </div>
+                <div class="logo-variation">
+                    <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 512 512'%3E%3Cdefs%3E%3ClinearGradient id='g6' x1='0%25' y1='0%25' x2='100%25' y2='100%25'%3E%3Cstop offset='0%25' style='stop-color:%2322d3ee'/%3E%3Cstop offset='100%25' style='stop-color:%23d946ef'/%3E%3C/linearGradient%3E%3C/defs%3E%3Cpath fill='url(%23g6)' d='M256 64c-28 0-54 11-74 30l-50 45c-40 36-63 86-63 140v60c0 54 23 104 63 140l50 45c20 19 46 30 74 30s54-11 74-30l50-45c40-36 63-86 63-140v-60c0-54-23-104-63-140l-50-45c-20-19-46-30-74-30z'/%3E%3C/svg%3E" alt="Large">
+                    <span class="name">Large 256px</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- COLORS -->
+    <section id="colors">
+        <div class="container">
+            <span class="section-label">02 — Barvy</span>
+            <h2 class="section-title">Barevný systém</h2>
+            <p class="section-desc">Gradient reprezentuje vzdělávací cestu: cyan (začátek), modrá (stabilita), fialová (kreativita), magenta (úspěch a dosažení cíle).</p>
+
+            <div class="color-palette">
+                <!-- Brand Gradient -->
+                <div class="color-group">
+                    <h3 class="color-group-title">Brand Gradient</h3>
+                    <p class="color-group-desc">Hlavní gradient pro logo, CTA prvky a speciální komponenty</p>
+                    <div class="gradient-swatches">
+                        <div class="gradient-swatch" style="background: var(--gradient-brand);">
+                            <span class="name">Brand Gradient</span>
+                            <span class="value">135° • cyan → blue → purple → magenta</span>
+                        </div>
+                        <div class="gradient-swatch" style="background: var(--gradient-brand-90);">
+                            <span class="name">Brand Horizontal</span>
+                            <span class="value">90° • pro široké komponenty</span>
+                        </div>
+                        <div class="gradient-swatch" style="background: var(--gradient-xp);">
+                            <span class="name">XP Gradient</span>
+                            <span class="value">Pro gamifikační prvky</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Cyan -->
+                <div class="color-group">
+                    <h3 class="color-group-title">Cyan — Začátek cesty</h3>
+                    <p class="color-group-desc">Vstupní bod gradientu, symbolizuje čistotu a nový začátek</p>
+                    <div class="color-swatches">
+                        <div class="color-swatch" style="background: var(--cyan-50);"><div class="info"><span class="shade">50</span><span class="hex">#ecfeff</span></div></div>
+                        <div class="color-swatch" style="background: var(--cyan-100);"><div class="info"><span class="shade">100</span><span class="hex">#cffafe</span></div></div>
+                        <div class="color-swatch" style="background: var(--cyan-200);"><div class="info"><span class="shade">200</span><span class="hex">#a5f3fc</span></div></div>
+                        <div class="color-swatch" style="background: var(--cyan-300);"><div class="info"><span class="shade">300</span><span class="hex">#67e8f9</span></div></div>
+                        <div class="color-swatch" style="background: var(--cyan-400);"><div class="info"><span class="shade">400</span><span class="hex">#22d3ee</span></div></div>
+                        <div class="color-swatch" style="background: var(--cyan-500);"><div class="info"><span class="shade">500</span><span class="hex">#06b6d4</span></div></div>
+                        <div class="color-swatch" style="background: var(--cyan-600);"><div class="info"><span class="shade">600</span><span class="hex">#0891b2</span></div></div>
+                        <div class="color-swatch" style="background: var(--cyan-700);"><div class="info"><span class="shade">700</span><span class="hex">#0e7490</span></div></div>
+                        <div class="color-swatch" style="background: var(--cyan-800);"><div class="info"><span class="shade">800</span><span class="hex">#155e75</span></div></div>
+                        <div class="color-swatch" style="background: var(--cyan-900);"><div class="info"><span class="shade">900</span><span class="hex">#164e63</span></div></div>
+                    </div>
+                </div>
+
+                <!-- Blue -->
+                <div class="color-group">
+                    <h3 class="color-group-title">Blue — Stabilita a důvěra</h3>
+                    <p class="color-group-desc">Hlavní barva, reprezentuje spolehlivost vzdělávání</p>
+                    <div class="color-swatches">
+                        <div class="color-swatch" style="background: var(--blue-50);"><div class="info"><span class="shade">50</span><span class="hex">#eff6ff</span></div></div>
+                        <div class="color-swatch" style="background: var(--blue-100);"><div class="info"><span class="shade">100</span><span class="hex">#dbeafe</span></div></div>
+                        <div class="color-swatch" style="background: var(--blue-200);"><div class="info"><span class="shade">200</span><span class="hex">#bfdbfe</span></div></div>
+                        <div class="color-swatch" style="background: var(--blue-300);"><div class="info"><span class="shade">300</span><span class="hex">#93c5fd</span></div></div>
+                        <div class="color-swatch" style="background: var(--blue-400);"><div class="info"><span class="shade">400</span><span class="hex">#60a5fa</span></div></div>
+                        <div class="color-swatch" style="background: var(--blue-500);"><div class="info"><span class="shade">500</span><span class="hex">#3b82f6</span></div></div>
+                        <div class="color-swatch" style="background: var(--blue-600);"><div class="info"><span class="shade">600</span><span class="hex">#2563eb</span></div></div>
+                        <div class="color-swatch" style="background: var(--blue-700);"><div class="info"><span class="shade">700</span><span class="hex">#1d4ed8</span></div></div>
+                        <div class="color-swatch" style="background: var(--blue-800);"><div class="info"><span class="shade">800</span><span class="hex">#1e40af</span></div></div>
+                        <div class="color-swatch" style="background: var(--blue-900);"><div class="info"><span class="shade">900</span><span class="hex">#1e3a8a</span></div></div>
+                    </div>
+                </div>
+
+                <!-- Purple -->
+                <div class="color-group">
+                    <h3 class="color-group-title">Purple — Kreativita a inovace</h3>
+                    <p class="color-group-desc">AI a kreativní myšlení, technologický pokrok</p>
+                    <div class="color-swatches">
+                        <div class="color-swatch" style="background: var(--purple-50);"><div class="info"><span class="shade">50</span><span class="hex">#faf5ff</span></div></div>
+                        <div class="color-swatch" style="background: var(--purple-100);"><div class="info"><span class="shade">100</span><span class="hex">#f3e8ff</span></div></div>
+                        <div class="color-swatch" style="background: var(--purple-200);"><div class="info"><span class="shade">200</span><span class="hex">#e9d5ff</span></div></div>
+                        <div class="color-swatch" style="background: var(--purple-300);"><div class="info"><span class="shade">300</span><span class="hex">#d8b4fe</span></div></div>
+                        <div class="color-swatch" style="background: var(--purple-400);"><div class="info"><span class="shade">400</span><span class="hex">#c084fc</span></div></div>
+                        <div class="color-swatch" style="background: var(--purple-500);"><div class="info"><span class="shade">500</span><span class="hex">#a855f7</span></div></div>
+                        <div class="color-swatch" style="background: var(--purple-600);"><div class="info"><span class="shade">600</span><span class="hex">#9333ea</span></div></div>
+                        <div class="color-swatch" style="background: var(--purple-700);"><div class="info"><span class="shade">700</span><span class="hex">#7e22ce</span></div></div>
+                        <div class="color-swatch" style="background: var(--purple-800);"><div class="info"><span class="shade">800</span><span class="hex">#6b21a8</span></div></div>
+                        <div class="color-swatch" style="background: var(--purple-900);"><div class="info"><span class="shade">900</span><span class="hex">#581c87</span></div></div>
+                    </div>
+                </div>
+
+                <!-- Magenta -->
+                <div class="color-group">
+                    <h3 class="color-group-title">Magenta — Úspěch a dosažení cíle</h3>
+                    <p class="color-group-desc">Konečný bod gradientu, symbolizuje úspěch a mistrovství</p>
+                    <div class="color-swatches">
+                        <div class="color-swatch" style="background: var(--magenta-50);"><div class="info"><span class="shade">50</span><span class="hex">#fdf4ff</span></div></div>
+                        <div class="color-swatch" style="background: var(--magenta-100);"><div class="info"><span class="shade">100</span><span class="hex">#fae8ff</span></div></div>
+                        <div class="color-swatch" style="background: var(--magenta-200);"><div class="info"><span class="shade">200</span><span class="hex">#f5d0fe</span></div></div>
+                        <div class="color-swatch" style="background: var(--magenta-300);"><div class="info"><span class="shade">300</span><span class="hex">#f0abfc</span></div></div>
+                        <div class="color-swatch" style="background: var(--magenta-400);"><div class="info"><span class="shade">400</span><span class="hex">#e879f9</span></div></div>
+                        <div class="color-swatch" style="background: var(--magenta-500);"><div class="info"><span class="shade">500</span><span class="hex">#d946ef</span></div></div>
+                        <div class="color-swatch" style="background: var(--magenta-600);"><div class="info"><span class="shade">600</span><span class="hex">#c026d3</span></div></div>
+                        <div class="color-swatch" style="background: var(--magenta-700);"><div class="info"><span class="shade">700</span><span class="hex">#a21caf</span></div></div>
+                        <div class="color-swatch" style="background: var(--magenta-800);"><div class="info"><span class="shade">800</span><span class="hex">#86198f</span></div></div>
+                        <div class="color-swatch" style="background: var(--magenta-900);"><div class="info"><span class="shade">900</span><span class="hex">#701a75</span></div></div>
+                    </div>
+                </div>
+
+                <!-- Slate -->
+                <div class="color-group">
+                    <h3 class="color-group-title">Slate — Neutrální základ</h3>
+                    <p class="color-group-desc">Pozadí, texty a strukturální prvky</p>
+                    <div class="color-swatches">
+                        <div class="color-swatch" style="background: var(--slate-50);"><div class="info"><span class="shade">50</span><span class="hex">#f8fafc</span></div></div>
+                        <div class="color-swatch" style="background: var(--slate-100);"><div class="info"><span class="shade">100</span><span class="hex">#f1f5f9</span></div></div>
+                        <div class="color-swatch" style="background: var(--slate-200);"><div class="info"><span class="shade">200</span><span class="hex">#e2e8f0</span></div></div>
+                        <div class="color-swatch" style="background: var(--slate-300);"><div class="info"><span class="shade">300</span><span class="hex">#cbd5e1</span></div></div>
+                        <div class="color-swatch" style="background: var(--slate-400);"><div class="info"><span class="shade">400</span><span class="hex">#94a3b8</span></div></div>
+                        <div class="color-swatch" style="background: var(--slate-500);"><div class="info"><span class="shade">500</span><span class="hex">#64748b</span></div></div>
+                        <div class="color-swatch" style="background: var(--slate-600);"><div class="info"><span class="shade">600</span><span class="hex">#475569</span></div></div>
+                        <div class="color-swatch" style="background: var(--slate-700);"><div class="info"><span class="shade">700</span><span class="hex">#334155</span></div></div>
+                        <div class="color-swatch" style="background: var(--slate-800);"><div class="info"><span class="shade">800</span><span class="hex">#1e293b</span></div></div>
+                        <div class="color-swatch" style="background: var(--slate-900);"><div class="info"><span class="shade">900</span><span class="hex">#0f172a</span></div></div>
+                    </div>
+                </div>
+
+                <!-- Semantic -->
+                <div class="color-group">
+                    <h3 class="color-group-title">Sémantické barvy</h3>
+                    <p class="color-group-desc">Pro stavy a zpětnou vazbu</p>
+                    <div class="color-swatches" style="grid-template-columns: repeat(4, 1fr);">
+                        <div class="color-swatch" style="background: var(--success);"><div class="info"><span class="shade">Success</span><span class="hex">#10b981</span></div></div>
+                        <div class="color-swatch" style="background: var(--warning);"><div class="info"><span class="shade">Warning</span><span class="hex">#f59e0b</span></div></div>
+                        <div class="color-swatch" style="background: var(--error);"><div class="info"><span class="shade">Error</span><span class="hex">#ef4444</span></div></div>
+                        <div class="color-swatch" style="background: var(--info);"><div class="info"><span class="shade">Info</span><span class="hex">#3b82f6</span></div></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- TYPOGRAPHY -->
+    <section id="typography">
+        <div class="container">
+            <span class="section-label">03 — Typografie</span>
+            <h2 class="section-title">Písma a texty</h2>
+            <p class="section-desc">Montserrat pro nadpisy — silný, moderní charakter. Open Sans pro tělo textu — čitelnost a přátelskost.</p>
+
+            <div class="type-specimen">
+                <!-- Montserrat -->
+                <div class="type-family">
+                    <div class="type-family-header">
+                        <span class="type-family-name">Montserrat</span>
+                        <span class="type-family-meta">Headings • Google Fonts</span>
+                    </div>
+                    <div class="type-sample">Nauč se programovat s AI</div>
+                    <div class="type-alphabet">ABCDEFGHIJKLMNOPQRSTUVWXYZ</div>
+                    <div class="type-alphabet">abcdefghijklmnopqrstuvwxyzáčďéěíňóřšťúůýž</div>
+                    <div class="type-alphabet">0123456789 !@#$%^&*()</div>
+                    <div class="type-weights">
+                        <span class="type-weight" style="font-weight: 300;">Light 300</span>
+                        <span class="type-weight" style="font-weight: 400;">Regular 400</span>
+                        <span class="type-weight" style="font-weight: 500;">Medium 500</span>
+                        <span class="type-weight" style="font-weight: 600;">SemiBold 600</span>
+                        <span class="type-weight" style="font-weight: 700;">Bold 700</span>
+                        <span class="type-weight" style="font-weight: 800;">ExtraBold 800</span>
+                        <span class="type-weight" style="font-weight: 900;">Black 900</span>
+                    </div>
+                </div>
+
+                <!-- Open Sans -->
+                <div class="type-family">
+                    <div class="type-family-header">
+                        <span class="type-family-name" style="font-family: var(--font-body);">Open Sans</span>
+                        <span class="type-family-meta">Body Text • Google Fonts</span>
+                    </div>
+                    <div class="type-sample" style="font-family: var(--font-body); font-size: 1.75rem; font-weight: 400;">Vzdělávací platforma pro studenty</div>
+                    <div class="type-alphabet" style="font-family: var(--font-body);">ABCDEFGHIJKLMNOPQRSTUVWXYZ</div>
+                    <div class="type-alphabet" style="font-family: var(--font-body);">abcdefghijklmnopqrstuvwxyzáčďéěíňóřšťúůýž</div>
+                    <div class="type-alphabet" style="font-family: var(--font-body);">0123456789 !@#$%^&*()</div>
+                    <div class="type-weights">
+                        <span class="type-weight" style="font-family: var(--font-body); font-weight: 300;">Light 300</span>
+                        <span class="type-weight" style="font-family: var(--font-body); font-weight: 400;">Regular 400</span>
+                        <span class="type-weight" style="font-family: var(--font-body); font-weight: 600;">SemiBold 600</span>
+                        <span class="type-weight" style="font-family: var(--font-body); font-weight: 700;">Bold 700</span>
+                    </div>
+                </div>
+
+                <!-- JetBrains Mono -->
+                <div class="type-family">
+                    <div class="type-family-header">
+                        <span class="type-family-name" style="font-family: var(--font-mono);">JetBrains Mono</span>
+                        <span class="type-family-meta">Code & Labels • Google Fonts</span>
+                    </div>
+                    <div class="type-sample" style="font-family: var(--font-mono); font-size: 1.5rem;">def learn_ai():</div>
+                    <div class="type-alphabet" style="font-family: var(--font-mono);">ABCDEFGHIJKLMNOPQRSTUVWXYZ</div>
+                    <div class="type-alphabet" style="font-family: var(--font-mono);">abcdefghijklmnopqrstuvwxyz</div>
+                    <div class="type-alphabet" style="font-family: var(--font-mono);">0123456789 {} [] () != == +=</div>
+                    <div class="type-weights">
+                        <span class="type-weight" style="font-family: var(--font-mono); font-weight: 400;">Regular 400</span>
+                        <span class="type-weight" style="font-family: var(--font-mono); font-weight: 600;">SemiBold 600</span>
+                        <span class="type-weight" style="font-family: var(--font-mono); font-weight: 700;">Bold 700</span>
+                    </div>
+                </div>
+
+                <!-- Type Scale -->
+                <h3 class="mt-12" style="color: white; margin-bottom: var(--space-6); font-family: var(--font-heading);">Typografická škála</h3>
+                <div class="type-scale">
+                    <div class="type-scale-item">
+                        <span class="type-scale-label">Display / 48px</span>
+                        <span class="type-scale-sample" style="font-size: 3rem; font-weight: 800; font-family: var(--font-heading);">AI Učebnice</span>
+                    </div>
+                    <div class="type-scale-item">
+                        <span class="type-scale-label">H1 / 36px</span>
+                        <span class="type-scale-sample" style="font-size: 2.25rem; font-weight: 700; font-family: var(--font-heading);">Hlavní nadpis</span>
+                    </div>
+                    <div class="type-scale-item">
+                        <span class="type-scale-label">H2 / 28px</span>
+                        <span class="type-scale-sample" style="font-size: 1.75rem; font-weight: 700; font-family: var(--font-heading);">Sekce nadpis</span>
+                    </div>
+                    <div class="type-scale-item">
+                        <span class="type-scale-label">H3 / 22px</span>
+                        <span class="type-scale-sample" style="font-size: 1.375rem; font-weight: 600; font-family: var(--font-heading);">Podsekce</span>
+                    </div>
+                    <div class="type-scale-item">
+                        <span class="type-scale-label">Body / 16px</span>
+                        <span class="type-scale-sample" style="font-size: 1rem; font-family: var(--font-body);">Základní text pro delší odstavce a popisky s dobrou čitelností.</span>
+                    </div>
+                    <div class="type-scale-item">
+                        <span class="type-scale-label">Small / 14px</span>
+                        <span class="type-scale-sample" style="font-size: 0.875rem; color: var(--slate-300); font-family: var(--font-body);">Pomocný text, popisky, metadata</span>
+                    </div>
+                    <div class="type-scale-item">
+                        <span class="type-scale-label">Caption / 12px</span>
+                        <span class="type-scale-sample" style="font-size: 0.75rem; color: var(--slate-400); font-family: var(--font-mono); text-transform: uppercase; letter-spacing: 0.1em;">LABEL • BADGE • TAG</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- COMPONENTS -->
+    <section id="components">
+        <div class="container">
+            <span class="section-label">04 — Komponenty</span>
+            <h2 class="section-title">UI prvky</h2>
+            <p class="section-desc">Konzistentní sada komponent pro vzdělávací platformu.</p>
+
+            <div class="components-grid">
+                <!-- Buttons -->
+                <div class="component-card">
+                    <h4 class="component-title">Tlačítka</h4>
+                    <div class="component-demo" style="flex-direction: column; align-items: stretch;">
+                        <button class="btn btn-primary">Začít učení</button>
+                        <button class="btn btn-secondary">Pokračovat</button>
+                        <button class="btn btn-outline">Zjistit více</button>
+                    </div>
+                </div>
+
+                <!-- Inputs -->
+                <div class="component-card">
+                    <h4 class="component-title">Vstupní pole</h4>
+                    <div class="component-demo" style="flex-direction: column;">
+                        <input type="text" class="input" placeholder="Email adresa">
+                        <input type="password" class="input" placeholder="Heslo">
+                    </div>
+                </div>
+
+                <!-- Badges -->
+                <div class="component-card">
+                    <h4 class="component-title">Odznaky — Brand</h4>
+                    <div class="component-demo">
+                        <span class="badge badge-cyan">Začátečník</span>
+                        <span class="badge badge-blue">Pokročilý</span>
+                        <span class="badge badge-purple">Expert</span>
+                        <span class="badge badge-magenta">Master</span>
+                    </div>
+                </div>
+
+                <!-- Semantic Badges -->
+                <div class="component-card">
+                    <h4 class="component-title">Odznaky — Stavy</h4>
+                    <div class="component-demo">
+                        <span class="badge badge-success">Dokončeno</span>
+                        <span class="badge badge-warning">Probíhá</span>
+                    </div>
+                </div>
+
+                <!-- Progress Bar -->
+                <div class="component-card">
+                    <h4 class="component-title">Progress Bar</h4>
+                    <div class="component-demo" style="flex-direction: column; width: 100%;">
+                        <div class="progress">
+                            <div class="progress-bar" style="width: 35%;"></div>
+                        </div>
+                        <div class="progress">
+                            <div class="progress-bar" style="width: 75%;"></div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Card -->
+                <div class="component-card">
+                    <h4 class="component-title">Karta lekce</h4>
+                    <div class="card" style="max-width: 100%;">
+                        <h3 style="color: white; font-family: var(--font-heading); font-size: 1.125rem; margin-bottom: var(--space-2);">Python Basics</h3>
+                        <p style="color: var(--slate-400); font-size: 0.875rem; margin-bottom: var(--space-4);">Úvod do programování v Pythonu</p>
+                        <div class="flex gap-4" style="flex-wrap: wrap;">
+                            <span class="badge badge-cyan">5 lekcí</span>
+                            <span class="badge badge-success">Dokončeno</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- GAMIFICATION -->
+    <section id="gamification">
+        <div class="container">
+            <span class="section-label">05 — Gamifikace</span>
+            <h2 class="section-title">Herní prvky</h2>
+            <p class="section-desc">Motivační systém pro udržení zájmu studentů.</p>
+
+            <div class="gamification-grid">
+                <!-- XP System -->
+                <div class="component-card">
+                    <h4 class="component-title">XP Body</h4>
+                    <div class="component-demo" style="flex-direction: column; align-items: flex-start; width: 100%;">
+                        <div class="xp-badge">
+                            <span class="icon">⭐</span>
+                            <span>1,250 XP</span>
+                        </div>
+                        <div style="margin-top: var(--space-4); width: 100%;">
+                            <div style="display: flex; justify-content: space-between; margin-bottom: var(--space-2); color: var(--slate-300); font-size: 0.875rem;">
+                                <span>Level 5</span>
+                                <span>75%</span>
+                            </div>
+                            <div class="progress">
+                                <div class="progress-bar" style="width: 75%;"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Achievements -->
+                <div class="component-card">
+                    <h4 class="component-title">Úspěchy (Achievements)</h4>
+                    <div class="component-demo" style="justify-content: space-around;">
+                        <div class="achievement">
+                            <span class="icon">🏆</span>
+                            <span class="name">První lekce</span>
+                        </div>
+                        <div class="achievement">
+                            <span class="icon">🔥</span>
+                            <span class="name">7 dní v řadě</span>
+                        </div>
+                        <div class="achievement" style="opacity: 0.3;">
+                            <span class="icon">🎯</span>
+                            <span class="name">Locked</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Leaderboard Entry -->
+                <div class="component-card">
+                    <h4 class="component-title">Žebříček</h4>
+                    <div style="width: 100%;">
+                        <div style="display: flex; align-items: center; gap: var(--space-4); padding: var(--space-3); background: rgba(34, 211, 238, 0.1); border-radius: var(--radius-lg); margin-bottom: var(--space-2);">
+                            <span style="font-family: var(--font-heading); font-weight: 700; color: #22d3ee; width: 30px;">1.</span>
+                            <span style="flex: 1; color: white; font-weight: 600;">Jan Novák</span>
+                            <span class="badge badge-cyan">2,840 XP</span>
+                        </div>
+                        <div style="display: flex; align-items: center; gap: var(--space-4); padding: var(--space-3); background: rgba(148, 163, 184, 0.05); border-radius: var(--radius-lg);">
+                            <span style="font-family: var(--font-heading); font-weight: 700; color: var(--slate-400); width: 30px;">2.</span>
+                            <span style="flex: 1; color: var(--slate-300); font-weight: 600;">Eva Svobodová</span>
+                            <span class="badge badge-blue">2,650 XP</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- SPACING -->
+    <section id="spacing">
+        <div class="container">
+            <span class="section-label">06 — Rozestupy</span>
+            <h2 class="section-title">Spacing systém</h2>
+            <p class="section-desc">Konzistentní rozestupy založené na 4px jednotce.</p>
+
+            <div class="spacing-demo">
+                <div class="spacing-item">
+                    <div class="spacing-box" style="width: 4px; height: 24px;"></div>
+                    <span class="spacing-label">space-1</span>
+                    <span class="spacing-value">4px</span>
+                </div>
+                <div class="spacing-item">
+                    <div class="spacing-box" style="width: 8px; height: 24px;"></div>
+                    <span class="spacing-label">space-2</span>
+                    <span class="spacing-value">8px</span>
+                </div>
+                <div class="spacing-item">
+                    <div class="spacing-box" style="width: 12px; height: 24px;"></div>
+                    <span class="spacing-label">space-3</span>
+                    <span class="spacing-value">

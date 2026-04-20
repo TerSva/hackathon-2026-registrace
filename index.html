@@ -1,0 +1,1200 @@
+<!DOCTYPE html>
+<html lang="cs">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Registrace — AI & Programming Hackathon 2026</title>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700;800;900&family=Open+Sans:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --cyan-300: #67e8f9;
+            --cyan-400: #22d3ee;
+            --cyan-600: #0891b2;
+            --blue-300: #93c5fd;
+            --blue-500: #3b82f6;
+            --purple-300: #d8b4fe;
+            --purple-500: #a855f7;
+            --magenta-300: #f0abfc;
+            --magenta-500: #d946ef;
+            --slate-100: #f1f5f9;
+            --slate-200: #e2e8f0;
+            --slate-300: #cbd5e1;
+            --slate-400: #94a3b8;
+            --slate-500: #64748b;
+            --slate-600: #475569;
+            --slate-700: #334155;
+            --slate-800: #1e293b;
+            --slate-900: #0f172a;
+            --success: #10b981;
+            --error: #d946ef;
+            --error-soft: rgba(217, 70, 239, 0.5);
+            --error-bg: rgba(217, 70, 239, 0.08);
+            --error-text: #f0abfc;
+
+            --gradient-brand: linear-gradient(135deg, #22d3ee 0%, #3b82f6 30%, #a855f7 70%, #d946ef 100%);
+            --gradient-brand-90: linear-gradient(90deg, #22d3ee 0%, #3b82f6 33%, #a855f7 66%, #d946ef 100%);
+            --gradient-card: linear-gradient(145deg, rgba(30, 41, 59, 0.6) 0%, rgba(15, 23, 42, 0.8) 100%);
+            --shadow-glow-brand: 0 0 30px rgba(34, 211, 238, 0.2), 0 0 60px rgba(168, 85, 247, 0.15);
+
+            --font-heading: 'Montserrat', sans-serif;
+            --font-body: 'Open Sans', sans-serif;
+            --font-mono: 'JetBrains Mono', monospace;
+
+            --space-1: 4px; --space-2: 8px; --space-3: 12px; --space-4: 16px;
+            --space-5: 20px; --space-6: 24px; --space-8: 32px; --space-10: 40px;
+            --space-12: 48px; --space-16: 64px; --space-20: 80px;
+
+            --radius-sm: 6px; --radius-md: 8px; --radius-lg: 12px;
+            --radius-xl: 16px; --radius-2xl: 24px; --radius-full: 9999px;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        html { scroll-behavior: smooth; }
+
+        body {
+            font-family: var(--font-body);
+            background: var(--slate-900);
+            color: var(--slate-100);
+            line-height: 1.6;
+            font-size: 16px;
+            min-height: 100vh;
+        }
+
+        body::before {
+            content: '';
+            position: fixed;
+            top: 0; left: 0; right: 0; bottom: 0;
+            background:
+                radial-gradient(ellipse 80% 50% at 20% 40%, rgba(34, 211, 238, 0.08) 0%, transparent 50%),
+                radial-gradient(ellipse 60% 40% at 80% 20%, rgba(168, 85, 247, 0.06) 0%, transparent 50%),
+                radial-gradient(ellipse 50% 30% at 50% 80%, rgba(217, 70, 239, 0.05) 0%, transparent 50%);
+            pointer-events: none;
+            z-index: 0;
+        }
+
+        /* ── LAYOUT ── */
+        .page-wrapper {
+            position: relative;
+            z-index: 1;
+            max-width: 780px;
+            margin: 0 auto;
+            padding: var(--space-12) var(--space-6);
+        }
+
+        /* ── HEADER ── */
+        .header {
+            text-align: center;
+            margin-bottom: var(--space-12);
+        }
+
+        .event-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: var(--space-2);
+            padding: var(--space-2) var(--space-5);
+            background: rgba(34, 211, 238, 0.1);
+            border: 1px solid rgba(34, 211, 238, 0.3);
+            border-radius: var(--radius-full);
+            font-family: var(--font-mono);
+            font-size: 0.75rem;
+            color: var(--cyan-300);
+            text-transform: uppercase;
+            letter-spacing: 0.15em;
+            margin-bottom: var(--space-6);
+        }
+
+        .event-badge .dot {
+            width: 6px; height: 6px;
+            background: var(--cyan-400);
+            border-radius: 50%;
+            animation: blink 1.5s ease-in-out infinite;
+        }
+
+        @keyframes blink {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.3; }
+        }
+
+        .header h1 {
+            font-family: var(--font-heading);
+            font-size: clamp(2rem, 5vw, 3rem);
+            font-weight: 900;
+            letter-spacing: -0.03em;
+            line-height: 1.1;
+            background: var(--gradient-brand);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: var(--space-4);
+        }
+
+        .header p {
+            font-size: 1.0625rem;
+            color: var(--slate-400);
+            max-width: 500px;
+            margin: 0 auto var(--space-8);
+        }
+
+        /* ── INFO STRIP ── */
+        .info-strip {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: var(--space-4);
+            margin-bottom: var(--space-10);
+        }
+
+        .info-chip {
+            display: flex;
+            align-items: center;
+            gap: var(--space-2);
+            padding: var(--space-3) var(--space-5);
+            background: rgba(30, 41, 59, 0.6);
+            border: 1px solid rgba(148, 163, 184, 0.15);
+            border-radius: var(--radius-xl);
+            font-size: 0.9rem;
+            color: var(--slate-200);
+        }
+
+        .info-chip .icon {
+            font-size: 1.1rem;
+        }
+
+        .info-chip strong {
+            font-family: var(--font-heading);
+            font-weight: 700;
+            background: var(--gradient-brand-90);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        /* ── PROGRESS STEPS ── */
+        .steps {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0;
+            margin-bottom: var(--space-10);
+        }
+
+        .step {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: var(--space-2);
+            position: relative;
+        }
+
+        .step-circle {
+            width: 36px; height: 36px;
+            border-radius: 50%;
+            display: flex; align-items: center; justify-content: center;
+            font-family: var(--font-heading);
+            font-weight: 700;
+            font-size: 0.875rem;
+            transition: all 0.3s ease;
+            position: relative;
+            z-index: 2;
+        }
+
+        .step.active .step-circle {
+            background: var(--gradient-brand);
+            color: white;
+            box-shadow: 0 0 20px rgba(34, 211, 238, 0.4);
+        }
+
+        .step.done .step-circle {
+            background: rgba(16, 185, 129, 0.2);
+            border: 2px solid var(--success);
+            color: #34d399;
+        }
+
+        .step.inactive .step-circle {
+            background: rgba(30, 41, 59, 0.8);
+            border: 2px solid rgba(148, 163, 184, 0.2);
+            color: var(--slate-500);
+        }
+
+        .step-label {
+            font-family: var(--font-mono);
+            font-size: 0.65rem;
+            text-transform: uppercase;
+            letter-spacing: 0.08em;
+            color: var(--slate-500);
+            white-space: nowrap;
+        }
+
+        .step.active .step-label { color: var(--cyan-400); }
+        .step.done .step-label { color: #34d399; }
+
+        .step-connector {
+            width: 60px; height: 2px;
+            background: rgba(148, 163, 184, 0.15);
+            margin-bottom: 20px;
+            flex-shrink: 0;
+        }
+
+        .step-connector.done {
+            background: var(--gradient-brand-90);
+        }
+
+        /* ── FORM CARD ── */
+        .form-card {
+            background: var(--gradient-card);
+            backdrop-filter: blur(20px);
+            border: 1px solid rgba(148, 163, 184, 0.12);
+            border-radius: var(--radius-2xl);
+            padding: var(--space-10);
+            box-shadow: 0 20px 60px rgba(0,0,0,0.4), var(--shadow-glow-brand);
+        }
+
+        /* Form sections */
+        .form-section {
+            display: none;
+        }
+
+        .form-section.active {
+            display: block;
+        }
+
+        .section-heading {
+            display: flex;
+            align-items: center;
+            gap: var(--space-3);
+            margin-bottom: var(--space-8);
+            padding-bottom: var(--space-5);
+            border-bottom: 1px solid rgba(148, 163, 184, 0.1);
+        }
+
+        .section-icon {
+            width: 44px; height: 44px;
+            border-radius: var(--radius-lg);
+            background: rgba(34, 211, 238, 0.1);
+            border: 1px solid rgba(34, 211, 238, 0.2);
+            display: flex; align-items: center; justify-content: center;
+            font-size: 1.25rem;
+            flex-shrink: 0;
+        }
+
+        .section-heading h2 {
+            font-family: var(--font-heading);
+            font-size: 1.25rem;
+            font-weight: 700;
+            color: white;
+        }
+
+        .section-heading p {
+            font-size: 0.875rem;
+            color: var(--slate-400);
+            margin-top: 2px;
+        }
+
+        /* ── FORM FIELDS ── */
+        .field-grid {
+            display: grid;
+            gap: var(--space-5);
+        }
+
+        .field-grid.cols-2 {
+            grid-template-columns: 1fr 1fr;
+        }
+
+        @media (max-width: 560px) {
+            .field-grid.cols-2 { grid-template-columns: 1fr; }
+            .form-card { padding: var(--space-6); }
+        }
+
+        .field {
+            display: flex;
+            flex-direction: column;
+            gap: var(--space-2);
+        }
+
+        .field label {
+            font-family: var(--font-heading);
+            font-size: 0.8125rem;
+            font-weight: 600;
+            color: var(--slate-300);
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+        }
+
+        .field label .required {
+            color: var(--magenta-300);
+            margin-left: 3px;
+        }
+
+        .input {
+            width: 100%;
+            padding: var(--space-3) var(--space-4);
+            background: rgba(15, 23, 42, 0.6);
+            border: 1px solid rgba(148, 163, 184, 0.2);
+            border-radius: var(--radius-lg);
+            font-family: var(--font-body);
+            font-size: 0.9375rem;
+            color: white;
+            transition: all 0.2s ease;
+        }
+
+        .input::placeholder { color: var(--slate-600); }
+
+        .input:focus {
+            outline: none;
+            border-color: var(--cyan-400);
+            box-shadow: 0 0 0 3px rgba(34, 211, 238, 0.15);
+            background: rgba(15, 23, 42, 0.9);
+        }
+
+        .input:invalid:not(:placeholder-shown) {
+            border-color: var(--error);
+        }
+
+        select.input {
+            appearance: none;
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 24 24' fill='none' stroke='%2394a3b8' stroke-width='2'%3E%3Cpolyline points='6 9 12 15 18 9'%3E%3C/polyline%3E%3C/svg%3E");
+            background-repeat: no-repeat;
+            background-position: right 14px center;
+            padding-right: 40px;
+            cursor: pointer;
+        }
+
+        select.input option {
+            background: var(--slate-800);
+            color: white;
+        }
+
+        textarea.input {
+            resize: vertical;
+            min-height: 90px;
+        }
+
+        .field-hint {
+            font-size: 0.8rem;
+            color: var(--slate-500);
+            margin-top: -4px;
+        }
+
+        /* ── RADIO / CHECKBOX GROUPS ── */
+        .radio-group, .checkbox-group {
+            display: flex;
+            flex-direction: column;
+            gap: var(--space-2);
+        }
+
+        .radio-option, .checkbox-option {
+            display: flex;
+            align-items: center;
+            gap: var(--space-3);
+            padding: var(--space-3) var(--space-4);
+            background: rgba(30, 41, 59, 0.4);
+            border: 1px solid rgba(148, 163, 184, 0.1);
+            border-radius: var(--radius-lg);
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+
+        .radio-option:hover, .checkbox-option:hover {
+            background: rgba(34, 211, 238, 0.06);
+            border-color: rgba(34, 211, 238, 0.2);
+        }
+
+        .radio-option input, .checkbox-option input {
+            width: 18px; height: 18px;
+            accent-color: var(--cyan-400);
+            cursor: pointer;
+            flex-shrink: 0;
+        }
+
+        .radio-option span, .checkbox-option span {
+            font-size: 0.9375rem;
+            color: var(--slate-200);
+        }
+
+        .radio-option:has(input:checked), .checkbox-option:has(input:checked) {
+            background: rgba(34, 211, 238, 0.08);
+            border-color: rgba(34, 211, 238, 0.35);
+        }
+
+        .checkbox-option:has(input:checked) span,
+        .radio-option:has(input:checked) span {
+            color: white;
+        }
+
+        /* ── INLINE RADIO (horizontal) ── */
+        .radio-group.inline {
+            flex-direction: row;
+            flex-wrap: wrap;
+        }
+
+        .radio-group.inline .radio-option {
+            flex: 1;
+            min-width: 120px;
+            justify-content: center;
+            text-align: center;
+        }
+
+        /* ── SKILL LEVEL PICKER ── */
+        .skill-picker {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: var(--space-3);
+        }
+
+        @media (max-width: 500px) {
+            .skill-picker { grid-template-columns: 1fr; }
+        }
+
+        .skill-option {
+            position: relative;
+            cursor: pointer;
+        }
+
+        .skill-option input {
+            position: absolute;
+            opacity: 0;
+            pointer-events: none;
+        }
+
+        .skill-card {
+            padding: var(--space-4);
+            background: rgba(30, 41, 59, 0.5);
+            border: 2px solid rgba(148, 163, 184, 0.1);
+            border-radius: var(--radius-xl);
+            text-align: center;
+            transition: all 0.2s ease;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: var(--space-2);
+        }
+
+        .skill-option input:checked ~ .skill-card {
+            border-color: var(--cyan-400);
+            background: rgba(34, 211, 238, 0.1);
+            box-shadow: 0 0 15px rgba(34, 211, 238, 0.2);
+        }
+
+        .skill-card .skill-icon { font-size: 1.75rem; }
+
+        .skill-card .skill-name {
+            font-family: var(--font-heading);
+            font-size: 0.875rem;
+            font-weight: 700;
+            color: white;
+        }
+
+        .skill-card .skill-desc {
+            font-size: 0.75rem;
+            color: var(--slate-400);
+            line-height: 1.4;
+        }
+
+        /* ── DIVIDER ── */
+        .field-divider {
+            height: 1px;
+            background: rgba(148, 163, 184, 0.08);
+            margin: var(--space-2) 0;
+        }
+
+        /* ── CONSENT BLOCK ── */
+        .consent-block {
+            background: rgba(30, 41, 59, 0.4);
+            border: 1px solid rgba(148, 163, 184, 0.1);
+            border-radius: var(--radius-xl);
+            padding: var(--space-5);
+        }
+
+        .consent-block .checkbox-option {
+            background: transparent;
+            border: none;
+            padding: var(--space-2) 0;
+        }
+
+        .consent-block .checkbox-option:hover {
+            background: transparent;
+        }
+
+        .consent-block .checkbox-option span {
+            font-size: 0.875rem;
+            color: var(--slate-300);
+            line-height: 1.5;
+        }
+
+        .consent-block .checkbox-option span a {
+            color: var(--cyan-400);
+            text-decoration: none;
+        }
+
+        /* ── VALIDATION (magenta, no red) ── */
+        .field-error {
+            display: none;
+            margin-top: 6px;
+            font-size: 0.8rem;
+            font-family: var(--font-body);
+            color: var(--error-text);
+            letter-spacing: 0.01em;
+        }
+
+        .field.has-error .input,
+        .field.has-error select.input {
+            border-color: var(--error-soft);
+            background: var(--error-bg);
+            box-shadow: 0 0 0 3px rgba(217, 70, 239, 0.08);
+        }
+
+        .field.has-error .field-error {
+            display: block;
+            animation: errorSlide 0.25s ease both;
+        }
+
+        .consent-block.has-error {
+            border-color: var(--error-soft);
+            background: var(--error-bg);
+        }
+
+        .consent-block.has-error .consent-error {
+            display: block;
+        }
+
+        .consent-error {
+            display: none;
+            margin-top: 8px;
+            padding-left: 4px;
+            font-size: 0.8rem;
+            color: var(--error-text);
+        }
+
+        @keyframes errorSlide {
+            from { opacity: 0; transform: translateY(-4px); }
+            to   { opacity: 1; transform: translateY(0); }
+        }
+
+        /* ── GLOBAL ERROR BANNER ── */
+        .global-error {
+            margin-top: var(--space-5);
+            padding: var(--space-4) var(--space-5);
+            background: var(--error-bg);
+            border: 1px solid var(--error-soft);
+            border-radius: var(--radius-lg);
+            color: var(--error-text);
+            font-size: 0.9rem;
+            line-height: 1.5;
+        }
+
+        .global-error[hidden] { display: none; }
+
+        /* ── HONEYPOT ── */
+        .hp-field {
+            position: absolute;
+            left: -9999px;
+            top: -9999px;
+            width: 1px;
+            height: 1px;
+            opacity: 0;
+            pointer-events: none;
+        }
+
+        /* ── NAVIGATION BUTTONS ── */
+        .form-nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-top: var(--space-10);
+            padding-top: var(--space-6);
+            border-top: 1px solid rgba(148, 163, 184, 0.1);
+            gap: var(--space-4);
+        }
+
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: var(--space-2);
+            padding: var(--space-3) var(--space-8);
+            border-radius: var(--radius-lg);
+            font-family: var(--font-heading);
+            font-size: 0.9375rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            border: none;
+            text-decoration: none;
+        }
+
+        .btn-primary {
+            background: var(--gradient-brand);
+            color: white;
+            box-shadow: 0 4px 15px rgba(34, 211, 238, 0.3);
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: var(--shadow-glow-brand);
+        }
+
+        .btn-secondary {
+            background: rgba(148, 163, 184, 0.1);
+            color: var(--slate-200);
+            border: 1px solid rgba(148, 163, 184, 0.2);
+        }
+
+        .btn-secondary:hover {
+            background: rgba(148, 163, 184, 0.2);
+            color: white;
+        }
+
+        .btn:disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+            transform: none;
+        }
+
+        /* ── SUCCESS STATE ── */
+        .success-screen {
+            display: none;
+            text-align: center;
+            padding: var(--space-12) var(--space-8);
+        }
+
+        .success-screen.visible {
+            display: block;
+        }
+
+        .success-icon {
+            width: 80px; height: 80px;
+            background: rgba(16, 185, 129, 0.15);
+            border: 2px solid var(--success);
+            border-radius: 50%;
+            display: flex; align-items: center; justify-content: center;
+            font-size: 2.5rem;
+            margin: 0 auto var(--space-6);
+            animation: popIn 0.5s cubic-bezier(0.34, 1.56, 0.64, 1) both;
+        }
+
+        @keyframes popIn {
+            from { transform: scale(0); opacity: 0; }
+            to { transform: scale(1); opacity: 1; }
+        }
+
+        .success-screen h2 {
+            font-family: var(--font-heading);
+            font-size: 1.75rem;
+            font-weight: 800;
+            background: var(--gradient-brand);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: var(--space-4);
+        }
+
+        .success-screen p {
+            color: var(--slate-400);
+            font-size: 1rem;
+            max-width: 380px;
+            margin: 0 auto var(--space-6);
+        }
+
+        .success-details {
+            display: inline-flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: var(--space-3);
+            margin-top: var(--space-6);
+        }
+
+        .success-chip {
+            display: flex;
+            align-items: center;
+            gap: var(--space-2);
+            padding: var(--space-2) var(--space-4);
+            background: rgba(30, 41, 59, 0.6);
+            border: 1px solid rgba(148, 163, 184, 0.15);
+            border-radius: var(--radius-full);
+            font-size: 0.875rem;
+            color: var(--slate-200);
+        }
+
+        /* ── BADGE ── */
+        .badge {
+            display: inline-flex;
+            align-items: center;
+            gap: var(--space-1);
+            padding: 2px var(--space-3);
+            border-radius: var(--radius-full);
+            font-size: 0.75rem;
+            font-weight: 600;
+            font-family: var(--font-heading);
+        }
+
+        .badge-cyan { background: rgba(34,211,238,.2); color: var(--cyan-300); }
+        .badge-purple { background: rgba(168,85,247,.2); color: var(--purple-300); }
+        .badge-magenta { background: rgba(217,70,239,.2); color: var(--magenta-300); }
+
+        /* ── SECTION LABEL ── */
+        .form-section-label {
+            font-family: var(--font-mono);
+            font-size: 0.7rem;
+            text-transform: uppercase;
+            letter-spacing: 0.15em;
+            color: var(--slate-500);
+            margin-bottom: var(--space-6);
+            padding-bottom: var(--space-4);
+            border-bottom: 1px solid rgba(148, 163, 184, 0.1);
+        }
+
+        /* ── CONTACT + FOOTER ── */
+        .page-footer {
+            margin-top: var(--space-10);
+        }
+
+        .footer-top {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: var(--space-6);
+            padding: var(--space-8);
+            background: rgba(30, 41, 59, 0.4);
+            border: 1px solid rgba(148, 163, 184, 0.1);
+            border-radius: var(--radius-2xl);
+            margin-bottom: var(--space-6);
+        }
+
+        @media (max-width: 560px) {
+            .footer-top { grid-template-columns: 1fr; }
+        }
+
+        .footer-block h4 {
+            font-family: var(--font-heading);
+            font-size: 0.8125rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.08em;
+            color: var(--slate-400);
+            margin-bottom: var(--space-4);
+        }
+
+        .footer-block p, .footer-block a {
+            font-size: 0.9rem;
+            color: var(--slate-300);
+            line-height: 1.8;
+            text-decoration: none;
+            display: block;
+        }
+
+        .footer-block a:hover { color: var(--cyan-400); }
+
+        .footer-partner {
+            margin-top: var(--space-5);
+            padding-top: var(--space-4);
+            border-top: 1px solid rgba(148, 163, 184, 0.12);
+        }
+        .footer-partner-label {
+            display: block;
+            font-family: var(--font-heading);
+            font-size: 0.7rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.12em;
+            color: var(--slate-500);
+            margin-bottom: var(--space-3);
+        }
+        .footer-partner-logo {
+            display: block;
+            max-width: 180px;
+            width: 100%;
+            height: auto;
+            opacity: 0.9;
+        }
+
+        .footer-link-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: var(--space-2);
+            margin-top: var(--space-3);
+            padding: var(--space-2) var(--space-4);
+            background: rgba(34, 211, 238, 0.1);
+            border: 1px solid rgba(34, 211, 238, 0.25);
+            border-radius: var(--radius-lg);
+            font-family: var(--font-heading);
+            font-size: 0.8125rem;
+            font-weight: 600;
+            color: var(--cyan-300);
+            text-decoration: none;
+            transition: all 0.2s ease;
+        }
+
+        .footer-link-btn:hover {
+            background: rgba(34, 211, 238, 0.18);
+            color: var(--cyan-200);
+        }
+
+        .footer-bottom {
+            text-align: center;
+            color: var(--slate-600);
+            font-size: 0.8rem;
+            font-family: var(--font-mono);
+        }
+    </style>
+</head>
+<body>
+
+<div class="page-wrapper">
+
+    <!-- HEADER -->
+    <header class="header">
+        <div class="event-badge">
+            <span class="dot"></span>
+            Registrace otevřena
+        </div>
+        <h1>AI &amp; Programming<br>Hackathon 2026</h1>
+        <p>48 hodin kódování, tvorby a inovací. Přidej se k nejlepším vývojářům a AI nadšencům.</p>
+
+        <div class="info-strip">
+            <div class="info-chip">
+                <span><strong>19.–21. 6. 2026</strong></span>
+            </div>
+            <div class="info-chip">
+                <span><strong>Pátek 12:00 – Neděle 12:00</strong></span>
+            </div>
+            <div class="info-chip">
+                <span><strong>48 hodin</strong></span>
+            </div>
+        </div>
+    </header>
+
+    <!-- FORM CARD -->
+    <div class="form-card" id="mainForm">
+
+        <div class="section-heading">
+            <div>
+                <h2>Registrační formulář</h2>
+                <p>Vyplň údaje a odešli přihlášku</p>
+            </div>
+        </div>
+
+        <!-- Honeypot — hidden from humans, bots will fill it -->
+        <div class="hp-field" aria-hidden="true">
+            <label for="website">Website (nevyplňuj)</label>
+            <input type="text" name="website" id="website" tabindex="-1" autocomplete="off">
+        </div>
+
+        <div class="field-grid">
+
+            <div class="field-grid cols-2">
+                <div class="field" data-field="firstName">
+                    <label for="firstName">Jméno <span class="required">*</span></label>
+                    <input type="text" class="input" placeholder="Jana" id="firstName">
+                    <span class="field-error" data-error-for="firstName">Vyplň prosím jméno.</span>
+                </div>
+                <div class="field" data-field="lastName">
+                    <label for="lastName">Příjmení <span class="required">*</span></label>
+                    <input type="text" class="input" placeholder="Nováková" id="lastName">
+                    <span class="field-error" data-error-for="lastName">Vyplň prosím příjmení.</span>
+                </div>
+            </div>
+
+            <div class="field" data-field="email">
+                <label for="email">E-mail <span class="required">*</span></label>
+                <input type="email" class="input" placeholder="jana@example.com" id="email">
+                <span class="field-error" data-error-for="email">Zadej platnou e-mailovou adresu.</span>
+            </div>
+
+            <div class="field-grid cols-2">
+                <div class="field" data-field="phone">
+                    <label for="phone">Telefon</label>
+                    <input type="tel" class="input" placeholder="+420 777 123 456" id="phone">
+                    <span class="field-error" data-error-for="phone">Telefon vypadá divně — zkontroluj ho.</span>
+                </div>
+                <div class="field" data-field="birthYear">
+                    <label for="birthYear">Rok narození</label>
+                    <input type="number" class="input" placeholder="např. 1998" id="birthYear" min="1940" max="2010">
+                    <span class="field-error" data-error-for="birthYear">Zadej rok mezi 1940 a 2010.</span>
+                </div>
+            </div>
+
+            <div class="field" data-field="github">
+                <label for="github">GitHub / Portfolio</label>
+                <input type="url" class="input" placeholder="github.com/username" id="github">
+                <span class="field-error" data-error-for="github">Zadej platnou URL (např. github.com/username).</span>
+            </div>
+
+            <div class="field-grid cols-2">
+                <div class="field" data-field="role">
+                    <label for="role">Aktuální role <span class="required">*</span></label>
+                    <select class="input" id="role">
+                        <option value="" disabled selected>Vyber svou roli…</option>
+                        <option value="student">Student</option>
+                        <option value="junior-dev">Junior developer</option>
+                        <option value="mid-dev">Mid developer</option>
+                        <option value="senior-dev">Senior developer</option>
+                        <option value="ai-ml">AI / ML Engineer</option>
+                        <option value="data">Data Scientist / Analyst</option>
+                        <option value="designer">UX / Designer</option>
+                        <option value="pm">Product Manager</option>
+                        <option value="other">Jiné</option>
+                    </select>
+                    <span class="field-error" data-error-for="role">Vyber prosím svou aktuální roli.</span>
+                </div>
+                <div class="field" data-field="company">
+                    <label for="company">Firma / Škola</label>
+                    <input type="text" class="input" placeholder="např. ČVUT, Kiwi.com…" id="company">
+                </div>
+            </div>
+
+            <div class="field-divider"></div>
+
+            <div class="field-grid cols-2">
+                <div class="field" data-field="teamName">
+                    <label for="teamName">Název týmu</label>
+                    <input type="text" class="input" placeholder="např. CyberNinjas 42" id="teamName">
+                    <span class="field-hint">Volitelné</span>
+                </div>
+                <div class="field" data-field="teamSize">
+                    <label for="teamSize">Počet členů v týmu <span class="required">*</span></label>
+                    <select class="input" id="teamSize">
+                        <option value="" disabled selected>Vyber počet…</option>
+                        <option value="1">1 (sólo)</option>
+                        <option value="2">2 členové</option>
+                        <option value="3">3 členové (max)</option>
+                    </select>
+                    <span class="field-error" data-error-for="teamSize">Vyber prosím počet členů v týmu.</span>
+                </div>
+            </div>
+
+            <div class="field-divider"></div>
+
+            <div class="field">
+                <div class="consent-block" id="consentBlock">
+                    <label class="checkbox-option">
+                        <input type="checkbox" id="consent1">
+                        <span>Souhlasím se <a href="#">zpracováním osobních údajů</a> pro účely organizace hackathonu. <span class="required">*</span></span>
+                    </label>
+                    <label class="checkbox-option">
+                        <input type="checkbox" id="consent2">
+                        <span>Chci dostávat novinky a informace o budoucích akcích. (Volitelné)</span>
+                    </label>
+                    <span class="consent-error">Pro registraci je nutný souhlas se zpracováním osobních údajů.</span>
+                </div>
+            </div>
+
+        </div>
+
+        <div class="form-nav">
+            <span></span>
+            <button class="btn btn-primary" id="submitBtn" type="button">
+                Odeslat registraci
+            </button>
+        </div>
+
+        <div id="globalError" class="global-error" hidden></div>
+
+    </div>
+
+    <!-- SUCCESS -->
+    <div class="form-card success-screen" id="successScreen">
+        <div class="success-icon">✓</div>
+        <h2>Registrace dokončena!</h2>
+        <p>Přijali jsme tvou přihlášku. Potvrzovací e-mail dorazí do pár minut.</p>
+        <div class="success-details">
+            <div class="success-chip">19.– 21. 6. 2026</div>
+            <div class="success-chip">Pátek 12:00 – Neděle 12:00</div>
+            <div class="success-chip"><span id="confirmCode">–</span></div>
+        </div>
+        <div style="margin-top:32px; display:flex; flex-wrap:wrap; gap:12px; justify-content:center;">
+            <span class="badge badge-cyan">AI Challenge 2026</span>
+            <span class="badge badge-purple">48h Hackathon</span>
+            <span class="badge badge-magenta">Těšíme se na tebe!</span>
+        </div>
+    </div>
+
+    <!-- FOOTER -->
+    <footer class="page-footer">
+        <div class="footer-top">
+            <div class="footer-block">
+                <h4>Kontakt na pořadatele</h4>
+                <a href="mailto:svanda@praut.cz">svanda@praut.cz</a>
+                <p style="margin-top:var(--space-4); color:var(--slate-400); font-size:0.8rem; line-height:1.7;">
+                    Místo konání<br>
+                    <span style="color:var(--slate-200);">Integrovaná střední škola Cheb,<br>
+                    příspěvková organizace<br>
+                    Obrněné brigády 2258/6<br>
+                    350 02 Cheb</span>
+                </p>
+                <div class="footer-partner">
+                    <span class="footer-partner-label">Ve spolupráci s</span>
+                    <img src="logo.png" alt="IaaS 4 DR" class="footer-partner-logo">
+                </div>
+            </div>
+            <div class="footer-block">
+                <h4>Chceš se připravit na maximum?</h4>
+                <p>Nastartuj se ještě před hackathonem. Naučíš se Python, AI nástroje a vše, co budeš potřebovat – interaktivně, s AI mentorem, kdykoli a odkudkoli.</p>
+                <a href="https://ucebnice.praut.cz/" target="_blank" class="footer-link-btn">
+                    Otevřít učebnici &rarr;
+                </a>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            AI &amp; Programming Hackathon 2026 &nbsp;&ndash;&nbsp; 19.&ndash;21.&nbsp;6.&nbsp;2026
+        </div>
+    </footer>
+</div>
+
+<script>
+    // ========================================================================
+    // CONFIG — Apps Script webhook URL placeholder (replace after deploy)
+    // ========================================================================
+    const APPS_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbw0I14fgua_wpOQbsnE8Su-QK2Oh3U1gRh-fAqp41oA7sCMjDsYW17XK5YCLQmbZA-kYQ/exec';
+
+    const EMAIL_RE = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    const URL_RE   = /^(https?:\/\/)?([\w-]+\.)+[\w-]+(\/[\w\-._~:/?#[\]@!$&'()*+,;=]*)?$/i;
+    const PHONE_RE = /^[+\d\s()\-]{6,20}$/;
+
+    function setError(fieldName, message) {
+        const field = document.querySelector('[data-field="' + fieldName + '"]');
+        if (!field) return;
+        field.classList.add('has-error');
+        if (message) {
+            const span = field.querySelector('.field-error');
+            if (span) span.textContent = message;
+        }
+    }
+
+    function clearError(fieldName) {
+        const field = document.querySelector('[data-field="' + fieldName + '"]');
+        if (field) field.classList.remove('has-error');
+    }
+
+    function clearAllErrors() {
+        document.querySelectorAll('.field.has-error').forEach(function(f){ f.classList.remove('has-error'); });
+        document.getElementById('consentBlock').classList.remove('has-error');
+        hideGlobalError();
+    }
+
+    function showGlobalError(msg) {
+        const el = document.getElementById('globalError');
+        el.textContent = msg;
+        el.hidden = false;
+    }
+
+    function hideGlobalError() {
+        const el = document.getElementById('globalError');
+        el.textContent = '';
+        el.hidden = true;
+    }
+
+    function validateAll() {
+        clearAllErrors();
+        let ok = true;
+
+        const firstName = document.getElementById('firstName').value.trim();
+        const lastName  = document.getElementById('lastName').value.trim();
+        const email     = document.getElementById('email').value.trim();
+        const phone     = document.getElementById('phone').value.trim();
+        const birthYear = document.getElementById('birthYear').value.trim();
+        const github    = document.getElementById('github').value.trim();
+        const role      = document.getElementById('role').value;
+        const teamSize  = document.getElementById('teamSize').value;
+        const consent1  = document.getElementById('consent1').checked;
+
+        if (!firstName) { setError('firstName', 'Vyplň prosím jméno.'); ok = false; }
+        if (!lastName)  { setError('lastName',  'Vyplň prosím příjmení.'); ok = false; }
+
+        if (!email) {
+            setError('email', 'Vyplň prosím e-mail.'); ok = false;
+        } else if (!EMAIL_RE.test(email)) {
+            setError('email', 'Zadej platnou e-mailovou adresu.'); ok = false;
+        }
+
+        if (phone && !PHONE_RE.test(phone)) {
+            setError('phone', 'Telefon vypadá divně — zkontroluj ho.'); ok = false;
+        }
+
+        if (birthYear) {
+            const y = Number(birthYear);
+            if (!Number.isInteger(y) || y < 1940 || y > 2010) {
+                setError('birthYear', 'Zadej rok mezi 1940 a 2010.'); ok = false;
+            }
+        }
+
+        if (github && !URL_RE.test(github)) {
+            setError('github', 'Zadej platnou URL (např. github.com/username).'); ok = false;
+        }
+
+        if (!role)     { setError('role',     'Vyber prosím svou aktuální roli.'); ok = false; }
+        if (!teamSize) { setError('teamSize', 'Vyber prosím počet členů v týmu.'); ok = false; }
+
+        if (!consent1) {
+            document.getElementById('consentBlock').classList.add('has-error');
+            ok = false;
+        }
+
+        if (!ok) {
+            const firstErr = document.querySelector('.field.has-error, .consent-block.has-error');
+            if (firstErr) firstErr.scrollIntoView({ behavior: 'smooth', block: 'center' });
+        }
+
+        return ok;
+    }
+
+    ['firstName','lastName','email','phone','birthYear','github','role','teamSize'].forEach(function(name) {
+        const el = document.getElementById(name);
+        if (!el) return;
+        const ev = (el.tagName === 'SELECT') ? 'change' : 'input';
+        el.addEventListener(ev, function(){ clearError(name); });
+        el.addEventListener('blur', function(){ clearError(name); });
+    });
+    document.getElementById('consent1').addEventListener('change', function() {
+        document.getElementById('consentBlock').classList.remove('has-error');
+    });
+
+    async function submitForm() {
+        // Honeypot — boti ho vyplní, lidé ne. Tiše předstíráme úspěch.
+        if (document.getElementById('website').value) {
+            window.location.href = 'success.html';
+            return;
+        }
+
+        if (!validateAll()) return;
+
+        const data = {
+            firstName: document.getElementById('firstName').value.trim(),
+            lastName:  document.getElementById('lastName').value.trim(),
+            email:     document.getElementById('email').value.trim(),
+            phone:     document.getElementById('phone').value.trim(),
+            birthYear: document.getElementById('birthYear').value,
+            github:    document.getElementById('github').value.trim(),
+            role:      document.getElementById('role').value,
+            company:   document.getElementById('company').value.trim(),
+            teamName:  document.getElementById('teamName').value.trim(),
+            teamSize:  document.getElementById('teamSize').value,
+            consentGdpr:       document.getElementById('consent1').checked,
+            consentNewsletter: document.getElementById('consent2').checked
+        };
+
+        const btn = document.getElementById('submitBtn');
+        const originalText = btn.innerHTML;
+        btn.disabled = true;
+        btn.innerHTML = 'Odesílám…';
+        hideGlobalError();
+
+        try {
+            await fetch(APPS_SCRIPT_URL, {
+                method: 'POST',
+                mode: 'no-cors',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify(data)
+            });
+            // no-cors → nevidíme response. Předpokládáme úspěch.
+            window.location.href = 'success.html';
+        } catch (err) {
+            btn.disabled = false;
+            btn.innerHTML = originalText;
+            showGlobalError('Něco se pokazilo při odesílání. Zkus to prosím znovu, nebo napiš na svanda@praut.cz.');
+        }
+    }
+
+    document.getElementById('submitBtn').addEventListener('click', submitForm);
+</script>
+
+</body>
+</html>

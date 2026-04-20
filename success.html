@@ -1,0 +1,419 @@
+<!DOCTYPE html>
+<html lang="cs">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Registrace proběhla — AI & Programming Hackathon 2026</title>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700;800;900&family=Open+Sans:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --cyan-300: #67e8f9;
+            --cyan-400: #22d3ee;
+            --cyan-500: #06b6d4;
+            --blue-400: #60a5fa;
+            --blue-500: #3b82f6;
+            --purple-300: #d8b4fe;
+            --purple-400: #c084fc;
+            --purple-500: #a855f7;
+            --magenta-300: #f0abfc;
+            --magenta-400: #e879f9;
+            --magenta-500: #d946ef;
+            --slate-100: #f1f5f9;
+            --slate-200: #e2e8f0;
+            --slate-300: #cbd5e1;
+            --slate-400: #94a3b8;
+            --slate-500: #64748b;
+            --slate-600: #475569;
+            --slate-700: #334155;
+            --slate-800: #1e293b;
+            --slate-900: #0f172a;
+            --success: #10b981;
+
+            --gradient-brand: linear-gradient(135deg, #22d3ee 0%, #3b82f6 30%, #a855f7 70%, #d946ef 100%);
+            --gradient-brand-90: linear-gradient(90deg, #22d3ee 0%, #3b82f6 33%, #a855f7 66%, #d946ef 100%);
+            --font-heading: 'Montserrat', sans-serif;
+            --font-body: 'Open Sans', sans-serif;
+            --font-mono: 'JetBrains Mono', monospace;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        html { height: 100%; }
+
+        body {
+            font-family: var(--font-body);
+            background: var(--slate-900);
+            color: var(--slate-100);
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+            position: relative;
+        }
+
+        /* ── BACKGROUND LAYERS ── */
+        .bg-glow {
+            position: fixed;
+            inset: 0;
+            pointer-events: none;
+            z-index: 0;
+            background:
+                radial-gradient(ellipse 80% 50% at 20% 40%, rgba(34, 211, 238, 0.08) 0%, transparent 50%),
+                radial-gradient(ellipse 60% 40% at 80% 20%, rgba(168, 85, 247, 0.07) 0%, transparent 50%),
+                radial-gradient(ellipse 50% 30% at 50% 80%, rgba(217, 70, 239, 0.06) 0%, transparent 50%);
+        }
+
+        /* ── PARTICLES ── */
+        .particles {
+            position: fixed;
+            inset: 0;
+            pointer-events: none;
+            z-index: 1;
+            overflow: hidden;
+        }
+
+        .particle {
+            position: absolute;
+            border-radius: 50%;
+            opacity: 0;
+            animation: floatUp var(--dur) var(--delay) ease-in forwards;
+        }
+
+        @keyframes floatUp {
+            0%   { opacity: 0; transform: translateY(0) scale(0); }
+            10%  { opacity: 1; }
+            80%  { opacity: 0.6; }
+            100% { opacity: 0; transform: translateY(-80vh) scale(1.2); }
+        }
+
+
+
+        /* ── MAIN CONTENT ── */
+        .content {
+            position: relative;
+            z-index: 10;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+            padding: 40px 24px;
+            max-width: 640px;
+            width: 100%;
+        }
+
+        /* ── CHECK MARK ── */
+        .check-wrap {
+            position: relative;
+            margin-bottom: 40px;
+        }
+
+        .check-ring {
+            width: 100px;
+            height: 100px;
+            border-radius: 50%;
+            border: 2px solid transparent;
+            background: linear-gradient(var(--slate-900), var(--slate-900)) padding-box,
+                        var(--gradient-brand) border-box;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            animation: ringPop 0.6s cubic-bezier(0.34, 1.56, 0.64, 1) both;
+        }
+
+        @keyframes ringPop {
+            from { transform: scale(0); opacity: 0; }
+            to   { transform: scale(1); opacity: 1; }
+        }
+
+        .check-ring::before {
+            content: '';
+            position: absolute;
+            inset: -12px;
+            border-radius: 50%;
+            background: rgba(34, 211, 238, 0.06);
+            animation: pulseRing 2.5s ease-in-out infinite 0.6s;
+        }
+
+        .check-ring::after {
+            content: '';
+            position: absolute;
+            inset: -24px;
+            border-radius: 50%;
+            background: rgba(168, 85, 247, 0.04);
+            animation: pulseRing 2.5s ease-in-out infinite 1s;
+        }
+
+        @keyframes pulseRing {
+            0%, 100% { transform: scale(1); opacity: 0.8; }
+            50%       { transform: scale(1.08); opacity: 0; }
+        }
+
+        .check-svg {
+            width: 44px;
+            height: 44px;
+            animation: fadeIn 0.3s ease 0.5s both;
+        }
+
+        .check-path {
+            stroke: url(#checkGrad);
+            stroke-width: 3;
+            fill: none;
+            stroke-linecap: round;
+            stroke-linejoin: round;
+            stroke-dasharray: 60;
+            stroke-dashoffset: 60;
+            animation: drawCheck 0.5s cubic-bezier(0.4, 0, 0.2, 1) 0.6s forwards;
+        }
+
+        @keyframes drawCheck {
+            to { stroke-dashoffset: 0; }
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to   { opacity: 1; }
+        }
+
+        /* ── HEADLINE ── */
+        .headline {
+            font-family: var(--font-heading);
+            font-size: clamp(2.5rem, 6vw, 3.75rem);
+            font-weight: 900;
+            letter-spacing: -0.03em;
+            line-height: 1.08;
+            background: var(--gradient-brand);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 20px;
+            animation: slideUp 0.6s ease 0.3s both;
+        }
+
+        .subline {
+            font-family: var(--font-heading);
+            font-size: clamp(1rem, 2vw, 1.125rem);
+            font-weight: 600;
+            color: var(--slate-300);
+            margin-bottom: 12px;
+            animation: slideUp 0.6s ease 0.45s both;
+        }
+
+        .desc {
+            font-size: 0.9375rem;
+            color: var(--slate-500);
+            line-height: 1.7;
+            max-width: 400px;
+            margin-bottom: 36px;
+            animation: slideUp 0.6s ease 0.55s both;
+        }
+
+        @keyframes slideUp {
+            from { opacity: 0; transform: translateY(20px); }
+            to   { opacity: 1; transform: translateY(0); }
+        }
+
+        /* ── INFO CHIPS ── */
+        .chips {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 10px;
+            margin-bottom: 40px;
+            animation: slideUp 0.6s ease 0.65s both;
+        }
+
+        .chip {
+            padding: 8px 18px;
+            background: rgba(30, 41, 59, 0.7);
+            border: 1px solid rgba(148, 163, 184, 0.15);
+            border-radius: 9999px;
+            font-family: var(--font-mono);
+            font-size: 0.8rem;
+            color: var(--slate-200);
+            backdrop-filter: blur(8px);
+        }
+
+        .chip.accent {
+            background: rgba(34, 211, 238, 0.08);
+            border-color: rgba(34, 211, 238, 0.25);
+            color: var(--cyan-300);
+        }
+
+        /* ── DIVIDER LINE ── */
+        .divider {
+            width: 200px;
+            height: 1px;
+            background: var(--gradient-brand-90);
+            margin: 0 auto 40px;
+            opacity: 0.4;
+            animation: fadeIn 0.6s ease 0.75s both;
+        }
+
+        /* ── CTA ── */
+        .cta-block {
+            animation: slideUp 0.6s ease 0.8s both;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .cta-label {
+            font-family: var(--font-mono);
+            font-size: 0.6875rem;
+            text-transform: uppercase;
+            letter-spacing: 0.18em;
+            color: var(--slate-600);
+        }
+
+        .cta-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            padding: 14px 32px;
+            background: var(--gradient-brand);
+            border-radius: 12px;
+            font-family: var(--font-heading);
+            font-size: 0.9375rem;
+            font-weight: 700;
+            color: white;
+            text-decoration: none;
+            box-shadow: 0 4px 20px rgba(34, 211, 238, 0.25);
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
+        }
+
+        .cta-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 30px rgba(34, 211, 238, 0.35), 0 0 60px rgba(168, 85, 247, 0.2);
+        }
+
+        .cta-btn svg {
+            width: 16px;
+            height: 16px;
+            flex-shrink: 0;
+        }
+
+        /* ── FOOTER ── */
+        .page-foot {
+            position: fixed;
+            bottom: 24px;
+            left: 0; right: 0;
+            text-align: center;
+            font-family: var(--font-mono);
+            font-size: 0.75rem;
+            color: var(--slate-600);
+            z-index: 10;
+            animation: fadeIn 1s ease 1.2s both;
+        }
+    </style>
+</head>
+<body>
+
+<div class="bg-glow"></div>
+<div class="particles" id="particles"></div>
+
+<div class="content">
+
+    <!-- Check mark -->
+    <div class="check-wrap">
+        <div class="check-ring">
+            <svg class="check-svg" viewBox="0 0 44 44">
+                <defs>
+                    <linearGradient id="checkGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+                        <stop offset="0%"   stop-color="#22d3ee"/>
+                        <stop offset="50%"  stop-color="#a855f7"/>
+                        <stop offset="100%" stop-color="#d946ef"/>
+                    </linearGradient>
+                </defs>
+                <polyline class="check-path" points="8,22 18,32 36,12"/>
+            </svg>
+        </div>
+    </div>
+
+    <!-- Text -->
+    <h1 class="headline">Registrace<br>proběhla!</h1>
+    <p class="subline">Hodně štěstí na hackathonu.</p>
+    <p class="desc">
+        Těšíme se na tebe. Potvrzovací e-mail s detaily dorazí do několika minut.
+        Připrav se na 48 hodin kódování, tvorby a skvělých lidí.
+    </p>
+
+    <!-- Info chips -->
+    <div class="chips">
+        <span class="chip accent">19.&ndash;21.&nbsp;6.&nbsp;2026</span>
+        <span class="chip">Pátek 12:00&nbsp;&ndash;&nbsp;Neděle 12:00</span>
+        <span class="chip">ISŠ Cheb</span>
+    </div>
+
+    <div class="divider"></div>
+
+    <!-- CTA -->
+    <div class="cta-block">
+        <span class="cta-label">Nejlepší příprava na hackathon</span>
+        <a href="https://ucebnice.praut.cz/" target="_blank" class="cta-btn">
+            <svg viewBox="0 0 16 16" fill="none" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M2 8h12M9 3l5 5-5 5"/>
+            </svg>
+            Otevřít učebnici
+        </a>
+    </div>
+
+</div>
+
+<footer class="page-foot">
+    AI &amp; Programming Hackathon 2026 &nbsp;&ndash;&nbsp; svanda@praut.cz
+</footer>
+
+<script>
+    const colors = [
+        'rgba(34,211,238,VAL)',
+        'rgba(59,130,246,VAL)',
+        'rgba(168,85,247,VAL)',
+        'rgba(217,70,239,VAL)',
+    ];
+
+    const container = document.getElementById('particles');
+    const count = 42;
+
+    for (let i = 0; i < count; i++) {
+        const p = document.createElement('div');
+        p.className = 'particle';
+
+        const size = 3 + Math.random() * 6;
+        const x    = Math.random() * 100;
+        const dur  = 5 + Math.random() * 8;
+        const del  = Math.random() * 6;
+        const col  = colors[Math.floor(Math.random() * colors.length)].replace('VAL', (0.4 + Math.random() * 0.5).toFixed(2));
+
+        p.style.cssText = `
+            width: ${size}px;
+            height: ${size}px;
+            left: ${x}%;
+            bottom: -20px;
+            background: ${col};
+            --dur: ${dur}s;
+            --delay: ${del}s;
+        `;
+
+        container.appendChild(p);
+    }
+
+    // Re-spawn particles in a loop
+    setInterval(() => {
+        container.querySelectorAll('.particle').forEach(p => {
+            const newDel = Math.random() * 2;
+            p.style.animationDelay = newDel + 's';
+            p.style.left = Math.random() * 100 + '%';
+            void p.offsetWidth; // reflow to restart animation
+            p.style.animation = 'none';
+            requestAnimationFrame(() => {
+                const dur = 5 + Math.random() * 8;
+                p.style.animation = `floatUp ${dur}s ${newDel}s ease-in forwards`;
+            });
+        });
+    }, 8000);
+</script>
+
+</body>
+</html>

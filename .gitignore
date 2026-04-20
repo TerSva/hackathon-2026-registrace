@@ -1,0 +1,13 @@
+.DS_Store
+.claude/
+.playwright-mcp/
+*.log
+
+01_form_empty.png
+02_form_validation_errors.png
+03_footer_with_logo.png
+
+hackathon_registration.html
+hackathon_done.html
+
+laaS 4 DR (RGB)(4).png
