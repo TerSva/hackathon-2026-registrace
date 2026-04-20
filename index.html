@@ -7,6 +7,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700;800;900&family=Open+Sans:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
     <style>
         :root {
+            --cyan-200: #a5f3fc;
             --cyan-300: #67e8f9;
             --cyan-400: #22d3ee;
             --cyan-600: #0891b2;
@@ -120,7 +121,7 @@
             font-size: clamp(2rem, 5vw, 3rem);
             font-weight: 900;
             letter-spacing: -0.03em;
-            line-height: 1.1;
+            line-height: 1.15;
             background: var(--gradient-brand);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
@@ -130,8 +131,9 @@
 
         .header p {
             font-size: 1.0625rem;
-            color: var(--slate-400);
-            max-width: 500px;
+            line-height: 1.6;
+            color: var(--slate-300);
+            max-width: 540px;
             margin: 0 auto var(--space-8);
         }
 
@@ -150,9 +152,10 @@
             gap: var(--space-2);
             padding: var(--space-3) var(--space-5);
             background: rgba(30, 41, 59, 0.6);
-            border: 1px solid rgba(148, 163, 184, 0.15);
+            border: 1px solid rgba(148, 163, 184, 0.18);
             border-radius: var(--radius-xl);
-            font-size: 0.9rem;
+            font-size: 0.9375rem;
+            line-height: 1.5;
             color: var(--slate-200);
         }
 
@@ -212,20 +215,21 @@
 
         .step.inactive .step-circle {
             background: rgba(30, 41, 59, 0.8);
-            border: 2px solid rgba(148, 163, 184, 0.2);
-            color: var(--slate-500);
+            border: 2px solid rgba(148, 163, 184, 0.25);
+            color: var(--slate-300);
         }
 
         .step-label {
             font-family: var(--font-mono);
-            font-size: 0.65rem;
+            font-size: 0.75rem;
+            line-height: 1.4;
             text-transform: uppercase;
             letter-spacing: 0.08em;
-            color: var(--slate-500);
+            color: var(--slate-400);
             white-space: nowrap;
         }
 
-        .step.active .step-label { color: var(--cyan-400); }
+        .step.active .step-label { color: var(--cyan-300); }
         .step.done .step-label { color: #34d399; }
 
         .step-connector {
@@ -279,15 +283,18 @@
 
         .section-heading h2 {
             font-family: var(--font-heading);
-            font-size: 1.25rem;
+            font-size: 1.375rem;
             font-weight: 700;
-            color: white;
+            line-height: 1.3;
+            color: var(--slate-100);
+            letter-spacing: -0.01em;
         }
 
         .section-heading p {
-            font-size: 0.875rem;
-            color: var(--slate-400);
-            margin-top: 2px;
+            font-size: 0.9375rem;
+            line-height: 1.55;
+            color: var(--slate-300);
+            margin-top: var(--space-1);
         }
 
         /* ── FORM FIELDS ── */
@@ -315,34 +322,45 @@
             font-family: var(--font-heading);
             font-size: 0.8125rem;
             font-weight: 600;
-            color: var(--slate-300);
+            line-height: 1.4;
+            color: var(--slate-200);
             text-transform: uppercase;
-            letter-spacing: 0.05em;
+            letter-spacing: 0.06em;
         }
 
         .field label .required {
             color: var(--magenta-300);
             margin-left: 3px;
+            font-weight: 700;
         }
 
         .input {
             width: 100%;
             padding: var(--space-3) var(--space-4);
             background: rgba(15, 23, 42, 0.6);
-            border: 1px solid rgba(148, 163, 184, 0.2);
+            border: 1px solid rgba(148, 163, 184, 0.28);
             border-radius: var(--radius-lg);
             font-family: var(--font-body);
             font-size: 0.9375rem;
-            color: white;
-            transition: all 0.2s ease;
+            line-height: 1.5;
+            color: var(--slate-100);
+            transition: border-color 0.2s ease, background 0.2s ease, box-shadow 0.2s ease;
         }
 
-        .input::placeholder { color: var(--slate-600); }
+        .input::placeholder {
+            color: var(--slate-500);
+            opacity: 1;
+        }
 
-        .input:focus {
+        .input:hover {
+            border-color: rgba(148, 163, 184, 0.42);
+        }
+
+        .input:focus,
+        .input:focus-visible {
             outline: none;
             border-color: var(--cyan-400);
-            box-shadow: 0 0 0 3px rgba(34, 211, 238, 0.15);
+            box-shadow: 0 0 0 3px rgba(34, 211, 238, 0.25);
             background: rgba(15, 23, 42, 0.9);
         }
 
@@ -370,9 +388,10 @@
         }
 
         .field-hint {
-            font-size: 0.8rem;
-            color: var(--slate-500);
-            margin-top: -4px;
+            font-size: 0.8125rem;
+            line-height: 1.55;
+            color: var(--slate-300);
+            margin-top: -2px;
         }
 
         /* ── RADIO / CHECKBOX GROUPS ── */
@@ -388,15 +407,20 @@
             gap: var(--space-3);
             padding: var(--space-3) var(--space-4);
             background: rgba(30, 41, 59, 0.4);
-            border: 1px solid rgba(148, 163, 184, 0.1);
+            border: 1px solid rgba(148, 163, 184, 0.18);
             border-radius: var(--radius-lg);
             cursor: pointer;
-            transition: all 0.2s ease;
+            transition: border-color 0.2s ease, background 0.2s ease;
         }
 
         .radio-option:hover, .checkbox-option:hover {
             background: rgba(34, 211, 238, 0.06);
-            border-color: rgba(34, 211, 238, 0.2);
+            border-color: rgba(34, 211, 238, 0.3);
+        }
+
+        .radio-option:focus-within, .checkbox-option:focus-within {
+            border-color: var(--cyan-400);
+            box-shadow: 0 0 0 3px rgba(34, 211, 238, 0.2);
         }
 
         .radio-option input, .checkbox-option input {
@@ -408,17 +432,18 @@
 
         .radio-option span, .checkbox-option span {
             font-size: 0.9375rem;
+            line-height: 1.5;
             color: var(--slate-200);
         }
 
         .radio-option:has(input:checked), .checkbox-option:has(input:checked) {
             background: rgba(34, 211, 238, 0.08);
-            border-color: rgba(34, 211, 238, 0.35);
+            border-color: rgba(34, 211, 238, 0.45);
         }
 
         .checkbox-option:has(input:checked) span,
         .radio-option:has(input:checked) span {
-            color: white;
+            color: var(--slate-100);
         }
 
         /* ── INLINE RADIO (horizontal) ── */
@@ -479,15 +504,16 @@
 
         .skill-card .skill-name {
             font-family: var(--font-heading);
-            font-size: 0.875rem;
+            font-size: 0.9375rem;
             font-weight: 700;
-            color: white;
+            line-height: 1.3;
+            color: var(--slate-100);
         }
 
         .skill-card .skill-desc {
-            font-size: 0.75rem;
-            color: var(--slate-400);
-            line-height: 1.4;
+            font-size: 0.8125rem;
+            color: var(--slate-300);
+            line-height: 1.5;
         }
 
         /* ── DIVIDER ── */
@@ -502,16 +528,17 @@
             font-family: var(--font-heading);
             font-size: 0.8125rem;
             font-weight: 700;
+            line-height: 1.4;
             text-transform: uppercase;
-            letter-spacing: 0.08em;
-            color: var(--slate-300);
-            margin-bottom: var(--space-3);
+            letter-spacing: 0.06em;
+            color: var(--slate-200);
+            margin-bottom: var(--space-4);
         }
         .team-mode-toggle {
             display: grid;
             grid-template-columns: 1fr 1fr;
             gap: var(--space-3);
-            margin-bottom: var(--space-5);
+            margin-bottom: var(--space-6);
         }
         @media (max-width: 560px) {
             .team-mode-toggle { grid-template-columns: 1fr; }
@@ -524,36 +551,38 @@
         .team-mode-option {
             display: flex;
             flex-direction: column;
-            gap: var(--space-1);
-            padding: var(--space-4);
-            border-radius: 12px;
-            border: 1.5px solid rgba(148, 163, 184, 0.2);
-            background: rgba(30, 41, 59, 0.3);
+            gap: var(--space-2);
+            padding: var(--space-4) var(--space-5);
+            border-radius: var(--radius-lg);
+            border: 1.5px solid rgba(148, 163, 184, 0.25);
+            background: rgba(30, 41, 59, 0.35);
             cursor: pointer;
             transition: border-color 0.2s ease, background 0.2s ease, box-shadow 0.2s ease;
         }
         .team-mode-option:hover {
-            border-color: rgba(148, 163, 184, 0.35);
-            background: rgba(30, 41, 59, 0.5);
+            border-color: rgba(148, 163, 184, 0.4);
+            background: rgba(30, 41, 59, 0.55);
         }
         .team-mode-toggle input:checked + .team-mode-option {
             border-color: var(--cyan-400);
-            background: rgba(34, 211, 238, 0.08);
-            box-shadow: 0 0 0 3px rgba(34, 211, 238, 0.15);
+            background: rgba(34, 211, 238, 0.1);
+            box-shadow: 0 0 0 3px rgba(34, 211, 238, 0.2);
         }
         .team-mode-toggle input:focus-visible + .team-mode-option {
-            outline: 2px solid var(--cyan-400);
-            outline-offset: 2px;
+            outline: 2px solid var(--cyan-300);
+            outline-offset: 3px;
         }
         .team-mode-title {
+            font-family: var(--font-heading);
             font-weight: 700;
             color: var(--slate-100);
-            font-size: 0.95rem;
+            font-size: 1rem;
+            line-height: 1.3;
         }
         .team-mode-desc {
-            color: var(--slate-400);
-            font-size: 0.8rem;
-            line-height: 1.5;
+            color: var(--slate-300);
+            font-size: 0.875rem;
+            line-height: 1.55;
         }
         .team-pane[hidden] { display: none !important; }
 
@@ -576,21 +605,30 @@
         }
 
         .consent-block .checkbox-option span {
-            font-size: 0.875rem;
-            color: var(--slate-300);
-            line-height: 1.5;
+            font-size: 0.9375rem;
+            color: var(--slate-200);
+            line-height: 1.6;
         }
 
         .consent-block .checkbox-option span a {
-            color: var(--cyan-400);
-            text-decoration: none;
+            color: var(--cyan-300);
+            text-decoration: underline;
+            text-underline-offset: 3px;
+            text-decoration-thickness: 1px;
+        }
+
+        .consent-block .checkbox-option span a:hover,
+        .consent-block .checkbox-option span a:focus-visible {
+            color: var(--cyan-200);
+            text-decoration-thickness: 2px;
         }
 
         /* ── VALIDATION (magenta, no red) ── */
         .field-error {
             display: none;
-            margin-top: 6px;
-            font-size: 0.8rem;
+            margin-top: var(--space-1);
+            font-size: 0.8125rem;
+            line-height: 1.5;
             font-family: var(--font-body);
             color: var(--error-text);
             letter-spacing: 0.01em;
@@ -619,9 +657,10 @@
 
         .consent-error {
             display: none;
-            margin-top: 8px;
-            padding-left: 4px;
-            font-size: 0.8rem;
+            margin-top: var(--space-2);
+            padding-left: var(--space-1);
+            font-size: 0.8125rem;
+            line-height: 1.5;
             color: var(--error-text);
         }
 
@@ -638,8 +677,8 @@
             border: 1px solid var(--error-soft);
             border-radius: var(--radius-lg);
             color: var(--error-text);
-            font-size: 0.9rem;
-            line-height: 1.5;
+            font-size: 0.9375rem;
+            line-height: 1.6;
         }
 
         .global-error[hidden] { display: none; }
@@ -671,20 +710,27 @@
             align-items: center;
             justify-content: center;
             gap: var(--space-2);
-            padding: var(--space-3) var(--space-8);
+            padding: var(--space-4) var(--space-8);
+            min-height: 48px;
             border-radius: var(--radius-lg);
             font-family: var(--font-heading);
             font-size: 0.9375rem;
-            font-weight: 600;
+            font-weight: 700;
+            line-height: 1.3;
             cursor: pointer;
-            transition: all 0.2s ease;
+            transition: transform 0.2s ease, box-shadow 0.2s ease, background 0.2s ease;
             border: none;
             text-decoration: none;
         }
 
+        .btn:focus-visible {
+            outline: 2px solid var(--cyan-300);
+            outline-offset: 3px;
+        }
+
         .btn-primary {
             background: var(--gradient-brand);
-            color: white;
+            color: #ffffff;
             box-shadow: 0 4px 15px rgba(34, 211, 238, 0.3);
         }
 
@@ -695,17 +741,17 @@
 
         .btn-secondary {
             background: rgba(148, 163, 184, 0.1);
-            color: var(--slate-200);
-            border: 1px solid rgba(148, 163, 184, 0.2);
+            color: var(--slate-100);
+            border: 1px solid rgba(148, 163, 184, 0.28);
         }
 
         .btn-secondary:hover {
             background: rgba(148, 163, 184, 0.2);
-            color: white;
+            color: var(--slate-100);
         }
 
         .btn:disabled {
-            opacity: 0.5;
+            opacity: 0.55;
             cursor: not-allowed;
             transform: none;
         }
@@ -739,8 +785,10 @@
 
         .success-screen h2 {
             font-family: var(--font-heading);
-            font-size: 1.75rem;
+            font-size: 1.875rem;
             font-weight: 800;
+            line-height: 1.2;
+            letter-spacing: -0.02em;
             background: var(--gradient-brand);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
@@ -749,9 +797,10 @@
         }
 
         .success-screen p {
-            color: var(--slate-400);
+            color: var(--slate-300);
             font-size: 1rem;
-            max-width: 380px;
+            line-height: 1.65;
+            max-width: 400px;
             margin: 0 auto var(--space-6);
         }
 
@@ -769,9 +818,10 @@
             gap: var(--space-2);
             padding: var(--space-2) var(--space-4);
             background: rgba(30, 41, 59, 0.6);
-            border: 1px solid rgba(148, 163, 184, 0.15);
+            border: 1px solid rgba(148, 163, 184, 0.2);
             border-radius: var(--radius-full);
             font-size: 0.875rem;
+            line-height: 1.5;
             color: var(--slate-200);
         }
 
@@ -794,10 +844,11 @@
         /* ── SECTION LABEL ── */
         .form-section-label {
             font-family: var(--font-mono);
-            font-size: 0.7rem;
+            font-size: 0.75rem;
+            line-height: 1.4;
             text-transform: uppercase;
             letter-spacing: 0.15em;
-            color: var(--slate-500);
+            color: var(--slate-400);
             margin-bottom: var(--space-6);
             padding-bottom: var(--space-4);
             border-bottom: 1px solid rgba(148, 163, 184, 0.1);
@@ -825,23 +876,29 @@
 
         .footer-block h4 {
             font-family: var(--font-heading);
-            font-size: 0.8125rem;
+            font-size: 0.875rem;
             font-weight: 700;
+            line-height: 1.4;
             text-transform: uppercase;
-            letter-spacing: 0.08em;
-            color: var(--slate-400);
+            letter-spacing: 0.06em;
+            color: var(--slate-200);
             margin-bottom: var(--space-4);
         }
 
         .footer-block p, .footer-block a {
-            font-size: 0.9rem;
+            font-size: 0.9375rem;
             color: var(--slate-300);
-            line-height: 1.8;
+            line-height: 1.7;
             text-decoration: none;
             display: block;
         }
 
-        .footer-block a:hover { color: var(--cyan-400); }
+        .footer-block a:hover,
+        .footer-block a:focus-visible {
+            color: var(--cyan-300);
+            text-decoration: underline;
+            text-underline-offset: 3px;
+        }
 
         .footer-partner {
             margin-top: var(--space-5);
@@ -851,11 +908,12 @@
         .footer-partner-label {
             display: block;
             font-family: var(--font-heading);
-            font-size: 0.7rem;
+            font-size: 0.75rem;
             font-weight: 600;
+            line-height: 1.4;
             text-transform: uppercase;
-            letter-spacing: 0.12em;
-            color: var(--slate-500);
+            letter-spacing: 0.1em;
+            color: var(--slate-400);
             margin-bottom: var(--space-3);
         }
         .footer-partner-logo {
@@ -871,27 +929,37 @@
             align-items: center;
             gap: var(--space-2);
             margin-top: var(--space-3);
-            padding: var(--space-2) var(--space-4);
-            background: rgba(34, 211, 238, 0.1);
-            border: 1px solid rgba(34, 211, 238, 0.25);
+            padding: var(--space-3) var(--space-5);
+            min-height: 40px;
+            background: rgba(34, 211, 238, 0.12);
+            border: 1px solid rgba(34, 211, 238, 0.3);
             border-radius: var(--radius-lg);
             font-family: var(--font-heading);
-            font-size: 0.8125rem;
+            font-size: 0.875rem;
             font-weight: 600;
-            color: var(--cyan-300);
+            line-height: 1.3;
+            color: var(--cyan-200);
             text-decoration: none;
-            transition: all 0.2s ease;
+            transition: background 0.2s ease, border-color 0.2s ease;
         }
 
-        .footer-link-btn:hover {
-            background: rgba(34, 211, 238, 0.18);
+        .footer-link-btn:hover,
+        .footer-link-btn:focus-visible {
+            background: rgba(34, 211, 238, 0.2);
+            border-color: rgba(34, 211, 238, 0.5);
             color: var(--cyan-200);
+        }
+
+        .footer-link-btn:focus-visible {
+            outline: 2px solid var(--cyan-300);
+            outline-offset: 2px;
         }
 
         .footer-bottom {
             text-align: center;
-            color: var(--slate-600);
-            font-size: 0.8rem;
+            color: var(--slate-400);
+            font-size: 0.8125rem;
+            line-height: 1.5;
             font-family: var(--font-mono);
         }
     </style>
@@ -1104,9 +1172,9 @@
             <div class="footer-block">
                 <h4>Kontakt na pořadatele</h4>
                 <a href="mailto:svanda@praut.cz">svanda@praut.cz</a>
-                <p style="margin-top:var(--space-4); color:var(--slate-400); font-size:0.8rem; line-height:1.7;">
-                    Místo konání<br>
-                    <span style="color:var(--slate-200);">Integrovaná střední škola Cheb,<br>
+                <p style="margin-top:var(--space-5); color:var(--slate-300); font-size:0.875rem; line-height:1.7;">
+                    <span style="display:block; font-family:var(--font-heading); font-size:0.75rem; font-weight:600; text-transform:uppercase; letter-spacing:0.06em; color:var(--slate-400); margin-bottom:var(--space-2);">Místo konání</span>
+                    <span style="color:var(--slate-100);">Integrovaná střední škola Cheb,<br>
                     příspěvková organizace<br>
                     Obrněné brigády 2258/6<br>
                     350 02 Cheb</span>

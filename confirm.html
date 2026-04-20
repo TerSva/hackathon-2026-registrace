@@ -196,18 +196,32 @@
             font-family: var(--font-heading);
             font-size: clamp(1rem, 2vw, 1.125rem);
             font-weight: 600;
-            color: var(--slate-300);
+            color: var(--slate-200);
+            line-height: 1.4;
             margin-bottom: 12px;
             animation: slideUp 0.6s ease 0.45s both;
         }
 
         .desc {
             font-size: 0.9375rem;
-            color: var(--slate-400);
+            color: var(--slate-300);
             line-height: 1.7;
             max-width: 440px;
             margin-bottom: 32px;
             animation: slideUp 0.6s ease 0.55s both;
+        }
+
+        .desc a {
+            color: var(--cyan-300);
+            text-decoration: underline;
+            text-underline-offset: 3px;
+            text-decoration-thickness: 1px;
+        }
+        .desc a:hover { color: var(--cyan-400); }
+        .desc a:focus-visible {
+            outline: 2px solid var(--cyan-300);
+            outline-offset: 3px;
+            border-radius: 2px;
         }
 
         @keyframes slideUp {
@@ -231,11 +245,12 @@
 
         .code-label {
             font-family: var(--font-mono);
-            font-size: 0.6875rem;
+            font-size: 0.75rem;
             text-transform: uppercase;
             letter-spacing: 0.18em;
             color: var(--cyan-300);
             font-weight: 600;
+            line-height: 1.4;
         }
 
         .code-value {
@@ -244,6 +259,7 @@
             font-weight: 700;
             color: var(--slate-100);
             letter-spacing: 0.04em;
+            line-height: 1.3;
         }
 
         .divider {
@@ -259,13 +275,16 @@
         .cta-btn {
             display: inline-flex;
             align-items: center;
+            justify-content: center;
             gap: 10px;
+            min-height: 48px;
             padding: 14px 32px;
             background: var(--gradient-brand);
             border-radius: 12px;
             font-family: var(--font-heading);
             font-size: 0.9375rem;
             font-weight: 700;
+            line-height: 1.2;
             color: white;
             text-decoration: none;
             box-shadow: 0 4px 20px rgba(34, 211, 238, 0.25);
@@ -278,10 +297,15 @@
             box-shadow: 0 8px 30px rgba(34, 211, 238, 0.35), 0 0 60px rgba(168, 85, 247, 0.2);
         }
 
+        .cta-btn:focus-visible {
+            outline: 3px solid var(--cyan-300);
+            outline-offset: 3px;
+        }
+
         .cta-btn.ghost {
             background: rgba(30, 41, 59, 0.6);
-            border: 1px solid rgba(148, 163, 184, 0.2);
-            color: var(--slate-200);
+            border: 1px solid rgba(148, 163, 184, 0.35);
+            color: var(--slate-100);
             box-shadow: none;
         }
 
@@ -297,7 +321,8 @@
             text-align: center;
             font-family: var(--font-mono);
             font-size: 0.75rem;
-            color: var(--slate-600);
+            line-height: 1.5;
+            color: var(--slate-400);
             z-index: 10;
         }
 
@@ -436,7 +461,7 @@
         <p class="subline" id="errorSubline">Něco s tím odkazem nesedí.</p>
         <p class="desc" id="errorDesc">
             Může být už expirovaný, nebo v něm chybí token. Pokud problém přetrvá, napiš na
-            <a href="mailto:svanda@praut.cz" style="color: var(--cyan-400); text-decoration: none;">svanda@praut.cz</a>.
+            <a href="mailto:svanda@praut.cz">svanda@praut.cz</a>.
         </p>
 
         <a href="https://tersva.github.io/hackathon-2026-registrace/" class="cta-btn ghost">
