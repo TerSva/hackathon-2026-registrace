@@ -685,7 +685,14 @@
 
         .feature-card h3,
         .essential-card h3,
-        .company-value-card h3 {
+        .company-value-card h3,
+        .process h3,
+        .timeline h3,
+        .audience-card h3,
+        .sponsor-card h3,
+        .industry-card strong,
+        .partner-step h4,
+        .partner-commitment h3 {
             margin-bottom: var(--space-3);
             font-size: var(--type-card);
         }
@@ -712,8 +719,11 @@
 
         .process {
             display: grid;
-            grid-template-columns: repeat(4, 1fr);
+            grid-template-columns: repeat(2, minmax(0, 1fr));
             gap: var(--card-gap);
+            align-items: start;
+            max-width: var(--container-max);
+            margin-inline: auto;
             margin-top: var(--space-8);
         }
 
@@ -795,7 +805,7 @@
         }
 
         .audience-card {
-            padding: var(--space-8);
+            padding: var(--space-6);
             max-width: 540px;
         }
 
@@ -874,7 +884,7 @@
         }
 
         .industry-card {
-            padding: var(--space-5);
+            padding: var(--space-6);
             max-width: 540px;
         }
 
@@ -887,9 +897,11 @@
 
         .partner-steps {
             display: grid;
-            grid-template-columns: repeat(4, 1fr);
+            grid-template-columns: repeat(2, minmax(0, 1fr));
             gap: var(--card-gap);
-            margin: var(--space-8) 0;
+            align-items: start;
+            max-width: var(--container-max);
+            margin: var(--space-8) auto;
         }
 
         .partner-step p {
@@ -951,6 +963,7 @@
             cursor: pointer;
             color: var(--slate-100);
             font-family: var(--font-heading);
+            font-size: var(--type-card);
             font-weight: 700;
             line-height: 1.4;
         }
@@ -1942,7 +1955,6 @@
             }
 
             .stats-bar,
-            .process,
             .partner-steps,
             .press-grid {
                 grid-template-columns: repeat(2, 1fr);
@@ -2019,7 +2031,6 @@
                 width: 100%;
             }
 
-            .stats-bar,
             .feature-grid,
             .essentials-grid,
             .audience-grid,
@@ -2030,6 +2041,10 @@
             .press-grid,
             .logo-grid {
                 grid-template-columns: 1fr;
+            }
+
+            .stats-bar {
+                grid-template-columns: repeat(2, minmax(0, 1fr));
             }
 
             .timeline article {
