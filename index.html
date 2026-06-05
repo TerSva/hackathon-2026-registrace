@@ -3,7 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Registrace — AI & Programming Hackathon 2026</title>
+    <title>AI & Programming Hackathon 2026 — Cheb</title>
+    <meta name="description" content="První krajský AI & Programming Hackathon pro středoškoláky. 48 hodin tvorby prototypů, lokální AI, mentoři z praxe, firemní výzvy a finální pitch před porotou.">
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700;800;900&family=Open+Sans:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
     <style>
         :root {
@@ -77,9 +78,767 @@
         .page-wrapper {
             position: relative;
             z-index: 1;
-            max-width: 780px;
+            max-width: 1180px;
             margin: 0 auto;
-            padding: var(--space-12) var(--space-6);
+            padding: var(--space-6) var(--space-6) var(--space-12);
+        }
+
+        .skip-link {
+            position: absolute;
+            width: 1px;
+            height: 1px;
+            overflow: hidden;
+            clip: rect(0, 0, 0, 0);
+            white-space: nowrap;
+        }
+
+        .skip-link:focus {
+            width: auto;
+            height: auto;
+            clip: auto;
+            left: var(--space-6);
+            top: var(--space-6);
+            z-index: 100;
+            padding: var(--space-3) var(--space-5);
+            background: var(--slate-100);
+            color: var(--slate-900);
+            border-radius: var(--radius-full);
+        }
+
+        .site-nav {
+            position: sticky;
+            top: var(--space-4);
+            z-index: 20;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: var(--space-5);
+            padding: var(--space-3) var(--space-3) var(--space-3) var(--space-5);
+            margin-bottom: var(--space-16);
+            background: rgba(15, 23, 42, 0.78);
+            border: 1px solid rgba(148, 163, 184, 0.16);
+            border-radius: var(--radius-full);
+            backdrop-filter: blur(18px);
+            box-shadow: 0 12px 36px rgba(0, 0, 0, 0.24);
+            transition: border-color 0.2s ease, background 0.2s ease;
+        }
+
+        .site-nav.is-elevated {
+            background: rgba(15, 23, 42, 0.92);
+            border-color: rgba(34, 211, 238, 0.32);
+        }
+
+        .brand-link {
+            display: inline-flex;
+            align-items: center;
+            gap: var(--space-3);
+            color: var(--slate-100);
+            text-decoration: none;
+            min-width: max-content;
+        }
+
+        .brand-mark {
+            display: grid;
+            place-items: center;
+            width: 42px;
+            height: 42px;
+            border-radius: 50%;
+            background: var(--gradient-brand);
+            font-family: var(--font-heading);
+            font-weight: 900;
+            font-size: 0.875rem;
+            letter-spacing: -0.04em;
+            color: #ffffff;
+            box-shadow: 0 0 24px rgba(34, 211, 238, 0.34);
+        }
+
+        .brand-text strong,
+        .brand-text span {
+            display: block;
+            line-height: 1.15;
+        }
+
+        .brand-text strong {
+            font-family: var(--font-heading);
+            font-size: 0.9375rem;
+            font-weight: 800;
+        }
+
+        .brand-text span {
+            margin-top: 3px;
+            font-family: var(--font-mono);
+            font-size: 0.6875rem;
+            color: var(--slate-400);
+            text-transform: uppercase;
+            letter-spacing: 0.08em;
+        }
+
+        .nav-links {
+            display: flex;
+            align-items: center;
+            justify-content: flex-end;
+            gap: var(--space-1);
+            flex-wrap: wrap;
+        }
+
+        .nav-links a {
+            display: inline-flex;
+            align-items: center;
+            min-height: 38px;
+            padding: var(--space-2) var(--space-4);
+            border-radius: var(--radius-full);
+            font-family: var(--font-heading);
+            font-size: 0.8125rem;
+            font-weight: 600;
+            color: var(--slate-300);
+            text-decoration: none;
+            transition: color 0.2s ease, background 0.2s ease;
+        }
+
+        .nav-links a:hover,
+        .nav-links a:focus-visible {
+            color: var(--cyan-200);
+            background: rgba(34, 211, 238, 0.08);
+        }
+
+        .nav-links .nav-cta {
+            background: var(--gradient-brand);
+            color: #ffffff;
+            box-shadow: 0 8px 24px rgba(34, 211, 238, 0.22);
+        }
+
+        .landing-section {
+            margin-bottom: var(--space-20);
+            scroll-margin-top: 110px;
+        }
+
+        .section-kicker {
+            display: inline-flex;
+            align-items: center;
+            gap: var(--space-2);
+            margin-bottom: var(--space-4);
+            font-family: var(--font-mono);
+            font-size: 0.75rem;
+            line-height: 1.4;
+            color: var(--cyan-300);
+            text-transform: uppercase;
+            letter-spacing: 0.14em;
+        }
+
+        .section-kicker::before {
+            content: '';
+            width: 7px;
+            height: 7px;
+            border-radius: 50%;
+            background: var(--cyan-400);
+            box-shadow: 0 0 14px rgba(34, 211, 238, 0.7);
+        }
+
+        .section-copy {
+            max-width: 720px;
+        }
+
+        .section-copy.center {
+            margin-inline: auto;
+            text-align: center;
+        }
+
+        .section-copy.center .section-kicker {
+            justify-content: center;
+        }
+
+        .section-copy h2,
+        .registration-intro h2,
+        .hero-title {
+            font-family: var(--font-heading);
+            font-weight: 900;
+            letter-spacing: -0.03em;
+            line-height: 1.08;
+        }
+
+        .section-copy h2,
+        .registration-intro h2 {
+            font-size: clamp(2rem, 4.5vw, 3.75rem);
+            margin-bottom: var(--space-5);
+            color: var(--slate-100);
+        }
+
+        .section-copy p,
+        .registration-intro p {
+            color: var(--slate-300);
+            font-size: 1rem;
+            line-height: 1.75;
+        }
+
+        .hero-landing {
+            display: grid;
+            grid-template-columns: minmax(0, 1.15fr) minmax(320px, 0.85fr);
+            gap: var(--space-12);
+            align-items: center;
+            min-height: calc(100vh - 220px);
+            margin-bottom: var(--space-16);
+        }
+
+        .hero-title {
+            font-size: clamp(2.75rem, 6.1vw, 5.35rem);
+            max-width: 760px;
+            margin-bottom: var(--space-6);
+            background: var(--gradient-brand);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .hero-lead {
+            max-width: 720px;
+            margin-bottom: var(--space-8);
+            color: var(--slate-300);
+            font-size: clamp(1rem, 2vw, 1.1875rem);
+            line-height: 1.75;
+        }
+
+        .hero-actions,
+        .final-actions,
+        .companies-actions {
+            display: flex;
+            flex-wrap: wrap;
+            gap: var(--space-3);
+            align-items: center;
+        }
+
+        .hero-note {
+            display: inline-flex;
+            align-items: center;
+            gap: var(--space-2);
+            margin-top: var(--space-6);
+            color: var(--slate-300);
+            font-size: 0.9375rem;
+            line-height: 1.6;
+        }
+
+        .pulse-dot {
+            width: 9px;
+            height: 9px;
+            border-radius: 50%;
+            background: var(--success);
+            box-shadow: 0 0 0 0 rgba(16, 185, 129, 0.5);
+            animation: pulseDot 2s ease-in-out infinite;
+            flex: 0 0 auto;
+        }
+
+        @keyframes pulseDot {
+            0%, 100% { box-shadow: 0 0 0 0 rgba(16, 185, 129, 0.45); }
+            50% { box-shadow: 0 0 0 10px rgba(16, 185, 129, 0); }
+        }
+
+        .hero-panel,
+        .dark-panel,
+        .prep-panel,
+        .final-cta,
+        .companies-hero,
+        .partner-commitment {
+            background: var(--gradient-card);
+            border: 1px solid rgba(148, 163, 184, 0.12);
+            border-radius: var(--radius-2xl);
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.34), var(--shadow-glow-brand);
+            backdrop-filter: blur(20px);
+        }
+
+        .hero-panel {
+            padding: var(--space-8);
+        }
+
+        .panel-topline,
+        .code-window-top {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: var(--space-3);
+            margin-bottom: var(--space-6);
+            font-family: var(--font-mono);
+            color: var(--slate-400);
+            font-size: 0.75rem;
+            letter-spacing: 0.12em;
+            text-transform: uppercase;
+        }
+
+        .status-pill {
+            padding: 4px var(--space-3);
+            border-radius: var(--radius-full);
+            background: rgba(16, 185, 129, 0.14);
+            color: #34d399;
+        }
+
+        .countdown {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: var(--space-3);
+            margin-bottom: var(--space-6);
+        }
+
+        .countdown div,
+        .metric-card,
+        .feature-card,
+        .essential-card,
+        .audience-card,
+        .company-value-card,
+        .industry-card,
+        .press-grid a,
+        .faq-list details {
+            background: rgba(30, 41, 59, 0.48);
+            border: 1px solid rgba(148, 163, 184, 0.14);
+            border-radius: var(--radius-xl);
+        }
+
+        .countdown div {
+            padding: var(--space-4);
+            text-align: center;
+        }
+
+        .countdown strong {
+            display: block;
+            font-family: var(--font-heading);
+            font-size: clamp(1.75rem, 4vw, 2.5rem);
+            line-height: 1;
+            color: var(--slate-100);
+        }
+
+        .countdown span {
+            display: block;
+            margin-top: var(--space-2);
+            color: var(--slate-400);
+            font-size: 0.8125rem;
+        }
+
+        .mini-terminal {
+            display: grid;
+            gap: var(--space-3);
+            padding: var(--space-5);
+            border-radius: var(--radius-xl);
+            background: rgba(15, 23, 42, 0.72);
+            border: 1px solid rgba(34, 211, 238, 0.18);
+            font-family: var(--font-mono);
+            font-size: 0.875rem;
+        }
+
+        .mini-terminal p {
+            margin: 0;
+            color: var(--slate-300);
+        }
+
+        .mini-terminal span {
+            color: var(--cyan-300);
+        }
+
+        .mini-terminal b {
+            color: var(--slate-100);
+            font-weight: 700;
+        }
+
+        .stats-bar,
+        .feature-grid,
+        .essentials-grid,
+        .audience-grid,
+        .company-value-grid,
+        .industry-grid,
+        .press-grid,
+        .faq-list {
+            display: grid;
+            gap: var(--space-5);
+        }
+
+        .stats-bar {
+            grid-template-columns: repeat(4, 1fr);
+            margin-bottom: var(--space-20);
+        }
+
+        .metric-card {
+            padding: var(--space-5);
+        }
+
+        .metric-card strong {
+            display: block;
+            font-family: var(--font-heading);
+            font-size: clamp(1.5rem, 3vw, 2.2rem);
+            line-height: 1.1;
+            color: var(--slate-100);
+        }
+
+        .metric-card span {
+            display: block;
+            margin-top: var(--space-2);
+            color: var(--slate-400);
+            font-size: 0.875rem;
+            line-height: 1.5;
+        }
+
+        .partners-band {
+            display: grid;
+            grid-template-columns: 0.9fr 1.1fr;
+            gap: var(--space-8);
+            align-items: center;
+        }
+
+        .logo-grid {
+            display: grid;
+            grid-template-columns: repeat(3, minmax(0, 1fr));
+            gap: var(--space-4);
+        }
+
+        .logo-tile {
+            min-height: 92px;
+            display: grid;
+            place-items: center;
+            padding: var(--space-4);
+            background: rgba(30, 41, 59, 0.42);
+            border: 1px solid rgba(148, 163, 184, 0.14);
+            border-radius: var(--radius-xl);
+            color: var(--slate-200);
+            font-family: var(--font-heading);
+            font-weight: 800;
+            text-align: center;
+        }
+
+        .logo-tile img {
+            max-height: 48px;
+            width: auto;
+            object-fit: contain;
+        }
+
+        .content-split {
+            display: grid;
+            grid-template-columns: 0.9fr 1.1fr;
+            gap: var(--space-10);
+            align-items: start;
+        }
+
+        .feature-grid,
+        .essentials-grid,
+        .company-value-grid {
+            grid-template-columns: repeat(2, 1fr);
+        }
+
+        .feature-card,
+        .essential-card,
+        .company-value-card {
+            padding: var(--space-6);
+        }
+
+        .feature-card .number,
+        .company-value-card .number,
+        .process article span,
+        .partner-step span {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 34px;
+            height: 34px;
+            margin-bottom: var(--space-4);
+            border-radius: 50%;
+            background: rgba(34, 211, 238, 0.12);
+            border: 1px solid rgba(34, 211, 238, 0.32);
+            color: var(--cyan-300);
+            font-family: var(--font-mono);
+            font-size: 0.75rem;
+            font-weight: 700;
+        }
+
+        .feature-card h3,
+        .essential-card h3,
+        .company-value-card h3,
+        .process h3,
+        .timeline h3,
+        .audience-card h3,
+        .sponsor-card h3,
+        .partner-step h4,
+        .partner-commitment h3 {
+            font-family: var(--font-heading);
+            color: var(--slate-100);
+            line-height: 1.25;
+        }
+
+        .feature-card h3,
+        .essential-card h3,
+        .company-value-card h3 {
+            margin-bottom: var(--space-3);
+            font-size: 1.1rem;
+        }
+
+        .feature-card p,
+        .essential-card p,
+        .company-value-card p,
+        .audience-card p,
+        .sponsor-card p,
+        .industry-card span,
+        .press-grid strong,
+        .faq-list p {
+            color: var(--slate-300);
+            font-size: 0.9375rem;
+            line-height: 1.7;
+        }
+
+        .dark-panel,
+        .prep-panel,
+        .final-cta,
+        .partner-commitment {
+            padding: var(--space-10);
+        }
+
+        .process {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: var(--space-5);
+            margin-top: var(--space-8);
+        }
+
+        .process article p {
+            color: var(--slate-300);
+            font-size: 0.875rem;
+            line-height: 1.7;
+        }
+
+        .timeline {
+            display: grid;
+            gap: var(--space-4);
+            margin-top: var(--space-8);
+        }
+
+        .timeline article {
+            display: grid;
+            grid-template-columns: 180px 1fr;
+            gap: var(--space-5);
+            padding: var(--space-5);
+            background: rgba(30, 41, 59, 0.42);
+            border: 1px solid rgba(148, 163, 184, 0.12);
+            border-radius: var(--radius-xl);
+        }
+
+        .timeline time {
+            color: var(--cyan-300);
+            font-family: var(--font-mono);
+            font-size: 0.8125rem;
+            text-transform: uppercase;
+            letter-spacing: 0.08em;
+        }
+
+        .timeline p {
+            color: var(--slate-300);
+            font-size: 0.9375rem;
+            line-height: 1.7;
+        }
+
+        .prep-panel {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: var(--space-8);
+            align-items: center;
+        }
+
+        .code-window {
+            overflow: hidden;
+            border-radius: var(--radius-xl);
+            border: 1px solid rgba(34, 211, 238, 0.18);
+            background: rgba(15, 23, 42, 0.8);
+        }
+
+        .code-window-top {
+            padding: var(--space-4) var(--space-5) 0;
+        }
+
+        .code-window pre {
+            margin: 0;
+            padding: 0 var(--space-5) var(--space-5);
+            overflow: auto;
+            color: var(--slate-200);
+            font-family: var(--font-mono);
+            font-size: 0.8125rem;
+            line-height: 1.8;
+        }
+
+        .audience-grid {
+            grid-template-columns: repeat(2, 1fr);
+        }
+
+        .audience-card {
+            padding: var(--space-8);
+        }
+
+        .audience-card.accent {
+            border-color: rgba(34, 211, 238, 0.28);
+            background: rgba(34, 211, 238, 0.07);
+        }
+
+        .companies-hero {
+            display: grid;
+            grid-template-columns: 1fr minmax(300px, 0.55fr);
+            gap: var(--space-8);
+            padding: var(--space-10);
+            margin-bottom: var(--space-8);
+        }
+
+        .sponsor-card {
+            padding: var(--space-6);
+            background: rgba(15, 23, 42, 0.72);
+            border: 1px solid rgba(34, 211, 238, 0.18);
+            border-radius: var(--radius-xl);
+        }
+
+        .sponsor-card > span {
+            display: block;
+            margin-bottom: var(--space-4);
+            color: var(--cyan-300);
+            font-family: var(--font-mono);
+            font-size: 0.75rem;
+            letter-spacing: 0.12em;
+        }
+
+        .sponsor-metrics {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: var(--space-3);
+            margin-top: var(--space-5);
+        }
+
+        .sponsor-metrics div {
+            padding: var(--space-3);
+            border-radius: var(--radius-lg);
+            background: rgba(30, 41, 59, 0.6);
+        }
+
+        .sponsor-metrics strong,
+        .sponsor-metrics small {
+            display: block;
+        }
+
+        .sponsor-metrics strong {
+            font-family: var(--font-heading);
+            color: var(--slate-100);
+            font-size: 1.15rem;
+        }
+
+        .sponsor-metrics small {
+            margin-top: 4px;
+            color: var(--slate-400);
+            font-size: 0.75rem;
+            line-height: 1.4;
+        }
+
+        .company-opportunities {
+            display: grid;
+            grid-template-columns: 0.7fr 1.3fr;
+            gap: var(--space-8);
+            margin-top: var(--space-8);
+        }
+
+        .industry-grid {
+            grid-template-columns: repeat(2, 1fr);
+        }
+
+        .industry-card {
+            padding: var(--space-5);
+        }
+
+        .industry-card strong {
+            display: block;
+            margin-bottom: var(--space-2);
+            font-family: var(--font-heading);
+            color: var(--slate-100);
+        }
+
+        .partner-steps {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: var(--space-5);
+            margin: var(--space-8) 0;
+        }
+
+        .partner-step p {
+            color: var(--slate-300);
+            font-size: 0.875rem;
+            line-height: 1.7;
+        }
+
+        .partner-commitment {
+            display: grid;
+            grid-template-columns: 1fr 1fr auto;
+            gap: var(--space-6);
+            align-items: center;
+        }
+
+        .partner-commitment ul {
+            color: var(--slate-300);
+            padding-left: 1.1rem;
+            line-height: 1.8;
+        }
+
+        .press-grid {
+            grid-template-columns: repeat(4, 1fr);
+            margin-top: var(--space-8);
+        }
+
+        .press-grid a {
+            padding: var(--space-5);
+            text-decoration: none;
+            transition: border-color 0.2s ease, transform 0.2s ease;
+        }
+
+        .press-grid a:hover,
+        .press-grid a:focus-visible {
+            border-color: rgba(34, 211, 238, 0.32);
+            transform: translateY(-2px);
+        }
+
+        .press-grid span {
+            display: block;
+            margin-bottom: var(--space-3);
+            color: var(--cyan-300);
+            font-family: var(--font-mono);
+            font-size: 0.75rem;
+            text-transform: uppercase;
+            letter-spacing: 0.08em;
+        }
+
+        .faq-list {
+            max-width: 840px;
+            margin: var(--space-8) auto 0;
+        }
+
+        .faq-list details {
+            padding: var(--space-5) var(--space-6);
+        }
+
+        .faq-list summary {
+            cursor: pointer;
+            color: var(--slate-100);
+            font-family: var(--font-heading);
+            font-weight: 700;
+            line-height: 1.4;
+        }
+
+        .faq-list p {
+            margin-top: var(--space-4);
+        }
+
+        .final-cta {
+            display: grid;
+            grid-template-columns: 1fr auto;
+            gap: var(--space-8);
+            align-items: center;
+        }
+
+        .registration-shell {
+            max-width: 780px;
+            margin-inline: auto;
+            scroll-margin-top: 160px;
+        }
+
+        .registration-intro {
+            text-align: center;
+            margin-bottom: var(--space-8);
+        }
+
+        .registration-intro .section-kicker {
+            justify-content: center;
         }
 
         /* ── HEADER ── */
@@ -1000,36 +1759,550 @@
             line-height: 1.5;
             font-family: var(--font-mono);
         }
+
+        .reveal {
+            opacity: 0;
+            transform: translateY(18px);
+            transition: opacity 0.55s ease, transform 0.55s ease;
+        }
+
+        .reveal.is-visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        @media (max-width: 980px) {
+            .site-nav {
+                position: static;
+                align-items: flex-start;
+                border-radius: var(--radius-2xl);
+            }
+
+            .nav-links {
+                justify-content: flex-start;
+            }
+
+            .hero-landing,
+            .partners-band,
+            .content-split,
+            .prep-panel,
+            .companies-hero,
+            .company-opportunities,
+            .final-cta,
+            .partner-commitment {
+                grid-template-columns: 1fr;
+            }
+
+            .hero-landing {
+                min-height: auto;
+            }
+
+            .stats-bar,
+            .process,
+            .partner-steps,
+            .press-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        @media (max-width: 720px) {
+            .page-wrapper {
+                padding: var(--space-4) var(--space-4) var(--space-10);
+            }
+
+            .site-nav {
+                flex-direction: column;
+                gap: var(--space-4);
+            }
+
+            .brand-link {
+                width: 100%;
+            }
+
+            .nav-links {
+                width: 100%;
+                flex-wrap: nowrap;
+                justify-content: flex-start;
+                overflow-x: auto;
+                padding-bottom: 2px;
+                scrollbar-width: none;
+                gap: var(--space-2);
+            }
+
+            .nav-links::-webkit-scrollbar {
+                display: none;
+            }
+
+            .nav-links a {
+                justify-content: center;
+                flex: 0 0 auto;
+                min-height: 36px;
+                padding: var(--space-2) var(--space-3);
+            }
+
+            .nav-links .nav-cta {
+                grid-column: auto;
+            }
+
+            .hero-title {
+                font-size: clamp(2.45rem, 11vw, 3.25rem);
+            }
+
+            .landing-section {
+                margin-bottom: var(--space-16);
+            }
+
+            .hero-actions .btn,
+            .final-actions .btn,
+            .companies-actions .btn {
+                width: 100%;
+            }
+
+            .stats-bar,
+            .feature-grid,
+            .essentials-grid,
+            .audience-grid,
+            .company-value-grid,
+            .industry-grid,
+            .process,
+            .partner-steps,
+            .press-grid,
+            .logo-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .timeline article {
+                grid-template-columns: 1fr;
+            }
+
+            .dark-panel,
+            .prep-panel,
+            .final-cta,
+            .companies-hero,
+            .partner-commitment,
+            .hero-panel {
+                padding: var(--space-6);
+            }
+
+            .countdown {
+                grid-template-columns: 1fr;
+            }
+
+            .sponsor-metrics {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        @media (prefers-reduced-motion: reduce) {
+            html {
+                scroll-behavior: auto;
+            }
+
+            *,
+            *::before,
+            *::after {
+                animation-duration: 0.01ms !important;
+                animation-iteration-count: 1 !important;
+                transition-duration: 0.01ms !important;
+            }
+
+            .reveal {
+                opacity: 1;
+                transform: none;
+            }
+        }
     </style>
 </head>
 <body>
 
 <div class="page-wrapper">
+    <a class="skip-link" href="#obsah">Přeskočit na obsah</a>
 
-    <!-- HEADER -->
-    <header class="header">
-        <div class="event-badge">
-            <span class="dot"></span>
-            Registrace otevřena
-        </div>
-        <h1>AI &amp; Programming<br>Hackathon 2026</h1>
-        <p>48 hodin kódování, tvorby a inovací. Přidej se k nejlepším vývojářům a AI nadšencům.</p>
-
-        <div class="info-strip">
-            <div class="info-chip">
-                <span><strong>19.–21. 6. 2026</strong></span>
-            </div>
-            <div class="info-chip">
-                <span><strong>Pátek 12:00 – Neděle 12:00</strong></span>
-            </div>
-            <div class="info-chip">
-                <span><strong>48 hodin</strong></span>
-            </div>
-        </div>
+    <header class="site-nav" id="siteNav">
+        <a class="brand-link" href="#top" aria-label="AI & Programming Hackathon 2026">
+            <span class="brand-mark" aria-hidden="true">AI</span>
+            <span class="brand-text">
+                <strong>Hackathon 2026</strong>
+                <span>Karlovarský kraj · Cheb</span>
+            </span>
+        </a>
+        <nav class="nav-links" aria-label="Hlavní navigace">
+            <a href="#pro-koho">Pro koho</a>
+            <a href="#program">Program</a>
+            <a href="#priprava">Příprava</a>
+            <a href="#firmy">Pro firmy</a>
+            <a href="#faq">FAQ</a>
+            <a class="nav-cta" href="#registrace">Registrovat</a>
+        </nav>
     </header>
 
+    <main id="obsah">
+        <section class="hero-landing landing-section" id="top">
+            <div class="reveal">
+                <p class="event-badge"><span class="dot"></span> Registrace otevřena · 19.–21. 6. 2026</p>
+                <h1 class="hero-title">48 hodin, ve kterých studenti promění AI nápad ve funkční prototyp.</h1>
+                <p class="hero-lead">
+                    První krajský AI &amp; Programming Hackathon pro středoškoláky propojí mladé talenty, školy a technologickou praxi. Týmy budou řešit reálné výzvy, pracovat s lokální AI a svůj prototyp obhájí před odbornou porotou.
+                </p>
+                <div class="hero-actions">
+                    <a class="btn btn-primary" href="#registrace">Registrovat tým</a>
+                    <a class="btn btn-secondary" href="https://ucebnice.praut.cz/" target="_blank" rel="noopener">Otevřít AI učebnici</a>
+                    <a class="btn btn-secondary" href="#firmy">Pro firmy a partnery</a>
+                </div>
+                <p class="hero-note"><span class="pulse-dot" aria-hidden="true"></span>Registrace do 18. 6. 2026 · vlastní notebook nutný · internet a zázemí na místě</p>
+            </div>
+
+            <aside class="hero-panel reveal" aria-label="Souhrn akce">
+                <div class="panel-topline">
+                    <span>LIVE_BRIEFING</span>
+                    <span class="status-pill">OPEN</span>
+                </div>
+                <div class="countdown" data-countdown="2026-06-19T12:00:00+02:00" aria-live="polite">
+                    <div><strong data-days>--</strong><span>dní</span></div>
+                    <div><strong data-hours>--</strong><span>hodin</span></div>
+                    <div><strong data-minutes>--</strong><span>minut</span></div>
+                </div>
+                <div class="mini-terminal">
+                    <p><span>$</span> event.start <b>pátek 12:00</b></p>
+                    <p><span>$</span> duration <b>48 hodin</b></p>
+                    <p><span>$</span> team.size <b>1–3 členové</b></p>
+                    <p><span>$</span> location <b>ISŠ Cheb</b></p>
+                </div>
+            </aside>
+        </section>
+
+        <section class="stats-bar reveal" aria-label="Základní fakta">
+            <article class="metric-card">
+                <strong>19.–21. 6.</strong>
+                <span>pátek 12:00 – neděle 12:00</span>
+            </article>
+            <article class="metric-card">
+                <strong>48 h</strong>
+                <span>návrh, vývoj, test, pitch</span>
+            </article>
+            <article class="metric-card">
+                <strong>1–3</strong>
+                <span>sólo nebo tým do 3 členů</span>
+            </article>
+            <article class="metric-card">
+                <strong>Cheb</strong>
+                <span>Integrovaná střední škola Cheb</span>
+            </article>
+        </section>
+
+        <section class="landing-section partners-band reveal" aria-labelledby="partneri-title">
+            <div class="section-copy">
+                <p class="section-kicker">Pořadatelé a partneři</p>
+                <h2 id="partneri-title">Region, školy a praxe u jednoho stolu.</h2>
+                <p>Hackathon propojuje studenty, školy, technologické partnery a firmy, které chtějí v regionu ukázat praktické využití AI.</p>
+            </div>
+            <div class="logo-grid" aria-label="Seznam partnerů">
+                <div class="logo-tile"><img src="Logo PRAUT.png" alt="Praut"></div>
+                <div class="logo-tile"><img src="KIC-KK_horizontální_white_01.png" alt="Krajské inovační centrum Karlovarského kraje"></div>
+                <div class="logo-tile"><img src="logo.png" alt="IaaS 4 DR"></div>
+                <div class="logo-tile">ISŠ Cheb</div>
+                <div class="logo-tile">Město Cheb</div>
+                <div class="logo-tile">AI Challenge</div>
+            </div>
+        </section>
+
+        <section class="landing-section content-split" id="pro-koho">
+            <div class="section-copy reveal">
+                <p class="section-kicker">Pro koho</p>
+                <h2>Pro studenty, kteří nechtějí jen poslouchat o AI, ale stavět s ní.</h2>
+                <p>Akce je určená primárně středoškolákům, maturantům a mladým zájemcům o programování a umělou inteligenci. Zvládnout ji mohou i motivovaní začátečníci — příprava probíhá přes online AI učebnici.</p>
+            </div>
+            <div class="feature-grid reveal">
+                <article class="feature-card">
+                    <span class="number">01</span>
+                    <h3>Reálné zadání</h3>
+                    <p>Žádná školní simulace. Týmy pracují na praktické výzvě a hledají řešení použitelné v praxi.</p>
+                </article>
+                <article class="feature-card">
+                    <span class="number">02</span>
+                    <h3>Lokální AI</h3>
+                    <p>Účastníci si vyzkouší práci s AI nástroji, asistenty a prototypováním odpovědně a prakticky.</p>
+                </article>
+                <article class="feature-card">
+                    <span class="number">03</span>
+                    <h3>Mentoři z praxe</h3>
+                    <p>Během víkendu pomohou lidé, kteří rozumí architektuře, produktu, kódu i prezentaci.</p>
+                </article>
+                <article class="feature-card">
+                    <span class="number">04</span>
+                    <h3>Pitch před porotou</h3>
+                    <p>Výsledkem je funkční prototyp a krátká obhajoba technického i produktového rozhodnutí.</p>
+                </article>
+            </div>
+        </section>
+
+        <section class="landing-section dark-panel reveal" aria-labelledby="jak-title">
+            <div class="section-copy center">
+                <p class="section-kicker">Jak to funguje</p>
+                <h2 id="jak-title">Od přípravy k prototypu za jeden víkend.</h2>
+            </div>
+            <div class="process">
+                <article>
+                    <span>1</span>
+                    <h3>Připrav se online</h3>
+                    <p>Projdi AI učebnici, osvěž si Python, práci s asistenty a základní přístup k tvorbě prototypů.</p>
+                </article>
+                <article>
+                    <span>2</span>
+                    <h3>Přihlas tým</h3>
+                    <p>Jde to samostatně, ve dvojici nebo ve tříčlenném týmu. Leader založí tým a ostatní se připojí.</p>
+                </article>
+                <article>
+                    <span>3</span>
+                    <h3>Stav řešení</h3>
+                    <p>Po zadání výzvy navrhni řešení, rozděl práci, iteruj a průběžně konzultuj s mentory.</p>
+                </article>
+                <article>
+                    <span>4</span>
+                    <h3>Odprezentuj dopad</h3>
+                    <p>Na konci ukaž prototyp, vysvětli technická rozhodnutí a přesvědč porotu.</p>
+                </article>
+            </div>
+        </section>
+
+        <section class="landing-section" id="program">
+            <div class="section-copy reveal">
+                <p class="section-kicker">Orientační program</p>
+                <h2>Jasný rytmus: start, stavba, testování, pitch.</h2>
+                <p>Detailní rozpis může organizátor ještě upřesnit. Základní struktura drží 48hodinový rytmus od zadání až po prezentaci výsledků.</p>
+            </div>
+            <div class="timeline reveal" aria-label="Program hackathonu">
+                <article>
+                    <time>Pátek · 12:00</time>
+                    <div>
+                        <h3>Registrace, zahájení a zadání výzvy</h3>
+                        <p>Příjezd týmů, úvodní briefing, představení pravidel, technického zázemí a soutěžního zadání.</p>
+                    </div>
+                </article>
+                <article>
+                    <time>Pátek · večer</time>
+                    <div>
+                        <h3>Návrh řešení a první prototyp</h3>
+                        <p>Týmy formulují problém, rozdělují role, ověřují technologii a staví první funkční jádro.</p>
+                    </div>
+                </article>
+                <article>
+                    <time>Sobota</time>
+                    <div>
+                        <h3>Vývoj, mentoring a testování</h3>
+                        <p>Nejdelší blok pro implementaci, práci s AI nástroji, konzultace s mentory a iterace produktu.</p>
+                    </div>
+                </article>
+                <article>
+                    <time>Neděle · dopoledne</time>
+                    <div>
+                        <h3>Finální úpravy a prezentace</h3>
+                        <p>Dokončení prototypů, příprava pitchů, prezentace před porotou a vyhlášení výsledků.</p>
+                    </div>
+                </article>
+            </div>
+        </section>
+
+        <section class="landing-section prep-panel reveal" id="priprava">
+            <div class="section-copy">
+                <p class="section-kicker">Příprava</p>
+                <h2>AI učebnice sjednotí startovní čáru.</h2>
+                <p>Bezplatná online platforma od Praut pomůže studentům před akcí: Python, AI asistenti, interaktivní lekce, úkoly a gamifikační prvky. Na místě se pak řeší nápady a prototypy, ne technické základy.</p>
+                <a class="btn btn-primary" href="https://ucebnice.praut.cz/" target="_blank" rel="noopener">Začít přípravu</a>
+            </div>
+            <div class="code-window" aria-label="Ukázkový princip práce s AI asistentem">
+                <div class="code-window-top">
+                    <span>prototype.py</span>
+                    <span>AI_ASSIST</span>
+                </div>
+<pre><code>challenge = "reálný problém z praxe"
+team = ["developer", "designer", "pitcher"]
+
+prototype = ai_assistant.plan(challenge)
+while prototype.needs_iteration:
+    prototype.test()
+    prototype.improve()
+
+jury.pitch(prototype)</code></pre>
+            </div>
+        </section>
+
+        <section class="landing-section reveal" aria-labelledby="essentials-title">
+            <div class="section-copy center">
+                <p class="section-kicker">Co vědět před registrací</p>
+                <h2 id="essentials-title">Minimum nejdůležitějších pravidel.</h2>
+            </div>
+            <div class="essentials-grid">
+                <article class="essential-card">
+                    <h3>Vlastní notebook</h3>
+                    <p>Každý účastník potřebuje vlastní notebook. Internetové připojení bude na místě k dispozici.</p>
+                </article>
+                <article class="essential-card">
+                    <h3>Tým do 3 lidí</h3>
+                    <p>Maximální velikost týmu jsou 3 členové. Přihlásit se dá i sólo.</p>
+                </article>
+                <article class="essential-card">
+                    <h3>Zázemí na místě</h3>
+                    <p>Po celou dobu akce bude zajištěné občerstvení, prostor pro práci, odpočinek i přespání.</p>
+                </article>
+                <article class="essential-card">
+                    <h3>Národní finále</h3>
+                    <p>Vítězný tým podle školní pozvánky postupuje přímo do národního finále.</p>
+                </article>
+            </div>
+        </section>
+
+        <section class="landing-section audience-grid reveal">
+            <article class="audience-card">
+                <p class="section-kicker">Pro školy</p>
+                <h3>Pošlete studentům výzvu, ne další leták do šuplíku.</h3>
+                <p>Studenti si vyzkouší práci pod časovým tlakem, spolupráci v týmu, řešení nečekaných překážek a obhajobu výsledku. Učitelé nemusí zajišťovat organizaci víkendu — na místě budou mentoři a tým organizátorů.</p>
+            </article>
+            <article class="audience-card accent">
+                <p class="section-kicker">Pro firmy a partnery</p>
+                <h3>Ukažte mladým talentům, jak vypadá technologie v praxi.</h3>
+                <p>Hackathon je přirozený prostor pro mentoring, zadání z praxe, ceny pro účastníky a první kontakt s lidmi, kteří mohou posílit regionální technologický ekosystém.</p>
+                <a class="footer-link-btn" href="#firmy">Otevřít partnerskou sekci &rarr;</a>
+            </article>
+        </section>
+
+        <section class="landing-section companies" id="firmy" aria-labelledby="companies-title">
+            <div class="companies-hero reveal">
+                <div class="section-copy">
+                    <p class="section-kicker">Pro firmy a partnery</p>
+                    <h2 id="companies-title">Ukažte, že AI v regionu není buzzword. Je to konkurenční výhoda.</h2>
+                    <p>Partnerství není jen logo na plakátu. Firma přinese skutečnou výzvu z provozu, služeb, marketingu nebo dat — a studenti ji během hackathonu promění ve funkční prototyp.</p>
+                    <div class="companies-actions">
+                        <a class="btn btn-primary" href="mailto:svanda@praut.cz?subject=Partnerstvi%20AI%20%26%20Programming%20Hackathon%202026">Chci být partnerem</a>
+                        <a class="btn btn-secondary" href="#firmy-jak">Jak zapojení funguje</a>
+                    </div>
+                </div>
+                <aside class="sponsor-card">
+                    <span>PARTNER_VALUE</span>
+                    <h3>Prototyp, talent, značka.</h3>
+                    <p>Víkendová inovační laboratoř pro firmy, které chtějí pochopit, kde jim AI může reálně šetřit čas, kapacity a náklady.</p>
+                    <div class="sponsor-metrics">
+                        <div><strong>48 h</strong><small>rychlé ověření nápadu</small></div>
+                        <div><strong>1–3</strong><small>studenti v týmu</small></div>
+                        <div><strong>0</strong><small>nutných citlivých dat</small></div>
+                    </div>
+                </aside>
+            </div>
+
+            <div class="company-value-grid reveal">
+                <article class="company-value-card">
+                    <span class="number">01</span>
+                    <h3>Vlastní výzva z praxe</h3>
+                    <p>Přinesete problém, který vás opravdu pálí. Organizátoři jej pomohou převést do zadání realistického pro 48hodinový hackathon.</p>
+                </article>
+                <article class="company-value-card">
+                    <span class="number">02</span>
+                    <h3>Funkční prototyp</h3>
+                    <p>Výstupem má být aplikace, dashboard, asistent, automatizace nebo jiný demovatelný výsledek.</p>
+                </article>
+                <article class="company-value-card">
+                    <span class="number">03</span>
+                    <h3>Talent pipeline</h3>
+                    <p>Uvidíte studenty při práci: jak přemýšlejí, spolupracují, ptají se a dotahují nápad pod tlakem.</p>
+                </article>
+                <article class="company-value-card">
+                    <span class="number">04</span>
+                    <h3>Značka inovátora</h3>
+                    <p>Partner je vidět na webu, v komunikaci akce, v místě konání i při finálních prezentacích.</p>
+                </article>
+            </div>
+
+            <div class="company-opportunities reveal">
+                <div class="section-copy">
+                    <p class="section-kicker">Kde může AI pomoct</p>
+                    <h2>Témata, která dávají smysl napříč regionem.</h2>
+                    <p>Stačí popsat, kde ztrácíte čas, kde se opakují chyby, kde chybí data pro rozhodování nebo kde zákazníci čekají na odpověď.</p>
+                </div>
+                <div class="industry-grid">
+                    <article class="industry-card"><strong>Zákazníci a hosté</strong><span>AI asistenti, FAQ, doporučení, vícejazyčná komunikace</span></article>
+                    <article class="industry-card"><strong>Dokumenty a administrativa</strong><span>extrakce dat z PDF, shrnutí, reporty, automatické zápisy</span></article>
+                    <article class="industry-card"><strong>Provoz a plánování</strong><span>kapacity, směny, zásoby, trasy, vytížení a interní workflow</span></article>
+                    <article class="industry-card"><strong>Data a predikce</strong><span>dashboardy, trendy, varování, doporučení pro management</span></article>
+                    <article class="industry-card"><strong>Marketing a reputace</strong><span>obsahový plán, analýza recenzí, monitoring zpětné vazby</span></article>
+                    <article class="industry-card"><strong>Bezpečnost a kvalita</strong><span>kontrola přes kameru, detekce anomálií, evidence incidentů</span></article>
+                </div>
+            </div>
+
+            <div class="partner-commitment reveal" id="firmy-jak">
+                <div>
+                    <p class="section-kicker">Jak se zapojit</p>
+                    <h3>Stačí problém, podpora a osobní přítomnost u výsledků.</h3>
+                    <p>Partnerství dává největší smysl tehdy, když firma přichází s kontextem: proč téma řeší, jak by vypadalo užitečné demo a jaký dopad by mělo v praxi.</p>
+                </div>
+                <ul>
+                    <li>finanční podpora akce nebo konkrétní výzvy,</li>
+                    <li>krátký online vstup při zahájení témat v pátek,</li>
+                    <li>účast zástupce firmy u nedělních prezentací,</li>
+                    <li>ochota dát studentům věcnou zpětnou vazbu.</li>
+                </ul>
+                <a class="btn btn-primary" href="mailto:svanda@praut.cz?subject=Chceme%20navrhnout%20firemni%20vyzvu%20pro%20AI%20Hackathon%202026">Navrhnout výzvu</a>
+            </div>
+        </section>
+
+        <section class="landing-section reveal" aria-labelledby="press-title">
+            <div class="section-copy center">
+                <p class="section-kicker">Média a odkazy</p>
+                <h2 id="press-title">O akci už se píše v regionu i na školách.</h2>
+            </div>
+            <div class="press-grid">
+                <a href="https://kickk.cz/udalost/ai-programming-hackathon-2026/" target="_blank" rel="noopener"><span>KIC KK · událost</span><strong>Oficiální informace k termínu, registraci a zázemí</strong></a>
+                <a href="https://kickk.cz/ai-programming-hackathon-2026/" target="_blank" rel="noopener"><span>KIC KK · článek</span><strong>Přípravy prvního krajského hackathonu pro středoškoláky</strong></a>
+                <a href="https://www.regiotv1.cz/k/karlovarsky_kraj_chysta_prvni_ai_hackathon_pro_stredoskolaky_mladi_programatori_se_utkaji_v_chebu" target="_blank" rel="noopener"><span>Regio TV1</span><strong>Karlovarský kraj chystá první AI hackathon pro středoškoláky</strong></a>
+                <a href="https://www.gymkvary.cz/cs/aktuality/ai-hackathon-v-chebu" target="_blank" rel="noopener"><span>Gymkvary</span><strong>Pozvánka pro studenty: praxe místo teorie</strong></a>
+            </div>
+        </section>
+
+        <section class="landing-section" id="faq">
+            <div class="section-copy center reveal">
+                <p class="section-kicker">FAQ</p>
+                <h2>Nejčastější otázky studentů.</h2>
+            </div>
+            <div class="faq-list reveal">
+                <details>
+                    <summary>Musím být zkušený programátor?</summary>
+                    <p>Ne nutně. Akce cílí na středoškoláky a mladé zájemce; příprava přes AI učebnici pomůže i motivovaným začátečníkům.</p>
+                </details>
+                <details>
+                    <summary>Můžu se přihlásit bez týmu?</summary>
+                    <p>Ano. Pravidla počítají i se sólo účastí. Tým může mít maximálně 3 členy.</p>
+                </details>
+                <details>
+                    <summary>Co bude hlavním výstupem?</summary>
+                    <p>Funkční prototyp řešení a krátká prezentace před odbornou porotou.</p>
+                </details>
+                <details>
+                    <summary>Co si mám vzít?</summary>
+                    <p>Vlastní notebook, nabíječku, případně sluchátka a vše, co potřebuješ pro soustředěnou práci. Internet a základní zázemí bude na místě.</p>
+                </details>
+            </div>
+        </section>
+
+        <section class="landing-section final-cta reveal">
+            <div class="section-copy">
+                <p class="section-kicker">Registrace</p>
+                <h2>Přihlaš tým — nebo přines firemní výzvu, která dá studentům smysl.</h2>
+                <p>Registrace studentů je otevřená do 18. 6. 2026. Firmy se mohou zapojit jako partneři s vlastní výzvou, mentoringem nebo podporou akce.</p>
+            </div>
+            <div class="final-actions">
+                <a class="btn btn-primary" href="#registrace">Přejít na registraci</a>
+                <a class="btn btn-secondary" href="mailto:svanda@praut.cz?subject=Partnerstvi%20AI%20%26%20Programming%20Hackathon%202026">Stát se partnerem</a>
+            </div>
+        </section>
+
+        <section class="landing-section registration-shell" id="registrace">
+            <div class="registration-intro reveal">
+                <p class="section-kicker">Registrační formulář</p>
+                <h2>Přihlaš sebe nebo celý tým.</h2>
+                <p>Vyber, jestli zakládáš nový tým, nebo se připojuješ k existujícímu. Odeslání používá stejný Apps Script a Google Sheet jako původní verze.</p>
+            </div>
+
     <!-- FORM CARD -->
-    <div class="form-card" id="mainForm">
+    <div class="form-card reveal" id="mainForm">
 
         <div class="section-heading">
             <div>
@@ -1203,6 +2476,8 @@
             <span class="badge badge-magenta">Těšíme se na tebe!</span>
         </div>
     </div>
+        </section>
+    </main>
 
     <!-- FOOTER -->
     <footer class="page-footer">
@@ -1244,6 +2519,53 @@
 </div>
 
 <script>
+    const siteNav = document.getElementById('siteNav');
+    function updateSiteNav() {
+        if (siteNav) siteNav.classList.toggle('is-elevated', window.scrollY > 12);
+    }
+    updateSiteNav();
+    window.addEventListener('scroll', updateSiteNav, { passive: true });
+
+    const countdown = document.querySelector('[data-countdown]');
+    const daysEl = countdown ? countdown.querySelector('[data-days]') : null;
+    const hoursEl = countdown ? countdown.querySelector('[data-hours]') : null;
+    const minutesEl = countdown ? countdown.querySelector('[data-minutes]') : null;
+
+    function padTime(number) {
+        return String(number).padStart(2, '0');
+    }
+
+    function tickCountdown() {
+        if (!countdown || !daysEl || !hoursEl || !minutesEl) return;
+        const target = new Date(countdown.dataset.countdown).getTime();
+        const diff = Math.max(0, target - Date.now());
+        const totalMinutes = Math.floor(diff / 60000);
+        const days = Math.floor(totalMinutes / (60 * 24));
+        const hours = Math.floor((totalMinutes - days * 60 * 24) / 60);
+        const minutes = totalMinutes % 60;
+
+        daysEl.textContent = String(days);
+        hoursEl.textContent = padTime(hours);
+        minutesEl.textContent = padTime(minutes);
+    }
+
+    tickCountdown();
+    setInterval(tickCountdown, 30000);
+
+    const revealItems = document.querySelectorAll('.reveal');
+    if ('IntersectionObserver' in window) {
+        const revealObserver = new IntersectionObserver(function(entries) {
+            entries.forEach(function(entry) {
+                if (!entry.isIntersecting) return;
+                entry.target.classList.add('is-visible');
+                revealObserver.unobserve(entry.target);
+            });
+        }, { threshold: 0.12 });
+        revealItems.forEach(function(item) { revealObserver.observe(item); });
+    } else {
+        revealItems.forEach(function(item) { item.classList.add('is-visible'); });
+    }
+
     const APPS_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbw0I14fgua_wpOQbsnE8Su-QK2Oh3U1gRh-fAqp41oA7sCMjDsYW17XK5YCLQmbZA-kYQ/exec';
 
     const EMAIL_RE = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
