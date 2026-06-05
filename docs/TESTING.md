@@ -6,7 +6,7 @@ Pro každou položku: ✅ prošlo, ❌ neprošlo (a popis chyby).
 
 ## 1. Lokální test — prázdný submit
 
-- [ ] Otevři `index.html` v prohlížeči (stačí double-click nebo `file://`)
+- [ ] Otevři `registrace.html` v prohlížeči (stačí double-click nebo `file://`)
 - [ ] Neklikej do žádného pole. Rovnou klikni **Odeslat registraci**
 - [ ] **Očekávané chování:**
   - nevyskočí žádný `alert()` dialog
@@ -50,7 +50,7 @@ Pro každou položku: ✅ prošlo, ❌ neprošlo (a popis chyby).
 
 ## 6. Honeypot — anti-spam
 
-- [ ] Otevři `index.html` a DevTools (F12)
+- [ ] Otevři `registrace.html` a DevTools (F12)
 - [ ] V konzoli:
   ```js
   document.getElementById('website').value = 'bot-filled-me';
@@ -87,7 +87,7 @@ Pro každou položku: ✅ prošlo, ❌ neprošlo (a popis chyby).
 
 ## 10. Mobile — responsivita (volitelné)
 
-- [ ] Otevři `index.html` v mobilním view (DevTools → Toggle device toolbar)
+- [ ] Otevři `registrace.html` v mobilním view (DevTools → Toggle device toolbar)
 - [ ] **Očekávané chování:**
   - formulář je single-column (grid `cols-2` se lomí na 1 sloupec pod 560px)
   - tlačítka a inputy jsou dobře klikatelné

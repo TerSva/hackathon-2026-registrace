@@ -15,7 +15,7 @@ Kompletní deploy návod krok za krokem. Tento dokument je určen pro **Martina 
 ## Přehled architektury
 
 ```
-Uživatel → GitHub Pages (index.html)
+Uživatel → GitHub Pages (index.html → registrace.html)
               │  fetch POST (no-cors)
               ▼
           Apps Script Web App (doPost)
@@ -116,7 +116,7 @@ Pokud vše sedí, pokračuj na deploy.
 
 ## KROK 6 — Vlož URL do frontendu
 
-Otevři `index.html` v editoru a najdi řádek:
+Otevři `registrace.html` v editoru a najdi řádek:
 
 ```js
 const APPS_SCRIPT_URL = 'REPLACE_WITH_APPS_SCRIPT_WEB_APP_URL';
@@ -138,7 +138,15 @@ Ulož.
 2. Push všech souborů z této složky:
    ```
    index.html
+   program.html
+   firmy.html
+   faq.html
+   registrace.html
    success.html
+   confirm.html
+   styles.css
+   site.js
+   LogaUcebnice.png
    apps-script/Code.gs
    docs/SETUP.md
    docs/TESTING.md
@@ -158,10 +166,11 @@ Ulož.
 ## KROK 8 — Production test
 
 1. Otevři GitHub Pages URL (`https://USERNAME.github.io/hackathon-registration/`).
-2. Vyplň formulář reálnými daty (použij svůj e-mail).
-3. Klikni **Odeslat registraci**.
-4. Po odeslání by měla proběhnout redirect na `success.html`.
-5. Zkontroluj:
+2. Klikni na registraci nebo otevři `/registrace.html`.
+3. Vyplň formulář reálnými daty (použij svůj e-mail).
+4. Klikni **Odeslat registraci**.
+5. Po odeslání by měla proběhnout redirect na `success.html`.
+6. Zkontroluj:
    - v Sheetu přibyl řádek s tvými daty
    - přišel potvrzovací e-mail
 
@@ -174,7 +183,7 @@ Pokud ano — **hotovo, deploy je live**.
 | Co                          | Kde                                                      |
 |-----------------------------|----------------------------------------------------------|
 | `SHEET_ID` (pokud měníš)    | `apps-script/Code.gs`                                    |
-| `APPS_SCRIPT_URL`           | `index.html` — konstanta `APPS_SCRIPT_URL`               |
+| `APPS_SCRIPT_URL`           | `registrace.html` — konstanta `APPS_SCRIPT_URL`          |
 | GitHub repo + Pages         | GitHub Settings → Pages                                  |
 | Oprávnění Apps Scriptu      | Poprvé při `initSheet` a `testSubmit`                    |
 | Deploy Web app              | Apps Script → Deploy → New deployment (Execute as Me)    |
@@ -190,7 +199,7 @@ Pokud ano — **hotovo, deploy je live**.
 → Zkontroluj [MailApp quota](https://developers.google.com/apps-script/guides/services/quotas) (100/den pro free Gmail účet). Podívej se v Apps Scriptu **Executions** na případné chyby.
 
 **CORS chyba v konzoli.**
-→ Fetch je nastavený na `mode: 'no-cors'`. Pokud tam vidíš CORS chybu, asi není `'no-cors'`. Zkontroluj `index.html`.
+→ Fetch je nastavený na `mode: 'no-cors'`. Pokud tam vidíš CORS chybu, asi není `'no-cors'`. Zkontroluj `registrace.html`.
 
 **Uživatel odešle, ale skript spadne — uvidí success stránku, ale data se nezapíšou.**
 → To je známý trade-off `no-cors` módu: klient nevidí odpověď serveru. Monitoruj Apps Script **Executions** pár dní po spuštění a případně upozorni účastníky, kteří měli chybu.

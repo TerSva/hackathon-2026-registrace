@@ -15,8 +15,16 @@ Registrační systém pro 48hodinový hackathon 19.–21. 6. 2026 v Chebu.
 
 ```
 hackathon-registration/
-├── index.html              # registrační formulář
+├── index.html              # hlavní landing page
+├── program.html            # program, příprava a pravidla
+├── firmy.html              # partnerská stránka pro firmy
+├── faq.html                # nejčastější otázky
+├── registrace.html         # registrační formulář
 ├── success.html            # potvrzovací stránka
+├── confirm.html            # potvrzení / odmítnutí člena týmu
+├── styles.css              # sdílený vizuální styl
+├── site.js                 # sdílený JS pro navigaci, countdown a reveal animace
+├── LogaUcebnice.png        # společný logo strip partnerů
 ├── apps-script/
 │   └── Code.gs             # Google Apps Script webhook (ke zkopírování do editoru)
 ├── docs/
@@ -32,7 +40,7 @@ hackathon-registration/
 
 Stačí otevřít `index.html` v prohlížeči (dvojklik nebo `file://`). Žádný build, žádné `npm install`.
 
-Formulář ale bez nastaveného Apps Scriptu neuloží data — pro plnou funkčnost projdi [`docs/SETUP.md`](docs/SETUP.md).
+Registrační formulář je v `registrace.html`. Bez nastaveného Apps Scriptu neuloží data — pro plnou funkčnost projdi [`docs/SETUP.md`](docs/SETUP.md).
 
 ---
 
@@ -46,7 +54,7 @@ Rychlý přehled:
 3. Spusť `initSheet()` → nastaví hlavičku, formátování, ochranu
 4. Spusť `testSubmit()` → ověř, že zápis a e-mail fungují
 5. Deploy jako Web App (Execute as Me, Anyone access)
-6. Vlož Web app URL do `index.html` místo `REPLACE_WITH_APPS_SCRIPT_WEB_APP_URL`
+6. Vlož Web app URL do `registrace.html` místo `REPLACE_WITH_APPS_SCRIPT_WEB_APP_URL`
 7. Push na GitHub + zapni Pages
 
 ---
@@ -62,7 +70,7 @@ Checklist v [`docs/TESTING.md`](docs/TESTING.md) — 10 bodů, ~10 minut.
 | Co                        | Kde                                                   | Status                |
 |---------------------------|-------------------------------------------------------|-----------------------|
 | `SHEET_ID`                | `apps-script/Code.gs`                                 | ✅ přednastaveno      |
-| `APPS_SCRIPT_URL`         | `index.html`                                          | ⚠️ po deploy Apps Scriptu |
+| `APPS_SCRIPT_URL`         | `registrace.html`                                     | ⚠️ po deploy Apps Scriptu |
 | GitHub repo + Pages       | settings Github                                       | ⚠️ ručně              |
 | Apps Script deploy        | script.google.com → Deploy → New deployment           | ⚠️ ručně              |
 

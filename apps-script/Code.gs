@@ -4,6 +4,7 @@ const ORGANIZER_EMAIL = 'svanda@praut.cz';
 const SENDER_NAME     = 'AI & Programming Hackathon 2026';
 const WEB_APP_URL     = 'https://script.google.com/macros/s/AKfycbw0I14fgua_wpOQbsnE8Su-QK2Oh3U1gRh-fAqp41oA7sCMjDsYW17XK5YCLQmbZA-kYQ/exec';
 const PUBLIC_BASE_URL = 'https://tersva.github.io/hackathon-2026-registrace';
+const REGISTRATION_URL = PUBLIC_BASE_URL + '/registrace.html';
 
 const COL = {
     TIMESTAMP: 1, FIRST_NAME: 2, LAST_NAME: 3, EMAIL: 4, PHONE: 5, BIRTH_YEAR: 6,
@@ -376,7 +377,7 @@ function sendMemberRejectedEmail(memberData, teamName, leaderFirstName) {
     const subject = 'Připojení do týmu ' + teamName + ' nepotvrzeno';
     const body = 'Ahoj,<br><br>'
         + 'vedoucí týmu <strong>' + escapeHtml(teamName) + '</strong> bohužel nepotvrdil/a tvé připojení. '
-        + 'Můžeš se přidat do jiného týmu nebo si založit vlastní — stačí znovu vyplnit <a href="https://tersva.github.io/hackathon-2026-registrace/" style="color:#3b82f6; text-decoration:none;">registrační formulář</a>.<br><br>'
+        + 'Můžeš se přidat do jiného týmu nebo si založit vlastní — stačí znovu vyplnit <a href="' + REGISTRATION_URL + '" style="color:#3b82f6; text-decoration:none;">registrační formulář</a>.<br><br>'
         + '<em>Otázky? Napiš na <a href="mailto:' + ORGANIZER_EMAIL + '" style="color:#3b82f6; text-decoration:none;">' + ORGANIZER_EMAIL + '</a>.</em>';
 
     const html = emailShell('Připojení nepotvrzeno', body, null, '');

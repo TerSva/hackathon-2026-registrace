@@ -1,0 +1,471 @@
+<!DOCTYPE html>
+<html lang="cs">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Registrace — AI & Programming Hackathon 2026</title>
+    <meta name="description" content="Registrační formulář pro účastníky a týmy AI & Programming Hackathonu 2026.">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700;800;900&family=Open+Sans:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+<div class="page-wrapper">
+    <a class="skip-link" href="#obsah">Přeskočit na obsah</a>
+
+    <header class="site-nav" id="siteNav">
+        <a class="brand-link" href="index.html" aria-label="AI & Programming Hackathon 2026">
+            <span class="brand-mark" aria-hidden="true">AI</span>
+            <span class="brand-text">
+                <strong>Hackathon 2026</strong>
+                <span>Karlovarský kraj · Cheb</span>
+            </span>
+        </a>
+        <nav class="nav-links" aria-label="Hlavní navigace">
+            <a href="index.html#pro-koho">Pro koho</a>
+            <a href="program.html">Program</a>
+            <a href="program.html#priprava">Příprava</a>
+            <a href="firmy.html">Pro firmy</a>
+            <a href="faq.html">FAQ</a>
+            <a class="nav-cta" href="registrace.html">Registrovat</a>
+        </nav>
+    </header>
+
+    <main id="obsah">
+        <section class="landing-section registration-shell" id="registrace">
+            <div class="registration-intro reveal">
+                <p class="section-kicker">Registrační formulář</p>
+                <h2>Přihlaš sebe nebo celý tým.</h2>
+                <p>Vyber, jestli zakládáš nový tým, nebo se připojuješ k existujícímu. Odeslání používá stejný Apps Script a Google Sheet jako původní verze.</p>
+            </div>
+
+    <!-- FORM CARD -->
+    <div class="form-card reveal" id="mainForm">
+
+        <div class="section-heading">
+            <div>
+                <h2>Registrační formulář</h2>
+                <p>Vyplň údaje a odešli přihlášku</p>
+            </div>
+        </div>
+
+        <!-- Honeypot — hidden from humans, bots will fill it -->
+        <div class="hp-field" aria-hidden="true">
+            <label for="website">Website (nevyplňuj)</label>
+            <input type="text" name="website" id="website" tabindex="-1" autocomplete="off">
+        </div>
+
+        <div class="field-grid">
+
+            <div class="field-grid cols-2">
+                <div class="field" data-field="firstName">
+                    <label for="firstName">Jméno <span class="required">*</span></label>
+                    <input type="text" class="input" placeholder="Jana" id="firstName">
+                    <span class="field-error" data-error-for="firstName">Vyplň prosím jméno.</span>
+                </div>
+                <div class="field" data-field="lastName">
+                    <label for="lastName">Příjmení <span class="required">*</span></label>
+                    <input type="text" class="input" placeholder="Nováková" id="lastName">
+                    <span class="field-error" data-error-for="lastName">Vyplň prosím příjmení.</span>
+                </div>
+            </div>
+
+            <div class="field" data-field="email">
+                <label for="email">E-mail <span class="required">*</span></label>
+                <input type="email" class="input" placeholder="jana@example.com" id="email">
+                <span class="field-error" data-error-for="email">Zadej platnou e-mailovou adresu.</span>
+            </div>
+
+            <div class="field-grid cols-2">
+                <div class="field" data-field="phone">
+                    <label for="phone">Telefon</label>
+                    <input type="tel" class="input" placeholder="+420 777 123 456" id="phone">
+                    <span class="field-error" data-error-for="phone">Telefon vypadá divně — zkontroluj ho.</span>
+                </div>
+                <div class="field" data-field="birthYear">
+                    <label for="birthYear">Rok narození</label>
+                    <input type="number" class="input" placeholder="např. 1998" id="birthYear" min="1940" max="2010">
+                    <span class="field-error" data-error-for="birthYear">Zadej rok mezi 1940 a 2010.</span>
+                </div>
+            </div>
+
+            <div class="field" data-field="github">
+                <label for="github">GitHub / Portfolio</label>
+                <input type="url" class="input" placeholder="github.com/username" id="github">
+                <span class="field-error" data-error-for="github">Zadej platnou URL (např. github.com/username).</span>
+            </div>
+
+            <div class="field-grid cols-2">
+                <div class="field" data-field="role">
+                    <label for="role">Aktuální role <span class="required">*</span></label>
+                    <select class="input" id="role">
+                        <option value="" disabled selected>Vyber svou roli…</option>
+                        <option value="student">Student</option>
+                        <option value="junior-dev">Junior developer</option>
+                        <option value="mid-dev">Mid developer</option>
+                        <option value="senior-dev">Senior developer</option>
+                        <option value="ai-ml">AI / ML Engineer</option>
+                        <option value="data">Data Scientist / Analyst</option>
+                        <option value="designer">UX / Designer</option>
+                        <option value="pm">Product Manager</option>
+                        <option value="other">Jiné</option>
+                    </select>
+                    <span class="field-error" data-error-for="role">Vyber prosím svou aktuální roli.</span>
+                </div>
+                <div class="field" data-field="company">
+                    <label for="company">Firma / Škola</label>
+                    <input type="text" class="input" placeholder="např. ČVUT, Kiwi.com…" id="company">
+                </div>
+            </div>
+
+            <div class="field-divider"></div>
+
+            <div>
+                <span class="section-label">Tým <span class="required">*</span></span>
+                <div class="team-mode-toggle" role="radiogroup" aria-label="Režim týmu">
+                    <input type="radio" name="teamMode" id="modeCreate" value="create" checked>
+                    <label for="modeCreate" class="team-mode-option">
+                        <span class="team-mode-title">Zakládám nový tým</span>
+                        <span class="team-mode-desc">Jsi team leader — ostatní ti mohou posílat žádosti o připojení.</span>
+                    </label>
+
+                    <input type="radio" name="teamMode" id="modeJoin" value="join">
+                    <label for="modeJoin" class="team-mode-option">
+                        <span class="team-mode-title">Připojuji se k existujícímu</span>
+                        <span class="team-mode-desc">Vedoucí týmu potvrdí nebo odmítne tvou žádost.</span>
+                    </label>
+                </div>
+
+                <div class="team-pane" id="teamCreatePane">
+                    <div class="field-grid cols-2">
+                        <div class="field" data-field="teamName">
+                            <label for="teamName">Název týmu <span class="required">*</span></label>
+                            <input type="text" class="input" placeholder="např. CyberNinjas 42" id="teamName" maxlength="50">
+                            <span class="field-hint">Musí být unikátní. Ostatní ho uvidí v nabídce.</span>
+                            <span class="field-error" data-error-for="teamName">Zadej název týmu.</span>
+                        </div>
+                        <div class="field" data-field="teamSize">
+                            <label for="teamSize">Počet členů <span class="required">*</span></label>
+                            <select class="input" id="teamSize">
+                                <option value="" disabled selected>Vyber počet…</option>
+                                <option value="1">1 (sólo)</option>
+                                <option value="2">2 členové</option>
+                                <option value="3">3 členové (max)</option>
+                            </select>
+                            <span class="field-error" data-error-for="teamSize">Vyber počet členů.</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="team-pane" id="teamJoinPane" hidden>
+                    <div class="field" data-field="teamJoin">
+                        <label for="teamJoin">Vyber tým <span class="required">*</span></label>
+                        <select class="input" id="teamJoin">
+                            <option value="" disabled selected>Načítám týmy…</option>
+                        </select>
+                        <span class="field-hint">Zobrazují se jen týmy s volným místem. Vedoucí týmu potvrdí připojení.</span>
+                        <span class="field-error" data-error-for="teamJoin">Vyber tým.</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="field-divider"></div>
+
+            <div class="field">
+                <div class="consent-block" id="consentBlock">
+                    <label class="checkbox-option">
+                        <input type="checkbox" id="consent1">
+                        <span>Souhlasím se <a href="#">zpracováním osobních údajů</a> pro účely organizace hackathonu. <span class="required">*</span></span>
+                    </label>
+                    <label class="checkbox-option">
+                        <input type="checkbox" id="consent2">
+                        <span>Chci dostávat novinky a informace o budoucích akcích. (Volitelné)</span>
+                    </label>
+                    <span class="consent-error">Pro registraci je nutný souhlas se zpracováním osobních údajů.</span>
+                </div>
+            </div>
+
+        </div>
+
+        <div class="form-nav">
+            <span></span>
+            <button class="btn btn-primary" id="submitBtn" type="button">
+                Odeslat registraci
+            </button>
+        </div>
+
+        <div id="globalError" class="global-error" hidden></div>
+
+    </div>
+
+    <!-- SUCCESS -->
+    <div class="form-card success-screen" id="successScreen">
+        <div class="success-icon">✓</div>
+        <h2>Registrace dokončena!</h2>
+        <p>Přijali jsme tvou přihlášku. Potvrzovací e-mail dorazí do pár minut.</p>
+        <div class="success-details">
+            <div class="success-chip">19.– 21. 6. 2026</div>
+            <div class="success-chip">Pátek 12:00 – Neděle 12:00</div>
+            <div class="success-chip"><span id="confirmCode">–</span></div>
+        </div>
+        <div style="margin-top:32px; display:flex; flex-wrap:wrap; gap:12px; justify-content:center;">
+            <span class="badge badge-cyan">AI Challenge 2026</span>
+            <span class="badge badge-purple">48h Hackathon</span>
+            <span class="badge badge-magenta">Těšíme se na tebe!</span>
+        </div>
+    </div>
+        </section>
+    </main>
+
+    <!-- FOOTER -->
+    <footer class="page-footer">
+        <div class="footer-top">
+            <div class="footer-block">
+                <h4>Kontakt na pořadatele</h4>
+                <a href="mailto:svanda@praut.cz">svanda@praut.cz</a>
+                <p style="margin-top:var(--space-5); color:var(--slate-300); font-size:0.875rem; line-height:1.7;">
+                    <span style="display:block; font-family:var(--font-heading); font-size:0.75rem; font-weight:600; text-transform:uppercase; letter-spacing:0.06em; color:var(--slate-400); margin-bottom:var(--space-2);">Místo konání</span>
+                    <span style="color:var(--slate-100);">Integrovaná střední škola Cheb,<br>
+                    příspěvková organizace<br>
+                    Obrněné brigády 2258/6<br>
+                    350 02 Cheb</span>
+                </p>
+                <div class="footer-logo-strip">
+                    <span class="footer-organizers-label">Pořadatelé a partneři</span>
+                    <img src="LogaUcebnice.png" alt="Interreg Danube Region, Evropská unie, IaaS 4 DR, Krajské inovační centrum Karlovarského kraje, PRAUT a ISŠ Cheb">
+                </div>
+            </div>
+            <div class="footer-block">
+                <h4>Chceš se připravit na maximum?</h4>
+                <p>Nastartuj se ještě před hackathonem. Naučíš se Python, AI nástroje a vše, co budeš potřebovat – interaktivně, s AI mentorem, kdykoli a odkudkoli.</p>
+                <a href="https://ucebnice.praut.cz/" target="_blank" class="footer-link-btn">
+                    Otevřít učebnici &rarr;
+                </a>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            AI &amp; Programming Hackathon 2026 &nbsp;&ndash;&nbsp; 19.&ndash;21.&nbsp;6.&nbsp;2026
+        </div>
+    </footer>
+</div>
+
+<script src="site.js"></script>
+<script>
+    const APPS_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbw0I14fgua_wpOQbsnE8Su-QK2Oh3U1gRh-fAqp41oA7sCMjDsYW17XK5YCLQmbZA-kYQ/exec';
+
+    const EMAIL_RE = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    const URL_RE   = /^(https?:\/\/)?([\w-]+\.)+[\w-]+(\/[\w\-._~:/?#[\]@!$&'()*+,;=]*)?$/i;
+    const PHONE_RE = /^[+\d\s()\-]{6,20}$/;
+
+    function setError(fieldName, message) {
+        const field = document.querySelector('[data-field="' + fieldName + '"]');
+        if (!field) return;
+        field.classList.add('has-error');
+        if (message) {
+            const span = field.querySelector('.field-error');
+            if (span) span.textContent = message;
+        }
+    }
+    function clearError(fieldName) {
+        const field = document.querySelector('[data-field="' + fieldName + '"]');
+        if (field) field.classList.remove('has-error');
+    }
+    function clearAllErrors() {
+        document.querySelectorAll('.field.has-error').forEach(function(f){ f.classList.remove('has-error'); });
+        document.getElementById('consentBlock').classList.remove('has-error');
+        hideGlobalError();
+    }
+    function showGlobalError(msg) {
+        const el = document.getElementById('globalError');
+        el.textContent = msg;
+        el.hidden = false;
+    }
+    function hideGlobalError() {
+        const el = document.getElementById('globalError');
+        el.textContent = '';
+        el.hidden = true;
+    }
+
+    function getTeamMode() {
+        const checked = document.querySelector('input[name="teamMode"]:checked');
+        return checked ? checked.value : 'create';
+    }
+    function switchTeamMode(mode) {
+        document.getElementById('teamCreatePane').hidden = (mode !== 'create');
+        document.getElementById('teamJoinPane').hidden   = (mode !== 'join');
+        clearError('teamName');
+        clearError('teamSize');
+        clearError('teamJoin');
+    }
+
+    async function loadJoinableTeams() {
+        const sel = document.getElementById('teamJoin');
+        try {
+            const res = await fetch(APPS_SCRIPT_URL + '?action=teams', { method: 'GET', redirect: 'follow' });
+            const json = await res.json();
+            sel.innerHTML = '';
+            if (!json.ok || !json.teams || json.teams.length === 0) {
+                const opt = document.createElement('option');
+                opt.value = '';
+                opt.disabled = true;
+                opt.selected = true;
+                opt.textContent = 'Zatím tu žádný tým není — založ první!';
+                sel.appendChild(opt);
+                return;
+            }
+            const placeholder = document.createElement('option');
+            placeholder.value = '';
+            placeholder.disabled = true;
+            placeholder.selected = true;
+            placeholder.textContent = 'Vyber tým…';
+            sel.appendChild(placeholder);
+            json.teams.forEach(function(t) {
+                const opt = document.createElement('option');
+                opt.value = t.id;
+                const slots = t.slotsLeft === 1 ? '1 volné místo' : t.slotsLeft + ' volná místa';
+                opt.textContent = t.name + ' — vedoucí ' + t.leaderFirstName + ' (' + slots + ')';
+                sel.appendChild(opt);
+            });
+        } catch (err) {
+            sel.innerHTML = '';
+            const opt = document.createElement('option');
+            opt.value = '';
+            opt.disabled = true;
+            opt.selected = true;
+            opt.textContent = 'Nepodařilo se načíst týmy — zkus obnovit stránku';
+            sel.appendChild(opt);
+            console.error('Teams load failed:', err);
+        }
+    }
+
+    function validateAll() {
+        clearAllErrors();
+        let ok = true;
+
+        const firstName = document.getElementById('firstName').value.trim();
+        const lastName  = document.getElementById('lastName').value.trim();
+        const email     = document.getElementById('email').value.trim();
+        const phone     = document.getElementById('phone').value.trim();
+        const birthYear = document.getElementById('birthYear').value.trim();
+        const github    = document.getElementById('github').value.trim();
+        const role      = document.getElementById('role').value;
+        const consent1  = document.getElementById('consent1').checked;
+        const mode      = getTeamMode();
+
+        if (!firstName) { setError('firstName', 'Vyplň prosím jméno.'); ok = false; }
+        if (!lastName)  { setError('lastName',  'Vyplň prosím příjmení.'); ok = false; }
+
+        if (!email) {
+            setError('email', 'Vyplň prosím e-mail.'); ok = false;
+        } else if (!EMAIL_RE.test(email)) {
+            setError('email', 'Zadej platnou e-mailovou adresu.'); ok = false;
+        }
+        if (phone && !PHONE_RE.test(phone)) {
+            setError('phone', 'Telefon vypadá divně — zkontroluj ho.'); ok = false;
+        }
+        if (birthYear) {
+            const y = Number(birthYear);
+            if (!Number.isInteger(y) || y < 1940 || y > 2010) {
+                setError('birthYear', 'Zadej rok mezi 1940 a 2010.'); ok = false;
+            }
+        }
+        if (github && !URL_RE.test(github)) {
+            setError('github', 'Zadej platnou URL (např. github.com/username).'); ok = false;
+        }
+        if (!role) { setError('role', 'Vyber prosím svou aktuální roli.'); ok = false; }
+
+        if (mode === 'create') {
+            const teamName = document.getElementById('teamName').value.trim();
+            const teamSize = document.getElementById('teamSize').value;
+            if (!teamName) { setError('teamName', 'Zadej název týmu.'); ok = false; }
+            if (!teamSize) { setError('teamSize', 'Vyber počet členů.'); ok = false; }
+        } else {
+            const teamJoin = document.getElementById('teamJoin').value;
+            if (!teamJoin) { setError('teamJoin', 'Vyber tým.'); ok = false; }
+        }
+
+        if (!consent1) {
+            document.getElementById('consentBlock').classList.add('has-error');
+            ok = false;
+        }
+        if (!ok) {
+            const firstErr = document.querySelector('.field.has-error, .consent-block.has-error');
+            if (firstErr) firstErr.scrollIntoView({ behavior: 'smooth', block: 'center' });
+        }
+        return ok;
+    }
+
+    ['firstName','lastName','email','phone','birthYear','github','role','teamName','teamSize','teamJoin'].forEach(function(name) {
+        const el = document.getElementById(name);
+        if (!el) return;
+        const ev = (el.tagName === 'SELECT') ? 'change' : 'input';
+        el.addEventListener(ev, function(){ clearError(name); });
+        el.addEventListener('blur', function(){ clearError(name); });
+    });
+    document.getElementById('consent1').addEventListener('change', function() {
+        document.getElementById('consentBlock').classList.remove('has-error');
+    });
+    document.querySelectorAll('input[name="teamMode"]').forEach(function(r) {
+        r.addEventListener('change', function() { switchTeamMode(r.value); });
+    });
+
+    async function submitForm() {
+        if (document.getElementById('website').value) {
+            window.location.href = 'success.html?mode=created';
+            return;
+        }
+        if (!validateAll()) return;
+
+        const mode = getTeamMode();
+        const base = {
+            firstName: document.getElementById('firstName').value.trim(),
+            lastName:  document.getElementById('lastName').value.trim(),
+            email:     document.getElementById('email').value.trim(),
+            phone:     document.getElementById('phone').value.trim(),
+            birthYear: document.getElementById('birthYear').value,
+            github:    document.getElementById('github').value.trim(),
+            role:      document.getElementById('role').value,
+            company:   document.getElementById('company').value.trim(),
+            consentGdpr:       document.getElementById('consent1').checked,
+            consentNewsletter: document.getElementById('consent2').checked
+        };
+        let payload;
+        if (mode === 'create') {
+            payload = Object.assign({ type: 'create_team' }, base, {
+                teamName: document.getElementById('teamName').value.trim(),
+                teamSize: document.getElementById('teamSize').value
+            });
+        } else {
+            payload = Object.assign({ type: 'join_team' }, base, {
+                teamId: document.getElementById('teamJoin').value
+            });
+        }
+
+        const btn = document.getElementById('submitBtn');
+        const originalText = btn.innerHTML;
+        btn.disabled = true;
+        btn.innerHTML = 'Odesílám…';
+        hideGlobalError();
+
+        try {
+            await fetch(APPS_SCRIPT_URL, {
+                method: 'POST',
+                mode: 'no-cors',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify(payload)
+            });
+            const redirectMode = (mode === 'create') ? 'created' : 'pending';
+            window.location.href = 'success.html?mode=' + redirectMode;
+        } catch (err) {
+            btn.disabled = false;
+            btn.innerHTML = originalText;
+            showGlobalError('Něco se pokazilo při odesílání. Zkus to prosím znovu, nebo napiš na svanda@praut.cz.');
+        }
+    }
+
+    document.getElementById('submitBtn').addEventListener('click', submitForm);
+
+    loadJoinableTeams();
+</script>
+</body>
+</html>
