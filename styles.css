@@ -366,6 +366,11 @@
             align-items: center;
         }
 
+        .hero-actions {
+            display: grid;
+            grid-template-columns: repeat(3, max-content);
+        }
+
         .hero-note {
             display: inline-flex;
             align-items: center;
@@ -748,8 +753,9 @@
         .process {
             display: grid;
             grid-template-columns: repeat(2, minmax(0, 1fr));
+            grid-auto-rows: 1fr;
             gap: var(--card-gap);
-            align-items: start;
+            align-items: stretch;
             max-width: var(--container-max);
             margin-inline: auto;
             margin-top: var(--space-8);
@@ -757,8 +763,12 @@
 
         .process article,
         .partner-step {
+            display: flex;
+            flex-direction: column;
             padding: var(--space-6);
-            max-width: 540px;
+            width: 100%;
+            max-width: none;
+            height: 100%;
         }
 
         .process article p {
@@ -827,14 +837,19 @@
 
         .audience-grid {
             grid-template-columns: repeat(2, 1fr);
+            grid-auto-rows: 1fr;
             max-width: var(--container-max);
             margin-inline: auto;
-            align-items: start;
+            align-items: stretch;
         }
 
         .audience-card {
+            display: flex;
+            flex-direction: column;
             padding: var(--space-6);
-            max-width: 540px;
+            width: 100%;
+            max-width: none;
+            height: 100%;
         }
 
         .audience-card.accent {
@@ -902,6 +917,7 @@
             grid-template-columns: 0.7fr 1.3fr;
             gap: var(--inner-gap);
             margin-top: var(--space-8);
+            margin-bottom: var(--space-16);
         }
 
         .industry-grid {
@@ -931,8 +947,9 @@
         .partner-steps {
             display: grid;
             grid-template-columns: repeat(2, minmax(0, 1fr));
+            grid-auto-rows: 1fr;
             gap: var(--card-gap);
-            align-items: start;
+            align-items: stretch;
             max-width: var(--container-max);
             margin: var(--space-8) auto;
         }
@@ -2061,6 +2078,10 @@
             .companies-actions .btn,
             .footer-link-btn {
                 width: 100%;
+            }
+
+            .hero-actions {
+                grid-template-columns: 1fr;
             }
 
             .feature-grid,
