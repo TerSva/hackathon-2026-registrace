@@ -21,13 +21,16 @@
                 <span>Karlovarský kraj · Cheb</span>
             </span>
         </a>
-        <nav class="nav-links" aria-label="Hlavní navigace">
+        <button class="nav-toggle" type="button" aria-label="Otevřít navigaci" aria-controls="primaryNav" aria-expanded="false" data-nav-toggle>
+            <span class="nav-toggle-bars" aria-hidden="true"></span>
+        </button>
+        <nav class="nav-links" id="primaryNav" aria-label="Hlavní navigace">
             <a href="index.html#pro-koho">Pro koho</a>
             <a href="program.html">Program</a>
             <a href="program.html#priprava">Příprava</a>
             <a href="firmy.html">Pro firmy</a>
             <a href="faq.html">FAQ</a>
-            <a class="nav-cta" href="registrace.html">Registrovat</a>
+            <a class="nav-cta" href="registrace.html">Registrovat tým</a>
         </nav>
     </header>
 
@@ -39,8 +42,8 @@
                     <h2 id="companies-title">Ukažte, že AI v regionu není buzzword. Je to konkurenční výhoda.</h2>
                     <p>Partnerství není jen logo na plakátu. Firma přinese skutečnou výzvu z provozu, služeb, marketingu nebo dat — a studenti ji během hackathonu promění ve funkční prototyp.</p>
                     <div class="companies-actions">
-                        <a class="btn btn-primary" href="mailto:svanda@praut.cz?subject=Partnerstvi%20AI%20%26%20Programming%20Hackathon%202026">Chci být partnerem</a>
-                        <a class="btn btn-secondary" href="#firmy-jak">Jak zapojení funguje</a>
+                        <a class="btn btn-primary" href="mailto:svanda@praut.cz?subject=Partnerstvi%20AI%20%26%20Programming%20Hackathon%202026">Stát se partnerem</a>
+                        <a class="btn btn-secondary" href="#firmy-jak">Stát se partnerem</a>
                     </div>
                 </div>
                 <aside class="sponsor-card">
@@ -59,22 +62,22 @@
                 <article class="company-value-card">
                     <span class="number">01</span>
                     <h3>Vlastní výzva z praxe</h3>
-                    <p>Přinesete problém, který vás opravdu pálí. Organizátoři jej pomohou převést do zadání realistického pro 48hodinový hackathon.</p>
+                    <p>Organizátoři pomohou převést skutečný problém do realistického zadání.</p>
                 </article>
                 <article class="company-value-card">
                     <span class="number">02</span>
                     <h3>Funkční prototyp</h3>
-                    <p>Výstupem má být aplikace, dashboard, asistent, automatizace nebo jiný demovatelný výsledek.</p>
+                    <p>Výstupem je aplikace, dashboard, asistent nebo jiný demovatelný výsledek.</p>
                 </article>
                 <article class="company-value-card">
                     <span class="number">03</span>
                     <h3>Talent pipeline</h3>
-                    <p>Uvidíte studenty při práci: jak přemýšlejí, spolupracují, ptají se a dotahují nápad pod tlakem.</p>
+                    <p>Uvidíte studenty přemýšlet, spolupracovat a dotahovat nápad pod tlakem.</p>
                 </article>
                 <article class="company-value-card">
                     <span class="number">04</span>
                     <h3>Značka inovátora</h3>
-                    <p>Partner je vidět na webu, v komunikaci akce, v místě konání i při finálních prezentacích.</p>
+                    <p>Partner je vidět na webu, místě konání i finálních prezentacích.</p>
                 </article>
             </div>
 
@@ -106,7 +109,7 @@
                     <li>účast zástupce firmy u nedělních prezentací,</li>
                     <li>ochota dát studentům věcnou zpětnou vazbu.</li>
                 </ul>
-                <a class="btn btn-primary" href="mailto:svanda@praut.cz?subject=Chceme%20navrhnout%20firemni%20vyzvu%20pro%20AI%20Hackathon%202026">Navrhnout výzvu</a>
+                <a class="btn btn-primary" href="mailto:svanda@praut.cz?subject=Chceme%20navrhnout%20firemni%20vyzvu%20pro%20AI%20Hackathon%202026">Stát se partnerem</a>
             </div>
         </section>
 
@@ -130,7 +133,7 @@
                 <p>Registrace studentů je otevřená do 18. 6. 2026. Firmy se mohou zapojit jako partneři s vlastní výzvou, mentoringem nebo podporou akce.</p>
             </div>
             <div class="final-actions">
-                <a class="btn btn-primary" href="registrace.html">Přejít na registraci</a>
+                <a class="btn btn-primary" href="registrace.html">Registrovat tým</a>
                 <a class="btn btn-secondary" href="mailto:svanda@praut.cz?subject=Partnerstvi%20AI%20%26%20Programming%20Hackathon%202026">Stát se partnerem</a>
             </div>
         </section>
@@ -142,8 +145,8 @@
             <div class="footer-block">
                 <h4>Kontakt na pořadatele</h4>
                 <a href="mailto:svanda@praut.cz">svanda@praut.cz</a>
-                <p style="margin-top:var(--space-5); color:var(--slate-300); font-size:0.875rem; line-height:1.7;">
-                    <span style="display:block; font-family:var(--font-heading); font-size:0.75rem; font-weight:600; text-transform:uppercase; letter-spacing:0.06em; color:var(--slate-400); margin-bottom:var(--space-2);">Místo konání</span>
+                <p style="margin-top:var(--space-5); color:var(--slate-300); font-size:var(--type-body); line-height:1.7;">
+                    <span style="display:block; font-family:var(--font-heading); font-size:var(--type-body); font-weight:600; text-transform:uppercase; letter-spacing:0; color:var(--slate-400); margin-bottom:var(--space-2);">Místo konání</span>
                     <span style="color:var(--slate-100);">Integrovaná střední škola Cheb,<br>
                     příspěvková organizace<br>
                     Obrněné brigády 2258/6<br>
@@ -158,7 +161,7 @@
                 <h4>Chceš se připravit na maximum?</h4>
                 <p>Nastartuj se ještě před hackathonem. Naučíš se Python, AI nástroje a vše, co budeš potřebovat – interaktivně, s AI mentorem, kdykoli a odkudkoli.</p>
                 <a href="https://ucebnice.praut.cz/" target="_blank" class="footer-link-btn">
-                    Otevřít učebnici &rarr;
+                    Otevřít učebnici
                 </a>
             </div>
         </div>

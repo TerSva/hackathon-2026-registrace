@@ -5,6 +5,32 @@ const siteNav = document.getElementById('siteNav');
     updateSiteNav();
     window.addEventListener('scroll', updateSiteNav, { passive: true });
 
+    const navToggle = document.querySelector('[data-nav-toggle]');
+    const navLinks = document.getElementById('primaryNav');
+
+    function setNavOpen(isOpen) {
+        if (!siteNav || !navToggle) return;
+        siteNav.classList.toggle('is-open', isOpen);
+        navToggle.setAttribute('aria-expanded', isOpen ? 'true' : 'false');
+    }
+
+    if (navToggle) {
+        navToggle.addEventListener('click', function() {
+            const isOpen = navToggle.getAttribute('aria-expanded') === 'true';
+            setNavOpen(!isOpen);
+        });
+    }
+
+    if (navLinks) {
+        navLinks.querySelectorAll('a').forEach(function(link) {
+            link.addEventListener('click', function() { setNavOpen(false); });
+        });
+    }
+
+    document.addEventListener('keydown', function(event) {
+        if (event.key === 'Escape') setNavOpen(false);
+    });
+
     const countdown = document.querySelector('[data-countdown]');
     const daysEl = countdown ? countdown.querySelector('[data-days]') : null;
     const hoursEl = countdown ? countdown.querySelector('[data-hours]') : null;

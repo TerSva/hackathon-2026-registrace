@@ -21,13 +21,16 @@
                 <span>Karlovarský kraj · Cheb</span>
             </span>
         </a>
-        <nav class="nav-links" aria-label="Hlavní navigace">
+        <button class="nav-toggle" type="button" aria-label="Otevřít navigaci" aria-controls="primaryNav" aria-expanded="false" data-nav-toggle>
+            <span class="nav-toggle-bars" aria-hidden="true"></span>
+        </button>
+        <nav class="nav-links" id="primaryNav" aria-label="Hlavní navigace">
             <a href="index.html#pro-koho">Pro koho</a>
             <a href="program.html">Program</a>
             <a href="program.html#priprava">Příprava</a>
             <a href="firmy.html">Pro firmy</a>
             <a href="faq.html">FAQ</a>
-            <a class="nav-cta" href="registrace.html">Registrovat</a>
+            <a class="nav-cta" href="registrace.html">Registrovat tým</a>
         </nav>
     </header>
 
@@ -223,8 +226,8 @@
             <div class="footer-block">
                 <h4>Kontakt na pořadatele</h4>
                 <a href="mailto:svanda@praut.cz">svanda@praut.cz</a>
-                <p style="margin-top:var(--space-5); color:var(--slate-300); font-size:0.875rem; line-height:1.7;">
-                    <span style="display:block; font-family:var(--font-heading); font-size:0.75rem; font-weight:600; text-transform:uppercase; letter-spacing:0.06em; color:var(--slate-400); margin-bottom:var(--space-2);">Místo konání</span>
+                <p style="margin-top:var(--space-5); color:var(--slate-300); font-size:var(--type-body); line-height:1.7;">
+                    <span style="display:block; font-family:var(--font-heading); font-size:var(--type-body); font-weight:600; text-transform:uppercase; letter-spacing:0; color:var(--slate-400); margin-bottom:var(--space-2);">Místo konání</span>
                     <span style="color:var(--slate-100);">Integrovaná střední škola Cheb,<br>
                     příspěvková organizace<br>
                     Obrněné brigády 2258/6<br>
@@ -239,7 +242,7 @@
                 <h4>Chceš se připravit na maximum?</h4>
                 <p>Nastartuj se ještě před hackathonem. Naučíš se Python, AI nástroje a vše, co budeš potřebovat – interaktivně, s AI mentorem, kdykoli a odkudkoli.</p>
                 <a href="https://ucebnice.praut.cz/" target="_blank" class="footer-link-btn">
-                    Otevřít učebnici &rarr;
+                    Otevřít učebnici
                 </a>
             </div>
         </div>

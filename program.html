@@ -21,13 +21,16 @@
                 <span>Karlovarský kraj · Cheb</span>
             </span>
         </a>
-        <nav class="nav-links" aria-label="Hlavní navigace">
+        <button class="nav-toggle" type="button" aria-label="Otevřít navigaci" aria-controls="primaryNav" aria-expanded="false" data-nav-toggle>
+            <span class="nav-toggle-bars" aria-hidden="true"></span>
+        </button>
+        <nav class="nav-links" id="primaryNav" aria-label="Hlavní navigace">
             <a href="index.html#pro-koho">Pro koho</a>
             <a href="program.html">Program</a>
             <a href="program.html#priprava">Příprava</a>
             <a href="firmy.html">Pro firmy</a>
             <a href="faq.html">FAQ</a>
-            <a class="nav-cta" href="registrace.html">Registrovat</a>
+            <a class="nav-cta" href="registrace.html">Registrovat tým</a>
         </nav>
     </header>
 
@@ -41,22 +44,22 @@
                 <article>
                     <span>1</span>
                     <h3>Připrav se online</h3>
-                    <p>Projdi AI učebnici, osvěž si Python, práci s asistenty a základní přístup k tvorbě prototypů.</p>
+                    <p>AI učebnice sjednotí Python, asistenty a prototypování před startem.</p>
                 </article>
                 <article>
                     <span>2</span>
                     <h3>Přihlas tým</h3>
-                    <p>Jde to samostatně, ve dvojici nebo ve tříčlenném týmu. Leader založí tým a ostatní se připojí.</p>
+                    <p>Leader založí tým, ostatní se připojí, nebo jdeš sólo.</p>
                 </article>
                 <article>
                     <span>3</span>
                     <h3>Stav řešení</h3>
-                    <p>Po zadání výzvy navrhni řešení, rozděl práci, iteruj a průběžně konzultuj s mentory.</p>
+                    <p>Navrhni řešení, rozděl práci, iteruj a průběžně konzultuj s mentory.</p>
                 </article>
                 <article>
                     <span>4</span>
                     <h3>Odprezentuj dopad</h3>
-                    <p>Na konci ukaž prototyp, vysvětli technická rozhodnutí a přesvědč porotu.</p>
+                    <p>Ukaž prototyp, vysvětli rozhodnutí a přesvědč porotu.</p>
                 </article>
             </div>
         </section>
@@ -104,7 +107,7 @@
                 <p class="section-kicker">Příprava</p>
                 <h2>AI učebnice sjednotí startovní čáru.</h2>
                 <p>Bezplatná online platforma od Praut pomůže studentům před akcí: Python, AI asistenti, interaktivní lekce, úkoly a gamifikační prvky. Na místě se pak řeší nápady a prototypy, ne technické základy.</p>
-                <a class="btn btn-primary" href="https://ucebnice.praut.cz/" target="_blank" rel="noopener">Začít přípravu</a>
+                <a class="btn btn-primary" href="https://ucebnice.praut.cz/" target="_blank" rel="noopener">Otevřít učebnici</a>
             </div>
             <div class="code-window" aria-label="Ukázkový princip práce s AI asistentem">
                 <div class="code-window-top">
@@ -131,19 +134,19 @@ jury.pitch(prototype)</code></pre>
             <div class="essentials-grid">
                 <article class="essential-card">
                     <h3>Vlastní notebook</h3>
-                    <p>Každý účastník potřebuje vlastní notebook. Internetové připojení bude na místě k dispozici.</p>
+                    <p>Každý účastník potřebuje notebook; internet bude na místě.</p>
                 </article>
                 <article class="essential-card">
                     <h3>Tým do 3 lidí</h3>
-                    <p>Maximální velikost týmu jsou 3 členové. Přihlásit se dá i sólo.</p>
+                    <p>Maximálně 3 členové, přihlásit se dá i sólo.</p>
                 </article>
                 <article class="essential-card">
                     <h3>Zázemí na místě</h3>
-                    <p>Po celou dobu akce bude zajištěné občerstvení, prostor pro práci, odpočinek i přespání.</p>
+                    <p>Na místě bude občerstvení, práce, odpočinek i přespání.</p>
                 </article>
                 <article class="essential-card">
                     <h3>Národní finále</h3>
-                    <p>Vítězný tým podle školní pozvánky postupuje přímo do národního finále.</p>
+                    <p>Vítězný tým postupuje podle pozvánky do národního finále.</p>
                 </article>
             </div>
         </section>
@@ -155,7 +158,7 @@ jury.pitch(prototype)</code></pre>
                 <p>Registrace studentů je otevřená do 18. 6. 2026. Firmy se mohou zapojit jako partneři s vlastní výzvou, mentoringem nebo podporou akce.</p>
             </div>
             <div class="final-actions">
-                <a class="btn btn-primary" href="registrace.html">Přejít na registraci</a>
+                <a class="btn btn-primary" href="registrace.html">Registrovat tým</a>
                 <a class="btn btn-secondary" href="mailto:svanda@praut.cz?subject=Partnerstvi%20AI%20%26%20Programming%20Hackathon%202026">Stát se partnerem</a>
             </div>
         </section>
@@ -167,8 +170,8 @@ jury.pitch(prototype)</code></pre>
             <div class="footer-block">
                 <h4>Kontakt na pořadatele</h4>
                 <a href="mailto:svanda@praut.cz">svanda@praut.cz</a>
-                <p style="margin-top:var(--space-5); color:var(--slate-300); font-size:0.875rem; line-height:1.7;">
-                    <span style="display:block; font-family:var(--font-heading); font-size:0.75rem; font-weight:600; text-transform:uppercase; letter-spacing:0.06em; color:var(--slate-400); margin-bottom:var(--space-2);">Místo konání</span>
+                <p style="margin-top:var(--space-5); color:var(--slate-300); font-size:var(--type-body); line-height:1.7;">
+                    <span style="display:block; font-family:var(--font-heading); font-size:var(--type-body); font-weight:600; text-transform:uppercase; letter-spacing:0; color:var(--slate-400); margin-bottom:var(--space-2);">Místo konání</span>
                     <span style="color:var(--slate-100);">Integrovaná střední škola Cheb,<br>
                     příspěvková organizace<br>
                     Obrněné brigády 2258/6<br>
@@ -183,7 +186,7 @@ jury.pitch(prototype)</code></pre>
                 <h4>Chceš se připravit na maximum?</h4>
                 <p>Nastartuj se ještě před hackathonem. Naučíš se Python, AI nástroje a vše, co budeš potřebovat – interaktivně, s AI mentorem, kdykoli a odkudkoli.</p>
                 <a href="https://ucebnice.praut.cz/" target="_blank" class="footer-link-btn">
-                    Otevřít učebnici &rarr;
+                    Otevřít učebnici
                 </a>
             </div>
         </div>

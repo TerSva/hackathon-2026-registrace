@@ -1,0 +1,64 @@
+{
+  "schema_version": 2,
+  "project": "hackathon-2026-registrace",
+  "level": "file",
+  "generated_at": "2026-06-05T21:45:44.914851+00:00",
+  "stats": {
+    "total_nodes": 1,
+    "total_edges": 0,
+    "node_types": {
+      "file": 1
+    },
+    "edge_types": {}
+  },
+  "node_colors": {
+    "module": "#6677aa",
+    "endpoint": "#00d4ff",
+    "collection": "#ff4466",
+    "file": "#44ff88",
+    "router": "#4488ff",
+    "script": "#aa66ff",
+    "task": "#ffaa00",
+    "cache_key": "#ff44ff",
+    "service": "#00cc99",
+    "utility": "#aabbcc",
+    "webhook": "#ff6644",
+    "event": "#ff88cc",
+    "external_api": "#ffdd44",
+    "middleware": "#6666ff",
+    "serializer": "#ffbb44",
+    "test": "#888899",
+    "config": "#aa8866",
+    "component": "#44ddaa",
+    "template": "#cc88ff"
+  },
+  "edge_colors": {
+    "imports": "#556677",
+    "belongs_to": "#445566",
+    "db_read": "#00aaff",
+    "db_write": "#ff8800",
+    "endpoint_handler": "#44ff88",
+    "api_call": "#ffdd44",
+    "cache_read": "#6688aa",
+    "cache_write": "#8866aa",
+    "webhook_receive": "#ff6644",
+    "webhook_send": "#ff4422",
+    "event_publish": "#ff88cc",
+    "event_subscribe": "#cc88ff",
+    "inherits": "#aaaaff",
+    "calls": "#778899",
+    "middleware_chain": "#6666ff"
+  },
+  "nodes": [
+    {
+      "id": "4be1713d825f",
+      "label": "site.js",
+      "type": "file",
+      "level": "file",
+      "file": "site.js",
+      "line": 0,
+      "metadata": {}
+    }
+  ],
+  "edges": []
+}

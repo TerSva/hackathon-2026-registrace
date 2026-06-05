@@ -21,13 +21,16 @@
                 <span>Karlovarský kraj · Cheb</span>
             </span>
         </a>
-        <nav class="nav-links" aria-label="Hlavní navigace">
+        <button class="nav-toggle" type="button" aria-label="Otevřít navigaci" aria-controls="primaryNav" aria-expanded="false" data-nav-toggle>
+            <span class="nav-toggle-bars" aria-hidden="true"></span>
+        </button>
+        <nav class="nav-links" id="primaryNav" aria-label="Hlavní navigace">
             <a href="#pro-koho">Pro koho</a>
             <a href="program.html">Program</a>
             <a href="program.html#priprava">Příprava</a>
             <a href="firmy.html">Pro firmy</a>
             <a href="faq.html">FAQ</a>
-            <a class="nav-cta" href="registrace.html">Registrovat</a>
+            <a class="nav-cta" href="registrace.html">Registrovat tým</a>
         </nav>
     </header>
 
@@ -41,8 +44,8 @@
                 </p>
                 <div class="hero-actions">
                     <a class="btn btn-primary" href="registrace.html">Registrovat tým</a>
-                    <a class="btn btn-secondary" href="https://ucebnice.praut.cz/" target="_blank" rel="noopener">Otevřít AI učebnici</a>
-                    <a class="btn btn-secondary" href="firmy.html">Pro firmy a partnery</a>
+                    <a class="btn btn-secondary" href="https://ucebnice.praut.cz/" target="_blank" rel="noopener">Otevřít učebnici</a>
+                    <a class="btn btn-secondary" href="firmy.html">Stát se partnerem</a>
                 </div>
                 <p class="hero-note"><span class="pulse-dot" aria-hidden="true"></span>Registrace do 18. 6. 2026 · vlastní notebook nutný · internet a zázemí na místě</p>
             </div>
@@ -111,22 +114,22 @@
                 <article class="feature-card">
                     <span class="number">01</span>
                     <h3>Reálné zadání</h3>
-                    <p>Žádná školní simulace. Týmy pracují na praktické výzvě a hledají řešení použitelné v praxi.</p>
+                    <p>Týmy řeší praktickou výzvu s jasným dopadem mimo školní simulaci.</p>
                 </article>
                 <article class="feature-card">
                     <span class="number">02</span>
                     <h3>Lokální AI</h3>
-                    <p>Účastníci si vyzkouší práci s AI nástroji, asistenty a prototypováním odpovědně a prakticky.</p>
+                    <p>Studenti používají AI nástroje odpovědně při návrhu, kódu i testování.</p>
                 </article>
                 <article class="feature-card">
                     <span class="number">03</span>
                     <h3>Mentoři z praxe</h3>
-                    <p>Během víkendu pomohou lidé, kteří rozumí architektuře, produktu, kódu i prezentaci.</p>
+                    <p>Mentoři pomáhají s architekturou, produktem, kódem i prezentací.</p>
                 </article>
                 <article class="feature-card">
                     <span class="number">04</span>
                     <h3>Pitch před porotou</h3>
-                    <p>Výsledkem je funkční prototyp a krátká obhajoba technického i produktového rozhodnutí.</p>
+                    <p>Výsledkem je prototyp a krátká obhajoba před odbornou porotou.</p>
                 </article>
             </div>
         </section>
@@ -135,13 +138,13 @@
             <article class="audience-card">
                 <p class="section-kicker">Pro školy</p>
                 <h3>Pošlete studentům výzvu, ne další leták do šuplíku.</h3>
-                <p>Studenti si vyzkouší práci pod časovým tlakem, spolupráci v týmu, řešení nečekaných překážek a obhajobu výsledku. Učitelé nemusí zajišťovat organizaci víkendu — na místě budou mentoři a tým organizátorů.</p>
+                <p>Studenti zažijí týmovou práci, časový tlak a obhajobu výsledku bez organizační zátěže školy.</p>
             </article>
             <article class="audience-card accent">
                 <p class="section-kicker">Pro firmy a partnery</p>
                 <h3>Ukažte mladým talentům, jak vypadá technologie v praxi.</h3>
-                <p>Hackathon je přirozený prostor pro mentoring, zadání z praxe, ceny pro účastníky a první kontakt s lidmi, kteří mohou posílit regionální technologický ekosystém.</p>
-                <a class="footer-link-btn" href="firmy.html">Otevřít partnerskou sekci &rarr;</a>
+                <p>Firmy přinesou výzvu, mentoring nebo ceny a potkají regionální technologické talenty.</p>
+                <a class="footer-link-btn" href="firmy.html">Stát se partnerem</a>
             </article>
         </section>
 
@@ -152,7 +155,7 @@
                 <p>Registrace studentů je otevřená do 18. 6. 2026. Firmy se mohou zapojit jako partneři s vlastní výzvou, mentoringem nebo podporou akce.</p>
             </div>
             <div class="final-actions">
-                <a class="btn btn-primary" href="registrace.html">Přejít na registraci</a>
+                <a class="btn btn-primary" href="registrace.html">Registrovat tým</a>
                 <a class="btn btn-secondary" href="mailto:svanda@praut.cz?subject=Partnerstvi%20AI%20%26%20Programming%20Hackathon%202026">Stát se partnerem</a>
             </div>
         </section>
@@ -164,8 +167,8 @@
             <div class="footer-block">
                 <h4>Kontakt na pořadatele</h4>
                 <a href="mailto:svanda@praut.cz">svanda@praut.cz</a>
-                <p style="margin-top:var(--space-5); color:var(--slate-300); font-size:0.875rem; line-height:1.7;">
-                    <span style="display:block; font-family:var(--font-heading); font-size:0.75rem; font-weight:600; text-transform:uppercase; letter-spacing:0.06em; color:var(--slate-400); margin-bottom:var(--space-2);">Místo konání</span>
+                <p style="margin-top:var(--space-5); color:var(--slate-300); font-size:var(--type-body); line-height:1.7;">
+                    <span style="display:block; font-family:var(--font-heading); font-size:var(--type-body); font-weight:600; text-transform:uppercase; letter-spacing:0; color:var(--slate-400); margin-bottom:var(--space-2);">Místo konání</span>
                     <span style="color:var(--slate-100);">Integrovaná střední škola Cheb,<br>
                     příspěvková organizace<br>
                     Obrněné brigády 2258/6<br>
@@ -180,7 +183,7 @@
                 <h4>Chceš se připravit na maximum?</h4>
                 <p>Nastartuj se ještě před hackathonem. Naučíš se Python, AI nástroje a vše, co budeš potřebovat – interaktivně, s AI mentorem, kdykoli a odkudkoli.</p>
                 <a href="https://ucebnice.praut.cz/" target="_blank" class="footer-link-btn">
-                    Otevřít učebnici &rarr;
+                    Otevřít učebnici
                 </a>
             </div>
         </div>
