@@ -27,15 +27,6 @@ const siteNav = document.getElementById('siteNav');
         });
     }
 
-    document.querySelectorAll('a[href^="mailto:"]').forEach(function(link) {
-        link.addEventListener('click', function(event) {
-            var href = link.getAttribute('href');
-            if (!href) return;
-            event.preventDefault();
-            window.location.href = href;
-        });
-    });
-
     document.addEventListener('keydown', function(event) {
         if (event.key === 'Escape') setNavOpen(false);
     });
