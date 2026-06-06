@@ -1955,6 +1955,84 @@
             outline-offset: 2px;
         }
 
+        body.mailto-fallback-open {
+            overflow: hidden;
+        }
+
+        .mailto-fallback {
+            position: fixed;
+            inset: 0;
+            z-index: 200;
+            display: grid;
+            place-items: center;
+            padding: var(--space-4);
+            background: rgba(2, 6, 23, 0.68);
+            backdrop-filter: blur(12px);
+        }
+
+        .mailto-fallback[hidden] {
+            display: none;
+        }
+
+        .mailto-fallback-panel {
+            width: min(100%, 520px);
+            padding: var(--space-8);
+            background: var(--gradient-card);
+            border: 1px solid rgba(34, 211, 238, 0.24);
+            border-radius: var(--radius-xl);
+            box-shadow: 0 24px 70px rgba(0, 0, 0, 0.42), var(--shadow-glow-brand);
+        }
+
+        .mailto-fallback-panel h2 {
+            margin-bottom: var(--space-4);
+            color: var(--slate-100);
+            font-family: var(--font-heading);
+            font-size: var(--type-section);
+            line-height: 1.1;
+        }
+
+        .mailto-fallback-panel p:not(.section-kicker) {
+            color: var(--slate-300);
+            font-size: var(--type-body);
+            line-height: 1.7;
+        }
+
+        .mailto-fallback-panel strong {
+            color: var(--cyan-200);
+            font-weight: 700;
+        }
+
+        .mailto-fallback-actions {
+            display: flex;
+            flex-wrap: wrap;
+            gap: var(--space-3);
+            align-items: center;
+            margin-top: var(--space-6);
+        }
+
+        .mailto-fallback-close {
+            min-height: 48px;
+            padding: var(--space-3) var(--space-4);
+            border: 0;
+            background: transparent;
+            color: var(--slate-300);
+            cursor: pointer;
+            font-family: var(--font-heading);
+            font-size: var(--type-body);
+            font-weight: 700;
+        }
+
+        .mailto-fallback-close:hover,
+        .mailto-fallback-close:focus-visible {
+            color: var(--cyan-200);
+        }
+
+        .mailto-fallback-close:focus-visible {
+            outline: 2px solid var(--cyan-300);
+            outline-offset: 3px;
+            border-radius: var(--radius-lg);
+        }
+
         .footer-bottom {
             text-align: center;
             color: var(--slate-400);
@@ -2076,7 +2154,16 @@
             .hero-actions .btn,
             .final-actions .btn,
             .companies-actions .btn,
-            .footer-link-btn {
+            .footer-link-btn,
+            .mailto-fallback-actions .btn {
+                width: 100%;
+            }
+
+            .mailto-fallback-panel {
+                padding: var(--space-6);
+            }
+
+            .mailto-fallback-close {
                 width: 100%;
             }
 
