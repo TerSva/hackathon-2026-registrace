@@ -313,6 +313,93 @@
             flex-shrink: 0;
         }
 
+        body.learning-panel-open {
+            overflow: hidden;
+        }
+
+        .learning-panel[hidden] {
+            display: none;
+        }
+
+        .learning-panel {
+            position: fixed;
+            inset: 0;
+            z-index: 100;
+            display: grid;
+            place-items: center;
+            padding: 24px;
+            background: rgba(15, 23, 42, 0.78);
+            backdrop-filter: blur(14px);
+        }
+
+        .learning-panel__dialog {
+            width: min(100%, 560px);
+            padding: 32px;
+            text-align: left;
+            border: 1px solid rgba(34, 211, 238, 0.26);
+            border-radius: 16px;
+            background: linear-gradient(145deg, rgba(30, 41, 59, 0.98), rgba(15, 23, 42, 0.98));
+            box-shadow: 0 24px 80px rgba(0, 0, 0, 0.46), 0 0 30px rgba(34, 211, 238, 0.2), 0 0 60px rgba(168, 85, 247, 0.15);
+        }
+
+        .learning-panel__kicker {
+            display: block;
+            margin-bottom: 12px;
+            font-family: var(--font-mono);
+            font-size: var(--type-body);
+            font-weight: 700;
+            line-height: 1.4;
+            text-transform: uppercase;
+            letter-spacing: 0;
+            color: var(--cyan-300);
+        }
+
+        .learning-panel__dialog h2 {
+            margin-bottom: 16px;
+            font-family: var(--font-heading);
+            font-size: var(--type-section);
+            line-height: 1.18;
+            color: var(--slate-100);
+        }
+
+        .learning-panel__dialog p {
+            margin-bottom: 16px;
+            color: var(--slate-300);
+            font-size: var(--type-body);
+            line-height: 1.7;
+        }
+
+        .learning-panel__actions {
+            display: flex;
+            justify-content: flex-end;
+            margin-top: 24px;
+        }
+
+        .learning-panel__close {
+            min-height: 48px;
+            padding: 12px 24px;
+            border: 0;
+            border-radius: 12px;
+            background: var(--gradient-brand);
+            color: #ffffff;
+            font-family: var(--font-heading);
+            font-size: var(--type-body);
+            font-weight: 800;
+            line-height: 1.2;
+            cursor: pointer;
+            box-shadow: 0 4px 20px rgba(34, 211, 238, 0.25);
+        }
+
+        .learning-panel__close:hover,
+        .learning-panel__close:focus-visible {
+            box-shadow: 0 8px 30px rgba(34, 211, 238, 0.35), 0 0 60px rgba(168, 85, 247, 0.2);
+        }
+
+        .learning-panel__close:focus-visible {
+            outline: 2px solid var(--cyan-300);
+            outline-offset: 3px;
+        }
+
         /* ── FOOTER ── */
         .page-foot {
             position: fixed;
@@ -371,7 +458,7 @@
     <!-- CTA -->
     <div class="cta-block">
         <span class="cta-label">Nejlepší příprava na hackathon</span>
-        <a href="https://ucebnice.praut.cz/" target="_blank" class="cta-btn">
+        <a href="https://ucebnice.praut.cz/" target="_blank" class="cta-btn" data-learning-panel>
             <svg viewBox="0 0 16 16" fill="none" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
                 <path d="M2 8h12M9 3l5 5-5 5"/>
             </svg>
@@ -386,6 +473,63 @@
 </footer>
 
 <script>
+    const learningPanelLinks = document.querySelectorAll('[data-learning-panel]');
+    let learningPanel = null;
+    let lastLearningPanelTrigger = null;
+
+    function ensureLearningPanel() {
+        if (learningPanel) return learningPanel;
+        learningPanel = document.createElement('div');
+        learningPanel.className = 'learning-panel';
+        learningPanel.hidden = true;
+        learningPanel.innerHTML = [
+            '<section class="learning-panel__dialog" role="dialog" aria-modal="true" aria-labelledby="learningPanelTitle">',
+            '<span class="learning-panel__kicker">Učebnice PRAUT</span>',
+            '<h2 id="learningPanelTitle">Učebnici teď připravujeme ve verzi 2.0.</h2>',
+            '<p>V současné chvíli jsme učebnici uzavřeli, protože připravujeme verzi 2.0.</p>',
+            '<p>Nová verze přinese 20 nových kapitol, lepší gamifikaci a porovnávání výsledků spolužáků ze stejné třídy, stejného ročníku, stejné školy i stejného klanu.</p>',
+            '<p>Učitelům zároveň umožní lépe sledovat úspěchy i zádrhele jejich studentů.</p>',
+            '<div class="learning-panel__actions">',
+            '<button class="learning-panel__close" type="button" data-learning-panel-close>Rozumím</button>',
+            '</div>',
+            '</section>'
+        ].join('');
+        document.body.appendChild(learningPanel);
+        learningPanel.addEventListener('click', function(event) {
+            if (event.target === learningPanel || event.target.closest('[data-learning-panel-close]')) {
+                closeLearningPanel();
+            }
+        });
+        return learningPanel;
+    }
+
+    function openLearningPanel(trigger) {
+        lastLearningPanelTrigger = trigger || null;
+        const panel = ensureLearningPanel();
+        panel.hidden = false;
+        document.body.classList.add('learning-panel-open');
+        const closeButton = panel.querySelector('[data-learning-panel-close]');
+        if (closeButton) closeButton.focus();
+    }
+
+    function closeLearningPanel() {
+        if (!learningPanel || learningPanel.hidden) return;
+        learningPanel.hidden = true;
+        document.body.classList.remove('learning-panel-open');
+        if (lastLearningPanelTrigger) lastLearningPanelTrigger.focus();
+    }
+
+    learningPanelLinks.forEach(function(link) {
+        link.addEventListener('click', function(event) {
+            event.preventDefault();
+            openLearningPanel(link);
+        });
+    });
+
+    document.addEventListener('keydown', function(event) {
+        if (event.key === 'Escape') closeLearningPanel();
+    });
+
     const params = new URLSearchParams(window.location.search);
     const mode = params.get('mode');
     if (mode === 'pending') {

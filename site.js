@@ -27,8 +27,67 @@ const siteNav = document.getElementById('siteNav');
         });
     }
 
+    const learningPanelLinks = document.querySelectorAll('[data-learning-panel]');
+    let learningPanel = null;
+    let lastLearningPanelTrigger = null;
+
+    function ensureLearningPanel() {
+        if (learningPanel) return learningPanel;
+
+        learningPanel = document.createElement('div');
+        learningPanel.className = 'learning-panel';
+        learningPanel.hidden = true;
+        learningPanel.innerHTML = [
+            '<section class="learning-panel__dialog" role="dialog" aria-modal="true" aria-labelledby="learningPanelTitle">',
+            '<span class="learning-panel__kicker">Učebnice PRAUT</span>',
+            '<h2 id="learningPanelTitle">Učebnici teď připravujeme ve verzi 2.0.</h2>',
+            '<p>V současné chvíli jsme učebnici uzavřeli, protože připravujeme verzi 2.0.</p>',
+            '<p>Nová verze přinese 20 nových kapitol, lepší gamifikaci a porovnávání výsledků spolužáků ze stejné třídy, stejného ročníku, stejné školy i stejného klanu.</p>',
+            '<p>Učitelům zároveň umožní lépe sledovat úspěchy i zádrhele jejich studentů.</p>',
+            '<div class="learning-panel__actions">',
+            '<button class="learning-panel__close" type="button" data-learning-panel-close>Rozumím</button>',
+            '</div>',
+            '</section>'
+        ].join('');
+
+        document.body.appendChild(learningPanel);
+        learningPanel.addEventListener('click', function(event) {
+            if (event.target === learningPanel || event.target.closest('[data-learning-panel-close]')) {
+                closeLearningPanel();
+            }
+        });
+
+        return learningPanel;
+    }
+
+    function openLearningPanel(trigger) {
+        lastLearningPanelTrigger = trigger || null;
+        const panel = ensureLearningPanel();
+        panel.hidden = false;
+        document.body.classList.add('learning-panel-open');
+        const closeButton = panel.querySelector('[data-learning-panel-close]');
+        if (closeButton) closeButton.focus();
+    }
+
+    function closeLearningPanel() {
+        if (!learningPanel || learningPanel.hidden) return;
+        learningPanel.hidden = true;
+        document.body.classList.remove('learning-panel-open');
+        if (lastLearningPanelTrigger) lastLearningPanelTrigger.focus();
+    }
+
+    learningPanelLinks.forEach(function(link) {
+        link.addEventListener('click', function(event) {
+            event.preventDefault();
+            openLearningPanel(link);
+        });
+    });
+
     document.addEventListener('keydown', function(event) {
-        if (event.key === 'Escape') setNavOpen(false);
+        if (event.key === 'Escape') {
+            closeLearningPanel();
+            setNavOpen(false);
+        }
     });
 
     const countdown = document.querySelector('[data-countdown]');
