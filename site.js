@@ -27,6 +27,111 @@ const siteNav = document.getElementById('siteNav');
         });
     }
 
+    const commercialPartnerSlots = 4;
+    const commercialPartners = document.querySelector('[data-commercial-partners]');
+    const footerCommercialPartners = document.querySelector('[data-commercial-partners-footer]');
+    const footerCommercialPartnersGrid = document.querySelector('[data-commercial-partners-footer-grid]');
+
+    function createCommercialPartnerPlaceholder() {
+        const card = document.createElement('div');
+        const label = document.createElement('span');
+        card.className = 'commercial-partner-card';
+        label.textContent = 'A komerční partner...';
+        card.appendChild(label);
+        return card;
+    }
+
+    function createCommercialPartnerLogoCard(src, slotNumber) {
+        const card = document.createElement('div');
+        const logo = document.createElement('img');
+        card.className = 'commercial-partner-card commercial-partner-card-logo';
+        logo.className = 'commercial-partner-logo';
+        logo.src = src;
+        logo.alt = 'Komerční partner ' + slotNumber;
+        logo.loading = 'lazy';
+        logo.decoding = 'async';
+        card.appendChild(logo);
+        return card;
+    }
+
+    function createFooterCommercialPartnerLogo(src, slotNumber) {
+        const tile = document.createElement('div');
+        const logo = document.createElement('img');
+        tile.className = 'footer-commercial-partner-tile';
+        logo.className = 'footer-commercial-partner-logo';
+        logo.src = src;
+        logo.alt = 'Komerční partner ' + slotNumber;
+        logo.loading = 'lazy';
+        logo.decoding = 'async';
+        tile.appendChild(logo);
+        return tile;
+    }
+
+    function testCommercialPartnerImage(slotNumber) {
+        const src = 'commercial-partner-' + slotNumber + '.png';
+
+        return new Promise(function(resolve) {
+            const image = new Image();
+            image.onload = function() {
+                resolve({ available: true, src: src, slotNumber: slotNumber });
+            };
+            image.onerror = function() {
+                resolve({ available: false, src: src, slotNumber: slotNumber });
+            };
+            image.src = src;
+        });
+    }
+
+    function renderCommercialPartnerPlaceholders() {
+        if (!commercialPartners) return;
+        commercialPartners.textContent = '';
+
+        for (let slotNumber = 1; slotNumber <= commercialPartnerSlots; slotNumber += 1) {
+            commercialPartners.appendChild(createCommercialPartnerPlaceholder());
+        }
+    }
+
+    function renderCommercialPartners() {
+        if (!commercialPartners && !footerCommercialPartnersGrid) return;
+
+        const imageChecks = [];
+        renderCommercialPartnerPlaceholders();
+
+        for (let slotNumber = 1; slotNumber <= commercialPartnerSlots; slotNumber += 1) {
+            imageChecks.push(testCommercialPartnerImage(slotNumber));
+        }
+
+        Promise.all(imageChecks).then(function(partners) {
+            let availableCount = 0;
+
+            if (commercialPartners) commercialPartners.textContent = '';
+            if (footerCommercialPartnersGrid) footerCommercialPartnersGrid.textContent = '';
+
+            partners.forEach(function(partner) {
+                if (partner.available) availableCount += 1;
+
+                if (commercialPartners) {
+                    const mainCard = partner.available
+                        ? createCommercialPartnerLogoCard(partner.src, partner.slotNumber)
+                        : createCommercialPartnerPlaceholder();
+                    commercialPartners.appendChild(mainCard);
+                }
+
+                if (partner.available && footerCommercialPartnersGrid) {
+                    footerCommercialPartnersGrid.appendChild(
+                        createFooterCommercialPartnerLogo(partner.src, partner.slotNumber)
+                    );
+                }
+            });
+
+            if (footerCommercialPartners) {
+                footerCommercialPartners.hidden = availableCount === 0;
+            }
+        });
+    }
+
+    renderCommercialPartners();
+
     const learningPanelLinks = document.querySelectorAll('[data-learning-panel]');
     let learningPanel = null;
     let lastLearningPanelTrigger = null;
