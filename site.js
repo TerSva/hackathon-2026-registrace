@@ -28,6 +28,7 @@ const siteNav = document.getElementById('siteNav');
     }
 
     const commercialPartnerSlots = 4;
+    const commercialPartnerFileTypes = ['svg', 'png'];
     const commercialPartners = document.querySelector('[data-commercial-partners]');
     const footerCommercialPartners = document.querySelector('[data-commercial-partners-footer]');
     const footerCommercialPartnersGrid = document.querySelector('[data-commercial-partners-footer-grid]');
@@ -67,9 +68,7 @@ const siteNav = document.getElementById('siteNav');
         return tile;
     }
 
-    function testCommercialPartnerImage(slotNumber) {
-        const src = 'commercial-partner-' + slotNumber + '.png';
-
+    function testCommercialPartnerImageSrc(src, slotNumber) {
         return new Promise(function(resolve) {
             const image = new Image();
             image.onload = function() {
@@ -80,6 +79,19 @@ const siteNav = document.getElementById('siteNav');
             };
             image.src = src;
         });
+    }
+
+    function testCommercialPartnerImage(slotNumber) {
+        const sources = commercialPartnerFileTypes.map(function(fileType) {
+            return 'commercial-partner-' + slotNumber + '.' + fileType;
+        });
+
+        return sources.reduce(function(result, src) {
+            return result.then(function(partner) {
+                if (partner.available) return partner;
+                return testCommercialPartnerImageSrc(src, slotNumber);
+            });
+        }, Promise.resolve({ available: false, src: sources[0], slotNumber: slotNumber }));
     }
 
     function renderCommercialPartnerPlaceholders() {
