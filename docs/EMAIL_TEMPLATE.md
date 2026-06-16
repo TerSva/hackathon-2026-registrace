@@ -21,8 +21,8 @@ Registrace potvrzena — HACK-XXXXX
 2. **Osobní oslovení** — jménem registrovaného
 3. **Kód registrace** — `HACK-XXXXX` v šedém boxu
 4. **Detaily eventu:**
-   - Datum: 19.–21. 6. 2026
-   - Čas: Pátek 12:00 – Neděle 12:00 (48 hodin)
+   - Datum: 19.–20. 6. 2026
+   - Čas: Pátek 12:00 – Sobota 12:00 (24 hodin)
    - Místo: Integrovaná střední škola Cheb, Obrněné brigády 2258/6
 5. **CTA** — gradient box s tlačítkem „Otevřít učebnici" → https://ucebnice.praut.cz/
 6. **Kontakt** — reply na svanda@praut.cz

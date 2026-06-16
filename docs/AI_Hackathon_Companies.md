@@ -185,7 +185,7 @@ AI zpracovává zápisy z jednání, smlouvy, žádosti – automaticky extrahuj
 
 # **Přehled: Témata vs. odvětví na jeden pohled**
 
-Tato tabulka shrnuje navrhovaná témata hackathonu. Každé řešení je realizovatelné během 24–48hodinového hackathonu jako funkční prototyp.
+Tato tabulka shrnuje navrhovaná témata hackathonu. Každé řešení je realizovatelné během 24hodinového hackathonu jako funkční prototyp.
 
 | Odvětví | Téma hackathonu | Realizace | Přínos |
 | :---- | :---- | :---- | :---- |
@@ -219,11 +219,11 @@ Tato tabulka shrnuje navrhovaná témata hackathonu. Každé řešení je realiz
 
 # **Jak se zapojit?**
 
-Stačí nám říct, jaký problém vaše firma řeší – my z něj vytvoříme téma pro hackathon. Nebo navrhněte téma Vy. Studenti dostanou 24–48 hodin na vytvoření funkčního prototypu. Vy rozhodnete, zda výsledek stojí za další rozvoj.
+Stačí nám říct, jaký problém vaše firma řeší – my z něj vytvoříme téma pro hackathon. Nebo navrhněte téma Vy. Studenti dostanou 24 hodin na vytvoření funkčního prototypu. Vy rozhodnete, zda výsledek stojí za další rozvoj.
 
 Všechna řešení jsou navržena tak, aby byla realizovatelná na hackathonu bez speciálního hardware nebo firemních dat – využívají veřejné datasety, webkamery notebooků a dostupná API.
 
-Podmínkou zapojení je také finanční podpora daného projektu a přítomnost zástupce firmy v neděli při vyhlášení a prezentaci projektů 10:00 \- 12:00. Online přítomnost v pátek 19.6. v 11:30 až 12:00. 
+Podmínkou zapojení je také finanční podpora daného projektu a přítomnost zástupce firmy v sobotu při vyhlášení a prezentaci projektů 10:00 \- 12:00. Online přítomnost v pátek 19.6. v 11:30 až 12:00.
 
 Další podrobnosti budou upřesněny. 
 

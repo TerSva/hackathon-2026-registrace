@@ -1,6 +1,6 @@
 # AI & Programming Hackathon 2026 — Registrace
 
-Registrační systém pro 48hodinový hackathon 19.–21. 6. 2026 v Chebu.
+Registrační systém pro 24hodinový hackathon 19.–20. 6. 2026 v Chebu.
 
 - **Frontend:** čisté HTML + CSS + vanilla JS (bez build kroku)
 - **Hosting:** GitHub Pages
