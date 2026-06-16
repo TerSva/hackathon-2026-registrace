@@ -659,6 +659,8 @@
             background: rgba(15, 23, 42, 0.7);
             border: 1px solid rgba(148, 163, 184, 0.16);
             border-radius: var(--radius-lg);
+            text-decoration: none;
+            transition: border-color 0.2s ease, box-shadow 0.2s ease, transform 0.2s ease;
         }
 
         .footer-commercial-partner-logo {
@@ -691,6 +693,8 @@
             border-radius: var(--radius-lg);
             color: var(--cyan-200);
             text-align: center;
+            text-decoration: none;
+            transition: border-color 0.2s ease, box-shadow 0.2s ease, transform 0.2s ease;
         }
 
         .commercial-partner-card span {
@@ -715,6 +719,19 @@
             min-height: 112px;
             object-fit: cover;
             border-radius: inherit;
+        }
+
+        a.footer-commercial-partner-tile:hover,
+        a.commercial-partner-card-logo:hover {
+            border-color: rgba(34, 211, 238, 0.56);
+            box-shadow: 0 0 0 1px rgba(34, 211, 238, 0.18), 0 14px 28px rgba(2, 6, 23, 0.28);
+            transform: translateY(-2px);
+        }
+
+        a.footer-commercial-partner-tile:focus-visible,
+        a.commercial-partner-card-logo:focus-visible {
+            outline: 2px solid var(--cyan-300);
+            outline-offset: 4px;
         }
 
         .content-split {

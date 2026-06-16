@@ -29,9 +29,19 @@ const siteNav = document.getElementById('siteNav');
 
     const commercialPartnerSlots = 4;
     const commercialPartnerFileTypes = ['svg', 'png'];
+    const commercialPartnerSites = {
+        1: { name: 'PULS PRAUT', url: 'https://puls.praut.cz' },
+        2: { name: 'Purify Clinic', url: 'https://purifyclinic.cz/' },
+        3: { name: 'Prace ve PT', url: 'https://www.pracevept.cz/' },
+        4: { name: 'MontexBau', url: 'https://www.montexbau.eu' }
+    };
     const commercialPartners = document.querySelector('[data-commercial-partners]');
     const footerCommercialPartners = document.querySelector('[data-commercial-partners-footer]');
     const footerCommercialPartnersGrid = document.querySelector('[data-commercial-partners-footer-grid]');
+
+    function getCommercialPartnerSite(slotNumber) {
+        return commercialPartnerSites[slotNumber] || null;
+    }
 
     function createCommercialPartnerPlaceholder() {
         const card = document.createElement('div');
@@ -43,12 +53,19 @@ const siteNav = document.getElementById('siteNav');
     }
 
     function createCommercialPartnerLogoCard(src, slotNumber) {
-        const card = document.createElement('div');
+        const partnerSite = getCommercialPartnerSite(slotNumber);
+        const card = document.createElement(partnerSite ? 'a' : 'div');
         const logo = document.createElement('img');
         card.className = 'commercial-partner-card commercial-partner-card-logo';
+        if (partnerSite) {
+            card.href = partnerSite.url;
+            card.target = '_blank';
+            card.rel = 'noopener';
+            card.setAttribute('aria-label', 'Otevřít web partnera ' + partnerSite.name);
+        }
         logo.className = 'commercial-partner-logo';
         logo.src = src;
-        logo.alt = 'Komerční partner ' + slotNumber;
+        logo.alt = partnerSite ? partnerSite.name : 'Komerční partner ' + slotNumber;
         logo.loading = 'lazy';
         logo.decoding = 'async';
         card.appendChild(logo);
@@ -56,12 +73,19 @@ const siteNav = document.getElementById('siteNav');
     }
 
     function createFooterCommercialPartnerLogo(src, slotNumber) {
-        const tile = document.createElement('div');
+        const partnerSite = getCommercialPartnerSite(slotNumber);
+        const tile = document.createElement(partnerSite ? 'a' : 'div');
         const logo = document.createElement('img');
         tile.className = 'footer-commercial-partner-tile';
+        if (partnerSite) {
+            tile.href = partnerSite.url;
+            tile.target = '_blank';
+            tile.rel = 'noopener';
+            tile.setAttribute('aria-label', 'Otevřít web partnera ' + partnerSite.name);
+        }
         logo.className = 'footer-commercial-partner-logo';
         logo.src = src;
-        logo.alt = 'Komerční partner ' + slotNumber;
+        logo.alt = partnerSite ? partnerSite.name : 'Komerční partner ' + slotNumber;
         logo.loading = 'lazy';
         logo.decoding = 'async';
         tile.appendChild(logo);
